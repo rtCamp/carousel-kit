@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
-    "@types/wordpress__block-editor": "14.21.7",
+    "@types/wordpress__block-editor": "15.0.0",
     "@types/wordpress__blocks": "12.5.18",
     "@wordpress/scripts": "^31.2.0",
     "typescript": "^5.9.3"
