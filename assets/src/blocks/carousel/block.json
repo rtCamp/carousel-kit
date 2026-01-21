@@ -49,6 +49,15 @@
 			"default": "ltr",
 			"enum": ["ltr", "rtl"]
 		},
+		"axis": {
+			"type": "string",
+			"default": "x",
+			"enum": ["x", "y"]
+		},
+		"height": {
+			"type": "string",
+			"default": "300px"
+		},
 		"autoplay": {
 			"type": "boolean",
 			"default": false

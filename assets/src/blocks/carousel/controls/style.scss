@@ -37,3 +37,13 @@
 [dir="rtl"] .rt-carousel-controls__btn svg {
 	transform: rotate(180deg);
 }
+
+// Vertical mode adjustments
+.wp-block-carousel-system-carousel[data-axis="y"] .rt-carousel-controls__btn svg {
+	transform: rotate(90deg);
+}
+
+// Handle RTL + Vertical intersection if needed (optional)
+.wp-block-carousel-system-carousel[data-axis="y"][dir="rtl"] .rt-carousel-controls__btn svg {
+	transform: rotate(-90deg); // or 270deg
+}

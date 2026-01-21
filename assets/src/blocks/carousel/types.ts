@@ -6,6 +6,8 @@ export type CarouselAttributes = {
 	carouselAlign: "start" | "center" | "end";
 	containScroll: "trimSnaps" | "keepSnaps";
 	direction: "ltr" | "rtl";
+	axis: "x" | "y";
+	height: string;
 	allowedSlideBlocks: string[];
 	autoplay: boolean;
 	autoplayDelay: number;

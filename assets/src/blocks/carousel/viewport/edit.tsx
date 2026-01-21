@@ -24,23 +24,33 @@ export default function Edit( {
 	clientId: string;
 	attributes: CarouselViewportAttributes;
 } ) {
+	const { setEmblaApi, setCanScrollPrev, setCanScrollNext, carouselOptions } = useContext(
+		EditorCarouselContext,
+	);
+
 	const blockProps = useBlockProps( {
 		className: 'embla',
+		style: {
+			height: carouselOptions?.axis === 'y' ? carouselOptions?.height : undefined,
+		},
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps(
-		{ className: 'embla__container' },
 		{
-			orientation: 'horizontal',
+			className: 'embla__container',
+			style: {
+				height: carouselOptions?.axis === 'y' ? 'auto' : undefined,
+				minHeight: carouselOptions?.axis === 'y' ? '100%' : undefined,
+				flexDirection: ( carouselOptions?.axis === 'y' ? 'column' : 'row' ) as React.CSSProperties['flexDirection'],
+			},
+		},
+		{
+			orientation: carouselOptions?.axis === 'y' ? 'vertical' : 'horizontal',
 			allowedBlocks: [ 'carousel-system/carousel-slide', 'core/query' ],
 			template: [ [ 'carousel-system/carousel-slide' ] ],
 		},
 	);
 
-	const { setEmblaApi, setCanScrollPrev, setCanScrollNext, carouselOptions } = useContext(
-		EditorCarouselContext,
-	);
-	
 	const emblaRef = useRef<HTMLDivElement>( null );
 	const ref = useMergeRefs( [ emblaRef, blockProps.ref ] );
 
@@ -72,6 +82,7 @@ export default function Edit( {
 				loop: false,
 				dragFree: true,
 				containScroll: 'trimSnaps',
+				axis: carouselOptions?.axis || 'x',
 				direction: carouselOptions?.direction || 'ltr',
 				container: queryLoopContainer || undefined,
 			} );

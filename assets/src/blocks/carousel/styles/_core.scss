@@ -41,3 +41,27 @@
 	margin-block-start: 0;
 	margin-block-end: 0;
 }
+
+/* Vertical Axis adjustments */
+:where(.wp-block-carousel-system-carousel[data-axis="y"]) {
+	height: var(--rt-carousel-height);
+}
+
+:where(.wp-block-carousel-system-carousel[data-axis="y"]) .embla {
+	height: 100%;
+}
+
+:where(.wp-block-carousel-system-carousel[data-axis="y"]) .embla__container {
+	flex-direction: column;
+	height: auto;
+	min-height: 100%;
+}
+
+:where(.wp-block-carousel-system-carousel[data-axis="y"]) .embla__slide,
+:where(.wp-block-carousel-system-carousel[data-axis="y"]) .embla .wp-block-post-template li {
+	flex: 0 0 auto; /* Allow height to be auto or fixed */
+	width: 100%;
+	max-width: 100%;
+	margin-inline-end: 0;
+	margin-block-end: var(--rt-carousel-gap, 0);
+}

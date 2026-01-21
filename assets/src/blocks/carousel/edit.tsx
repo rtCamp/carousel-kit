@@ -39,6 +39,8 @@ export default function Edit( {
 		carouselAlign,
 		containScroll,
 		direction,
+		axis,
+		height,
 		allowedSlideBlocks,
 		autoplay,
 		autoplayDelay,
@@ -64,8 +66,10 @@ export default function Edit( {
 	const blockProps = useBlockProps( {
 		className: 'rt-carousel',
 		dir: direction,
+		'data-axis': axis,
 		style: {
 			'--rt-carousel-gap': `${ attributes.slideGap }px`,
+			'--rt-carousel-height': axis === 'y' ? height : undefined,
 		} as React.CSSProperties,
 	} );
 
@@ -75,8 +79,8 @@ export default function Edit( {
 
 	// Memoize carouselOptions separately to prevent excessive viewport reinitializations
 	const carouselOptions = useMemo(
-		() => ( { loop, dragFree, align: carouselAlign, containScroll, direction } ),
-		[ loop, dragFree, carouselAlign, containScroll, direction ]
+		() => ( { loop, dragFree, align: carouselAlign, containScroll, direction, axis, height } ),
+		[ loop, dragFree, carouselAlign, containScroll, direction, axis, height ]
 	);
 
 	// Memoize the context value to prevent infinite re-renders in children
@@ -170,6 +174,30 @@ export default function Edit( {
 							'carousel-system-interactivity-api',
 						) }
 					/>
+					<SelectControl
+						label={ __( 'Orientation', 'carousel-system-interactivity-api' ) }
+						value={ axis }
+						options={ [
+							{ label: __( 'Horizontal', 'carousel-system-interactivity-api' ), value: 'x' },
+							{ label: __( 'Vertical', 'carousel-system-interactivity-api' ), value: 'y' },
+						] }
+						onChange={ ( value ) =>
+							setAttributes( {
+								axis: value as CarouselAttributes['axis'],
+							} )
+						}
+					/>
+					{ axis === 'y' && (
+						<TextControl
+							label={ __( 'Height', 'carousel-system-interactivity-api' ) }
+							value={ height }
+							onChange={ ( value ) => setAttributes( { height: value } ) }
+							help={ __(
+								'Set a fixed height for vertical carousel (e.g., 400px).',
+								'carousel-system-interactivity-api',
+							) }
+						/>
+					) }
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Autoplay Options', 'carousel-system-interactivity-api' ) }

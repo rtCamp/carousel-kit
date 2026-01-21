@@ -19,11 +19,13 @@ export default function Save({
 		autoplayStopOnMouseEnter,
 		ariaLabel,
 		slideGap,
+		axis,
+		height,
 	} = attributes;
 
 	// Pass configuration to the frontend via data-wp-context
 	const context: CarouselContext = {
-		options: { loop, dragFree, align: carouselAlign, containScroll, direction },
+		options: { loop, dragFree, align: carouselAlign, containScroll, direction, axis },
 		autoplay: autoplay
 			? {
 					delay: autoplayDelay,
@@ -46,11 +48,13 @@ export default function Save({
 		"aria-roledescription": "carousel",
 		"aria-label": ariaLabel,
 		dir: direction,
+		"data-axis": axis,
 		"data-wp-interactive": "carousel-system/carousel",
 		"data-wp-context": JSON.stringify(context),
 		"data-wp-init": "callbacks.initCarousel", // Use init for mounting
 		style: {
 			"--rt-carousel-gap": `${slideGap}px`,
+			"--rt-carousel-height": axis === "y" ? height : undefined,
 		} as React.CSSProperties,
 	});
 
