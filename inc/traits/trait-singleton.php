@@ -59,7 +59,7 @@ trait Singleton {
 		 *
 		 * @var array
 		 */
-		static $instance = array();
+		static $instance = [];
 
 		/**
 		 * If this trait is implemented in a class which has multiple
@@ -69,17 +69,15 @@ trait Singleton {
 		 * a key=>value pair for each `classname => instance` in self::$_instance
 		 * for each sub-class.
 		 */
-		$called_class = get_called_class();
+		$called_class = static::class;
 
 		if ( ! isset( $instance[ $called_class ] ) ) {
-
 			$instance[ $called_class ] = new $called_class();
 
 			/**
 			 * Dependent items can use the carousel_system_singleton_init_{$called_class} hook to execute code
 			 */
 			do_action( sprintf( 'carousel_system_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
-
 		}
 
 		return $instance[ $called_class ];

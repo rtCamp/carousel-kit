@@ -45,7 +45,6 @@ function autoloader( $source = '' ) {
 	$file_name = '';
 
 	if ( 'inc' === $path[0] ) {
-
 		switch ( $path[1] ) {
 			case 'traits':
 				$directory = 'traits';
@@ -59,16 +58,16 @@ function autoloader( $source = '' ) {
 		}
 
 		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( CAROUSEL_SYSTEM_PATH ), $directory, $file_name );
-
 	}
 
 	$resource_path_valid = validate_file( $resource_path );
 	// For Windows platform, validate_file returns 2 so we've added this condition as well.
-	if ( ! empty( $resource_path ) && file_exists( $resource_path ) && ( 0 === $resource_path_valid || 2 === $resource_path_valid ) ) {
-		// We are already making sure that the file exists and it's valid.
-		require_once( $resource_path ); // phpcs:ignore
+	if ( empty( $resource_path ) || ! file_exists( $resource_path ) || ( 0 !== $resource_path_valid && 2 !== $resource_path_valid ) ) {
+		return;
 	}
 
+	// We are already making sure that the file exists and it's valid.
+	require_once( $resource_path ); // phpcs:ignore
 }
 
 spl_autoload_register( '\Carousel_System_Interactivity_API\Inc\Helpers\autoloader' );

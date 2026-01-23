@@ -1,20 +1,42 @@
 <?php
+/**
+ * Plugin manifest class.
+ *
+ * @package Carousel_System_Interactivity_API
+ */
+
 namespace Carousel_System_Interactivity_API\Inc;
 
 use Carousel_System_Interactivity_API\Inc\Traits\Singleton;
 
+/**
+ * Plugin class.
+ */
 class Plugin {
 	use Singleton;
 
+	/**
+	 * Plugin constructor.
+	 */
 	protected function __construct() {
 		$this->setup_hooks();
 	}
 
+	/**
+	 * Setup hooks.
+	 */
 	protected function setup_hooks() {
 		add_action( 'init', [ $this, 'register_blocks' ] );
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 	}
 
+	/**
+	 * Register block category.
+	 *
+	 * @param array $categories Block categories.
+	 *
+	 * @return array
+	 */
 	public function register_block_category( $categories ) {
 		return array_merge(
 			$categories,
@@ -27,6 +49,9 @@ class Plugin {
 		);
 	}
 
+	/**
+	 * Register blocks.
+	 */
 	public function register_blocks() {
 		$blocks = [
 			'carousel',

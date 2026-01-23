@@ -21,6 +21,9 @@ define( 'CAROUSEL_SYSTEM_BUILD_URL', CAROUSEL_SYSTEM_URL . '/build' );
 require_once CAROUSEL_SYSTEM_PATH . '/inc/helpers/autoloader.php';
 require_once CAROUSEL_SYSTEM_PATH . '/vendor/autoload.php';
 
+/**
+ * Plugin loader.
+ */
 function carousel_system_loader() {
 	\Carousel_System_Interactivity_API\Inc\Plugin::get_instance();
 }
