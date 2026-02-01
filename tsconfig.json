@@ -54,14 +54,13 @@
 		}
 	},
 	"include": [
-		"assets/src/**/*.mjs",
-		"assets/src/**/*.ts",
-		"assets/src/**/*.tsx",
-		"assets/src/**/*.json"
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.d.ts"
 	],
 	"exclude": [
-		"**/build/*",
-		"vendor/*",
-		"node_modules/*"
+		"node_modules",
+		"build",
+		"src/inc/**/*"
 	]
 }

@@ -1,5 +1,5 @@
 {
-	"name": "rtcamp/carousel-system-interactivity-api",
+	"name": "rtcamp/core-carousel",
 	"type": "wordpress-plugin",
 	"config": {
 		"allow-plugins": {

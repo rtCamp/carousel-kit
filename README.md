@@ -1,5 +1,5 @@
 
-# Carousel System Interactivity Block
+# Core Carousel
 
 **A modular, high-performance carousel block for WordPress, powered by the Interactivity API and Embla Carousel.**
 
@@ -26,13 +26,13 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 ## Block Types
 
-### Parent Block: `carousel-system/carousel`
+### Parent Block: `core-carousel/carousel`
 Controller and wrapper. Handles configuration, state, and context for all child blocks. Allows any block inside.
 
-### Viewport Block: `carousel-system/carousel-viewport`
-Physical Embla viewport. Only allows `carousel-system/carousel-slide` or Query Loop as direct children.
+### Viewport Block: `core-carousel/carousel-viewport`
+Physical Embla viewport. Only allows `core-carousel/carousel-slide` or Query Loop as direct children.
 
-### Slide Block: `carousel-system/carousel-slide`
+### Slide Block: `core-carousel/carousel-slide`
 Slide wrapper. Restricts inner content based on parent configuration.
 
 ### Controls & Dots Blocks
@@ -40,7 +40,7 @@ Navigation UI components. Communicate with parent carousel state.
 
 ## Data API for Developers
 
-Expose carousel state via the Interactivity API store (`carousel-system/carousel`). Build custom blocks (progress bars, counters, etc) by consuming this data.
+Expose carousel state via the Interactivity API store (`core-carousel/carousel`). Build custom blocks (progress bars, counters, etc) by consuming this data.
 
 ### Exposed Context (`CarouselContext`)
 
@@ -62,17 +62,17 @@ Create a progress bar that animates while the carousel is auto-playing:
 **save.tsx**
 ```jsx
 <div
-    data-wp-interactive="carousel-system/carousel"
+    data-wp-interactive="core-carousel/carousel"
     data-wp-bind--key="context.timerIterationId"
     data-wp-bind--style="state.barDuration"
     data-wp-class--is-playing="context.isPlaying"
-    className="rt-progress-bar"
+    className="core-progress-bar"
 />
 ```
 
 **view.ts**
 ```js
-store('carousel-system/carousel', {
+store('core-carousel/carousel', {
     state: {
         get barDuration() {
             const { autoplay } = getContext();
@@ -84,7 +84,7 @@ store('carousel-system/carousel', {
 
 **CSS**
 ```css
-.rt-progress-bar.is-playing {
+.core-progress-bar.is-playing {
     animation: grow var(--duration) linear forwards;
 }
 @keyframes grow { from { width: 0%; } to { width: 100%; } }
@@ -96,7 +96,7 @@ Highlight slide content when active:
 
 ```jsx
 <div
-    data-wp-interactive="carousel-system/carousel"
+    data-wp-interactive="core-carousel/carousel"
     data-wp-class--is-active="callbacks.isSlideActive"
     className="my-card"
 >
@@ -113,14 +113,14 @@ Highlight slide content when active:
 To create a specialized carousel (e.g., testimonials only), set the `allowedSlideBlocks` attribute on the parent block:
 
 ```json
-<!-- wp:carousel-system/carousel {"allowedSlideBlocks":["rt-blocks/testimonial-card"]} -->
+<!-- wp:core-carousel/carousel {"allowedSlideBlocks":["rt-blocks/testimonial-card"]} -->
     <!-- wp:core/heading {"content":"User Testimonials"} /-->
-    <!-- wp:carousel-system/carousel-viewport -->
-        <!-- wp:carousel-system/carousel-slide -->
+    <!-- wp:core-carousel/carousel-viewport -->
+        <!-- wp:core-carousel/carousel-slide -->
             <!-- wp:rt-blocks/testimonial-card /-->
-        <!-- /wp:carousel-system/carousel-slide -->
-    <!-- /wp:carousel-system/carousel-viewport -->
-<!-- /wp:carousel-system/carousel -->
+        <!-- /wp:core-carousel/carousel-slide -->
+    <!-- /wp:core-carousel/carousel-viewport -->
+<!-- /wp:core-carousel/carousel -->
 ```
 
 ---
@@ -157,32 +157,32 @@ Easily theme the carousel using CSS variables or block supports. Navigation bloc
 #### Core
 | Variable | Description |
 | :--- | :--- |
-| `--rt-carousel-gap` | Controlled by the `slideGap` attribute. Applied as margin to slides. |
-| `--rt-carousel-slide-width` | Controls the width of each slide. Defaults to 100% or set by column variants. |
+| `--core-carousel-gap` | Controlled by the `slideGap` attribute. Applied as margin to slides. |
+| `--core-carousel-slide-width` | Controls the width of each slide. Defaults to 100% or set by column variants. |
 
 #### Controls
-| Variable                             | Default                               | Description                 |
-| ------------------------------------ | ------------------------------------- | --------------------------- |
-| `--rt-carousel-control-bg`           | `unset`                               | Background color of buttons |
-| `--rt-carousel-control-color`        | `inherit`                             | Icon color                  |
-| `--rt-carousel-control-size`         | `2.5rem`                              | Width/Height of buttons     |
-| `--rt-carousel-control-padding`      | `0.5rem`                              | Padding inside buttons      |
-| `--rt-carousel-control-border`       | `1.25px solid rgba(28, 28, 28, 0.3)`  | Border style                |
-| `--rt-carousel-control-radius`       | `1rem`                                | Border radius               |
-| `--rt-carousel-control-bg-hover`     | `rgba(248, 248, 248, 1)`              | Background on hover         |
-| `--rt-carousel-control-border-hover` | `1.25px solid rgba(28, 28, 28, 0.75)` | Border on hover             |
-| `--rt-carousel-control-color-hover`  | `inherit`                             | Icon color on hover         |
+| Variable                                  | Default                               | Description                 |
+| ----------------------------------------- | ------------------------------------- | --------------------------- |
+| `--core-carousel-control-bg`              | `unset`                               | Background color of buttons |
+| `--core-carousel-control-color`           | `inherit`                             | Icon color                  |
+| `--core-carousel-control-size`            | `2.5rem`                              | Width/Height of buttons     |
+| `--core-carousel-control-padding`         | `0.5rem`                              | Padding inside buttons      |
+| `--core-carousel-control-border`          | `1.25px solid rgba(28, 28, 28, 0.3)`  | Border style                |
+| `--core-carousel-control-radius`          | `1rem`                                | Border radius               |
+| `--core-carousel-control-bg-hover`        | `rgba(248, 248, 248, 1)`              | Background on hover         |
+| `--core-carousel-control-border-hover`    | `1.25px solid rgba(28, 28, 28, 0.75)` | Border on hover             |
+| `--core-carousel-control-color-hover`     | `inherit`                             | Icon color on hover         |
 
 #### Dots
-| Variable                         | Default               | Description            |
-| -------------------------------- | --------------------- | ---------------------- |
-| `--rt-carousel-dots-gap`         | `0.5rem`              | Gap between dots       |
-| `--rt-carousel-dot-size`         | `0.5rem`              | Size of inactive dots  |
-| `--rt-carousel-dot-color`        | `rgb(221, 221, 221)`  | Color of inactive dots |
-| `--rt-carousel-dot-radius`       | `50%`                 | Shape of the dots      |
-| `--rt-carousel-dot-border`       | `none`                | Border style for dots  |
-| `--rt-carousel-dot-active-size`  | `0.75rem`             | Size of active dot     |
-| `--rt-carousel-dot-active-color` | `rgba(28, 28, 28, 1)` | Color of active dot    |
+| Variable                              | Default               | Description            |
+| ------------------------------------- | --------------------- | ---------------------- |
+| `--core-carousel-dots-gap`            | `0.5rem`              | Gap between dots       |
+| `--core-carousel-dot-size`            | `0.5rem`              | Size of inactive dots  |
+| `--core-carousel-dot-color`           | `rgb(221, 221, 221)`  | Color of inactive dots |
+| `--core-carousel-dot-radius`          | `50%`                 | Shape of the dots      |
+| `--core-carousel-dot-border`          | `none`                | Border style for dots  |
+| `--core-carousel-dot-active-size`     | `0.75rem`             | Size of active dot     |
+| `--core-carousel-dot-active-color`    | `rgba(28, 28, 28, 1)` | Color of active dot    |
 
 ### Overriding Styles
 
@@ -191,9 +191,9 @@ Override variables globally in your theme's stylesheet or via `theme.json`:
 **Global CSS (style.css)**
 ```css
 :root {
-    --rt-carousel-control-bg: #000000;
-    --rt-carousel-dot-active-color: #ff0000;
-    --rt-carousel-gap: 20px;
+    --core-carousel-control-bg: #000000;
+    --core-carousel-dot-active-color: #ff0000;
+    --core-carousel-gap: 20px;
 }
 ```
 
@@ -202,8 +202,8 @@ Override variables globally in your theme's stylesheet or via `theme.json`:
 {
     "styles": {
         "blocks": {
-            "carousel-system/carousel": {
-                "css": "--rt-carousel-control-bg: #000000;"
+            "core-carousel/carousel": {
+                "css": "--core-carousel-control-bg: #000000;"
             }
         }
     }
@@ -242,8 +242,8 @@ Create dynamic post sliders or content carousels using the WordPress Query Loop 
 | Use Case | Recommended Block |
 | :--- | :--- |
 | Dynamic Content (Posts, Pages, Products, Custom Post Types) | Query Loop (`core/query`) |
-| Static Content (Hero Slider, Logo Showcase, Manual Testimonials) | Carousel Slide (`carousel-system/carousel-slide`) |
-| Mixed Content (Slide 1 is a Video, Slide 2 is Text) | Carousel Slide (`carousel-system/carousel-slide`) |
+| Static Content (Hero Slider, Logo Showcase, Manual Testimonials) | Carousel Slide (`core-carousel/carousel-slide`) |
+| Mixed Content (Slide 1 is a Video, Slide 2 is Text) | Carousel Slide (`core-carousel/carousel-slide`) |
 
 ---
 
@@ -264,6 +264,6 @@ The Carousel Dots block demonstrates a pattern for iterating over data with the 
 
 ### Editor Interactivity: Find & Bind Strategy
 Gutenberg's InnerBlocks can isolate React Contexts, causing state sync issues between parent and deeply nested children. To guarantee reliable interactivity in the editor:
-1. Attach: The Viewport component attaches the vanilla Embla instance directly to its DOM node using a Symbol key: `element[Symbol.for("carousel-system.carousel")] = embla`.
-2. Find: Child components (Controls/Dots) attempt to find the API via Context first. If missing, they traverse the DOM up to the common wrapper (`.rt-carousel`) and then search for the sibling `.embla` viewport.
+1. Attach: The Viewport component attaches the vanilla Embla instance directly to its DOM node using a Symbol key: `element[Symbol.for("core-carousel.carousel")] = embla`.
+2. Find: Child components (Controls/Dots) attempt to find the API via Context first. If missing, they traverse the DOM up to the common wrapper (`.core-carousel`) and then search for the sibling `.embla` viewport.
 3. Bind: A retry mechanism (`setTimeout` + `useEffect`) ensures the Viewport has finished initializing before binding listeners.

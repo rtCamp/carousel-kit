@@ -1,0 +1,94 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"version": "2.0.0",
+	"name": "core-carousel/carousel",
+	"title": "Carousel",
+	"category": "core-carousel",
+	"icon": "columns",
+	"description": "Carousel container using Embla and Interactivity API.",
+	"textdomain": "core-carousel",
+	"providesContext": {
+		"core-carousel/carousel/allowedSlideBlocks": "allowedSlideBlocks"
+	},
+	"supports": {
+		"interactivity": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false,
+		"color": {
+			"text": false,
+			"background": true
+		}
+	},
+	"attributes": {
+		"allowedSlideBlocks": {
+			"type": "array",
+			"default": []
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"dragFree": {
+			"type": "boolean",
+			"default": false
+		},
+		"carouselAlign": {
+			"type": "string",
+			"default": "start"
+		},
+		"containScroll": {
+			"type": "string",
+			"default": "trimSnaps"
+		},
+		"direction": {
+			"type": "string",
+			"default": "ltr",
+			"enum": ["ltr", "rtl"]
+		},
+		"axis": {
+			"type": "string",
+			"default": "x",
+			"enum": ["x", "y"]
+		},
+		"height": {
+			"type": "string",
+			"default": "300px"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplayDelay": {
+			"type": "number",
+			"default": 4000
+		},
+		"autoplayStopOnInteraction": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplayStopOnMouseEnter": {
+			"type": "boolean",
+			"default": false
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "Carousel"
+		},
+		"slideGap": {
+			"type": "number",
+			"default": 0
+		},
+		"slidesToScroll": {
+			"type": "string",
+			"default": "1"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js"
+}

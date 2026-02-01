@@ -20,8 +20,8 @@ parameters:
 		bootstrapFiles:
 				- tests/phpstan/constants.php
 		paths:
-				- carousel-system-interactivity-api.php
-				- inc/
+				- core-carousel.php
+				- src/inc/
 				- templates/
 		excludePaths:
 			analyse:

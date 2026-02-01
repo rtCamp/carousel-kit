@@ -1,7 +1,7 @@
 {
-  "name": "carousel-system-interactivity-api",
-  "version": "1.0.0",
-  "description": "Standalone carousel block using Embla and WordPress Interactivity API",
+  "name": "core-carousel",
+  "version": "2.0.0",
+  "description": "Carousel block using Embla and WordPress Interactivity API",
   "author": "rtCamp",
   "private": true,
   "engines": {
@@ -9,8 +9,8 @@
     "npm": "^10.0.0"
   },
   "scripts": {
-    "build": "wp-scripts build --experimental-modules --webpack-src-dir=./assets/src --output-path=./build",
-    "start": "wp-scripts start --experimental-modules --webpack-src-dir=./assets/src --output-path=./build",
+    "build": "wp-scripts build --experimental-modules --webpack-src-dir=./src --output-path=./build",
+    "start": "wp-scripts start --experimental-modules --webpack-src-dir=./src --output-path=./build",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
     "lint:js:types": "tsc --build --noEmit",
