@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Title: Core Carousel: Hero Carousel
  * Slug: core-carousel/hero-carousel

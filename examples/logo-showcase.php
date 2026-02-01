@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Title: Core Carousel: Logo Showcase
  * Slug: core-carousel/logo-showcase
