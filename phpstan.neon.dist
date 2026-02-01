@@ -23,6 +23,7 @@ parameters:
 				- core-carousel.php
 				- src/inc/
 				- templates/
+				- examples/
 		excludePaths:
 			analyse:
 				- tests/
