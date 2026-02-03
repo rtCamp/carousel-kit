@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"version": "1.0.0",
+	"name": "core-carousel/carousel-slide",
+	"title": "Carousel Slide",
+	"category": "core-carousel",
+	"icon": "slides",
+	"parent": [
+		"core-carousel/carousel-viewport"
+	],
+	"description": "A single slide within the carousel.",
+	"textdomain": "core-carousel",
+	"attributes": {},
+	"usesContext": [
+		"core-carousel/carousel/allowedSlideBlocks"
+	],
+	"editorScript": "file:./index.js"
+}

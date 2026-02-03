@@ -1,5 +1,5 @@
 {
-	"name": "rtcamp/carousel-system-interactivity-api",
+	"name": "rtcamp/core-carousel",
 	"type": "wordpress-plugin",
 	"config": {
 		"allow-plugins": {
@@ -48,6 +48,11 @@
 		"szepeviktor/phpstan-wordpress": "^2.0.2",
 		"wp-coding-standards/wpcs": "^3.1",
 		"wpackagist-plugin/plugin-check": "~1.6.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Core_Carousel\\": "inc/"
+		}
 	},
 	"scripts": {
 		"format": "phpcbf",

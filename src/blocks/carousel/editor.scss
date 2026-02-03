@@ -1,0 +1,23 @@
+/**
+ * Editor-only styles for Carousel
+ */
+.core-carousel {
+	/* Ensure selectable area */
+	padding: 0.625rem;
+	border: 1px dashed #ccc;
+
+	&.is-selected {
+		border-color: var(--wp-admin-theme-color);
+	}
+
+	/* Add dashed border in editor to make it visible if empty */
+	&.is-empty {
+		border: 1px dashed #ccc;
+		min-height: 50px;
+	}
+
+	// Vertical Axis adjustments in editor
+	&[data-axis="y"] .embla__container {
+		height: 100% !important;
+	}
+}

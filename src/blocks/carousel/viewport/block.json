@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"version": "1.0.0",
+	"name": "core-carousel/carousel-viewport",
+	"title": "Carousel Viewport",
+	"category": "core-carousel",
+	"icon": "cover-image",
+	"parent": [
+		"core-carousel/carousel"
+	],
+	"description": "Viewport container for carousel slides.",
+	"textdomain": "core-carousel",
+	"attributes": {},
+	"supports": {
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js"
+}
