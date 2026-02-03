@@ -47,7 +47,7 @@
 		"skipLibCheck": true,
 
 		// File config
-		"baseUrl": "./assets/src",
+		"baseUrl": "./src",
 		"outDir": "./build",
 		"paths": {
 			"@/*": ["./*"],
@@ -60,7 +60,6 @@
 	],
 	"exclude": [
 		"node_modules",
-		"build",
-		"src/inc/**/*"
+		"build"
 	]
 }

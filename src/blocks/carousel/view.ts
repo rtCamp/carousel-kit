@@ -3,7 +3,7 @@ import EmblaCarousel, {
 	type EmblaOptionsType,
 	type EmblaCarouselType,
 } from 'embla-carousel';
-import Autoplay from 'embla-carousel-autoplay';
+import Autoplay, { type AutoplayOptionsType } from 'embla-carousel-autoplay';
 import type { CarouselContext } from './types';
 
 type ElementWithRef = {
@@ -83,35 +83,32 @@ store( 'core-carousel/carousel', {
 			const { snap } = context as CarouselContext & {
 				snap?: { index?: number };
 			}; // snap is the iterated item
-			const element = getElementRef( getElement() );
-			const embla = getEmblaFromElement( element );
 
-			if ( embla && snap && typeof snap.index === 'number' ) {
-				embla.scrollTo( snap.index );
+			if ( snap && typeof snap.index === 'number' ) {
+				const element = getElementRef( getElement() );
+				const embla = getEmblaFromElement( element );
+				if ( embla ) {
+					embla.scrollTo( snap.index );
+				}
 			}
 		},
 	},
 	callbacks: {
 		isSlideActive: () => {
-			const { selectedIndex } = getContext<CarouselContext>();
-			const element = getElementRef( getElement() );
 			// Check for either standard slide or Query Loop post
-			const slide = element?.closest?.( '.embla__slide, .wp-block-post' );
+			const slide = getElementRef( getElement() )?.closest?.(
+				'.embla__slide, .wp-block-post',
+			);
 
 			if ( ! slide || ! slide.parentElement ) {
 				return false;
 			}
 
-			// Filter siblings to find index among valid slides
-			const slides = Array.from( slide.parentElement.children ).filter(
-				( child: Element ) =>
-					child.classList?.contains( 'embla__slide' ) ||
-					child.classList?.contains( 'wp-block-post' ),
-			);
 			const index = slides.indexOf( slide );
 			if ( index === -1 ) {
 				return false;
 			}
+			const { selectedIndex } = getContext<CarouselContext>();
 			return selectedIndex === index;
 		},
 		isDotActive: () => {
@@ -155,45 +152,56 @@ store( 'core-carousel/carousel', {
 					'.wp-block-post-template',
 				);
 
-				let cleanupEmbla: ( () => void ) | undefined;
-				let observer: ResizeObserver | undefined;
-
 				const startEmbla = () => {
 					const rawOptions: EmblaOptionsType = context.options || {};
 
 					// Sanitize options to prevent Embla crashes
+					const align = [ 'start', 'center', 'end' ].includes(
+						rawOptions.align as string,
+					)
+						? ( rawOptions.align as 'start' | 'center' | 'end' )
+						: 'start';
+
+					const containScroll = [ 'trimSnaps', 'keepSnaps', '' ].includes(
+						rawOptions.containScroll as string,
+					)
+						? ( rawOptions.containScroll as 'trimSnaps' | 'keepSnaps' | '' )
+						: 'trimSnaps';
+
+					const direction = [ 'ltr', 'rtl' ].includes(
+						rawOptions.direction as string,
+					)
+						? ( rawOptions.direction as 'ltr' | 'rtl' )
+						: 'ltr';
+
+					let slidesToScroll: EmblaOptionsType['slidesToScroll'] = 1;
+					if ( rawOptions.slidesToScroll === 'auto' ) {
+						slidesToScroll = 'auto';
+					} else if (
+						typeof rawOptions.slidesToScroll === 'number' &&
+						rawOptions.slidesToScroll > 0
+					) {
+						slidesToScroll = rawOptions.slidesToScroll;
+					}
+
 					const options: EmblaOptionsType = {
 						...rawOptions,
-						align: ( [ 'start', 'center', 'end' ].includes(
-							rawOptions.align as string,
-						)
-							? rawOptions.align
-							: 'start' ) as any,
-						containScroll: ( [ 'trimSnaps', 'keepSnaps', '' ].includes(
-							rawOptions.containScroll as string,
-						)
-							? rawOptions.containScroll
-							: 'trimSnaps' ) as any,
-						direction: ( [ 'ltr', 'rtl' ].includes(
-						rawOptions.direction as string,
-						)
-							? rawOptions.direction
-							: 'ltr' ) as any,
-						slidesToScroll: rawOptions.slidesToScroll === 'auto'
-							? 'auto'
-							: ( typeof rawOptions.slidesToScroll === 'number' && rawOptions.slidesToScroll > 0
-								? rawOptions.slidesToScroll
-								: 1 ),
+						align,
+						containScroll,
+						direction,
+						slidesToScroll,
 						container: queryLoopContainer || null,
 					};
 
 					const plugins = [];
 
 					if ( context.autoplay ) {
-						plugins.push( Autoplay( context.autoplay as any ) );
+						plugins.push(
+							Autoplay( context.autoplay as AutoplayOptionsType ),
+						);
 					}
 
-					const embla = EmblaCarousel( viewport, options, plugins );
+					const embla = EmblaCarousel( viewport as HTMLElement, options, plugins );
 
 					emblaInstances.set( viewport, embla );
 					viewport[ EMBLA_KEY ] = embla;
@@ -228,6 +236,9 @@ store( 'core-carousel/carousel', {
 						delete viewport[ EMBLA_KEY ];
 					};
 				};
+
+				let cleanupEmbla: ( () => void ) | undefined;
+				let observer: ResizeObserver | undefined;
 
 				if ( viewport.getBoundingClientRect().width > 0 ) {
 					cleanupEmbla = startEmbla();

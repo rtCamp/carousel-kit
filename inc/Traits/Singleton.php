@@ -25,7 +25,7 @@
  * @package core-carousel
  */
 
-namespace Core_Carousel\Inc\Traits;
+namespace Core_Carousel\Traits;
 
 trait Singleton {
 

@@ -28,7 +28,6 @@ phpstan.neon
 # IDE files
 .vscode/
 .idea/
-.github/
 *.iml
 *.sublime-project
 *.sublime-workspace
@@ -37,3 +36,4 @@ phpstan.neon
 # Build
 build/
 tsconfig.tsbuildinfo
+core-carousel.zip

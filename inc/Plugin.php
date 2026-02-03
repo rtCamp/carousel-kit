@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Core_Carousel\Inc;
+namespace Core_Carousel;
 
-use Core_Carousel\Inc\Traits\Singleton;
+use Core_Carousel\Traits\Singleton;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

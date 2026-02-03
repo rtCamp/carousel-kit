@@ -18,14 +18,13 @@ define( 'CORE_CAROUSEL_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'CORE_CAROUSEL_BUILD_PATH', CORE_CAROUSEL_PATH . '/build' );
 define( 'CORE_CAROUSEL_BUILD_URL', CORE_CAROUSEL_URL . '/build' );
 
-require_once CORE_CAROUSEL_PATH . '/src/inc/helpers/autoloader.php';
 require_once CORE_CAROUSEL_PATH . '/vendor/autoload.php';
 
 /**
  * Plugin loader.
  */
 function core_carousel_loader() {
-	\Core_Carousel\Inc\Plugin::get_instance();
+	\Core_Carousel\Plugin::get_instance();
 }
 
 core_carousel_loader();
