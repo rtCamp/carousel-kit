@@ -1,5 +1,8 @@
 # Core Carousel
 
+![Build Status](https://github.com/rtCamp/core-carousel/actions/workflows/release.yml/badge.svg?branch=main)
+![Latest Release](https://img.shields.io/github/v/release/rtCamp/core-carousel)
+
 **A modular, high-performance carousel block for WordPress, powered by the Interactivity API and Embla Carousel.**
 
 Easily create dynamic, accessible, and customizable carousels for any content type—posts, testimonials, images, and more. Designed for speed, flexibility, and seamless integration with the WordPress block editor.
@@ -32,23 +35,14 @@ The plugin provides a suite of blocks that work together:
 4.  **Carousel Controls**: Previous/Next buttons.
 5.  **Carousel Dots**: Pagination indicators.
 
-## Quick Example
+## Live Demo
 
-```html
-<!-- wp:core-carousel/carousel -->
-    <!-- wp:core-carousel/carousel-viewport -->
-        <!-- wp:core-carousel/carousel-slide -->
-            <!-- wp:image /-->
-        <!-- /wp:core-carousel/carousel-slide -->
-        <!-- wp:core-carousel/carousel-slide -->
-            <!-- wp:paragraph /-->
-        <!-- /wp:core-carousel/carousel-slide -->
-    <!-- /wp:core-carousel/carousel-viewport -->
-    
-    <!-- wp:core-carousel/carousel-controls /-->
-    <!-- wp:core-carousel/carousel-dots /-->
-<!-- /wp:core-carousel/carousel -->
-```
+[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/core-carousel/production/blueprint.json)
+
+## Contributors
+
+- [Danish Shakeel](https://github.com/danish17)
+- [Masud Rana](https://github.com/mr-masudrana00)
 
 ## License
 GPL-2.0-or-later
