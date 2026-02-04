@@ -104,6 +104,13 @@ store( 'core-carousel/carousel', {
 				return false;
 			}
 
+			// Filter siblings to find index among valid slides
+			const slides = Array.from( slide.parentElement.children ).filter(
+				( child: Element ) =>
+					child.classList?.contains( 'embla__slide' ) ||
+					child.classList?.contains( 'wp-block-post' ),
+			);
+
 			const index = slides.indexOf( slide );
 			if ( index === -1 ) {
 				return false;
@@ -137,9 +144,7 @@ store( 'core-carousel/carousel', {
 					return;
 				}
 
-				const viewport = element.querySelector(
-					'.embla',
-				);
+				const viewport = element.querySelector( '.embla' );
 
 				if ( ! viewport ) {
 					// eslint-disable-next-line no-console
@@ -196,12 +201,14 @@ store( 'core-carousel/carousel', {
 					const plugins = [];
 
 					if ( context.autoplay ) {
-						plugins.push(
-							Autoplay( context.autoplay as AutoplayOptionsType ),
-						);
+						plugins.push( Autoplay( context.autoplay as AutoplayOptionsType ) );
 					}
 
-					const embla = EmblaCarousel( viewport as HTMLElement, options, plugins );
+					const embla = EmblaCarousel(
+						viewport as HTMLElement,
+						options,
+						plugins,
+					);
 
 					emblaInstances.set( viewport, embla );
 					viewport[ EMBLA_KEY ] = embla;
@@ -238,26 +245,46 @@ store( 'core-carousel/carousel', {
 				};
 
 				let cleanupEmbla: ( () => void ) | undefined;
-				let observer: ResizeObserver | undefined;
+				let resizeObserver: ResizeObserver | undefined;
+				let intersectionObserver: IntersectionObserver | undefined;
 
-				if ( viewport.getBoundingClientRect().width > 0 ) {
-					cleanupEmbla = startEmbla();
-				} else {
-					observer = new ResizeObserver( ( entries ) => {
-						for ( const entry of entries ) {
-							if ( entry.contentRect.width > 0 ) {
-								cleanupEmbla = startEmbla();
-								observer?.disconnect();
-								observer = undefined;
-								break;
+				const init = () => {
+					if ( viewport.getBoundingClientRect().width > 0 ) {
+						cleanupEmbla = startEmbla();
+					} else {
+						resizeObserver = new ResizeObserver( ( entries ) => {
+							for ( const entry of entries ) {
+								if ( entry.contentRect.width > 0 ) {
+									cleanupEmbla = startEmbla();
+									resizeObserver?.disconnect();
+									resizeObserver = undefined;
+									break;
+								}
 							}
-						}
-					} );
-					observer.observe( viewport );
+						} );
+						resizeObserver.observe( viewport );
+					}
+				};
+
+				if ( 'IntersectionObserver' in window ) {
+					intersectionObserver = new IntersectionObserver(
+						( entries ) => {
+							if ( entries[ 0 ].isIntersecting ) {
+								init();
+								intersectionObserver?.disconnect();
+								intersectionObserver = undefined;
+							}
+						},
+						{ rootMargin: '200px' },
+					);
+					intersectionObserver.observe( viewport );
+				} else {
+					init();
 				}
 
 				return () => {
-					observer?.disconnect();
+					resizeObserver?.disconnect();
+					intersectionObserver?.disconnect();
 					cleanupEmbla?.();
 				};
 			} catch ( e ) {
