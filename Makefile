@@ -61,6 +61,7 @@ dist:
 		--exclude='Makefile' \
 		--exclude='README.md' \
 		--exclude='CHANGELOG.md' \
+		--exclude='src' \
 		--exclude='$(BUILD_DIR)' \
 		--exclude='*.zip' \
 		./ $(BUILD_DIR)/$(PLUGIN_SLUG)/
