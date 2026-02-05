@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+	bootstrap="tests/php/bootstrap.php"
+	colors="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	beStrictAboutOutputDuringTests="true"
+	cacheDirectory="tests/_output/phpunit-cache"
+	failOnWarning="false"
+>
+	<testsuites>
+		<testsuite name="unit">
+			<directory>tests/php/Unit</directory>
+		</testsuite>
+	</testsuites>
+	<source>
+		<include>
+			<directory suffix=".php">inc</directory>
+			<file>core-carousel.php</file>
+		</include>
+		<exclude>
+			<directory>vendor</directory>
+			<directory>tests</directory>
+		</exclude>
+	</source>
+</phpunit>
