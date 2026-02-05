@@ -5,7 +5,7 @@
  * Plugin URI:  https://rtcamp.com
  * Author:      rtCamp
  * Author URI:  https://rtcamp.com
- * Contributors: danish17, immasud
+ * Contributors: iamdanih17, immasud
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Version:     1.0.0
