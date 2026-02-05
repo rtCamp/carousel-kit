@@ -9,7 +9,7 @@
  *
  * Note: These are compile-time type checks that also verify runtime behavior.
  *
- * @package Core_Carousel
+ * @package
  */
 
 import type { CarouselAttributes, CarouselContext } from '../types';
@@ -93,7 +93,7 @@ describe( 'CarouselAttributes Type', () => {
 					carouselAlign: align,
 				};
 				expect( attributes.carouselAlign ).toBe( align );
-			}
+			},
 		);
 
 		it( 'should accept optional align property', () => {
@@ -115,7 +115,7 @@ describe( 'CarouselAttributes Type', () => {
 					containScroll: value,
 				};
 				expect( attributes.containScroll ).toBe( value );
-			}
+			},
 		);
 	} );
 
@@ -125,7 +125,7 @@ describe( 'CarouselAttributes Type', () => {
 			( direction ) => {
 				const attributes: Partial< CarouselAttributes > = { direction };
 				expect( attributes.direction ).toBe( direction );
-			}
+			},
 		);
 
 		it.each( [ 'x', 'y' ] as const )(
@@ -133,7 +133,7 @@ describe( 'CarouselAttributes Type', () => {
 			( axis ) => {
 				const attributes: Partial< CarouselAttributes > = { axis };
 				expect( attributes.axis ).toBe( axis );
-			}
+			},
 		);
 	} );
 

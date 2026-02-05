@@ -9,7 +9,7 @@
  * - Error handling and edge cases
  * - Embla Carousel integration
  *
- * @package Core_Carousel
+ * @package
  */
 
 import {
@@ -17,9 +17,8 @@ import {
 	getContext,
 	getElement,
 } from '@wordpress/interactivity';
-import EmblaCarousel from 'embla-carousel';
 
-import type { EmblaCarouselType } from 'embla-carousel';
+import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 
 // Symbol key used by the view.ts for Embla instances
 const EMBLA_KEY = Symbol.for( 'core-carousel.carousel' );
@@ -36,16 +35,18 @@ import '../view';
 
 // Get the store config that was passed to store()
 const storeCall = ( store as jest.Mock ).mock.calls.find(
-	( call: unknown[] ) => call[ 0 ] === 'core-carousel/carousel'
+	( call: unknown[] ) => call[ 0 ] === 'core-carousel/carousel',
 );
 const storeConfig = storeCall ? storeCall[ 1 ] : null;
 
 /**
  * Helper to set Embla instance on a viewport element.
+ * @param viewport The viewport element to attach the Embla instance to.
+ * @param embla    The Embla instance to attach.
  */
 const setEmblaOnViewport = (
 	viewport: HTMLElement,
-	embla: Partial< EmblaCarouselType >
+	embla: Partial< EmblaCarouselType >,
 ) => {
 	( viewport as EmblaViewportElement )[ EMBLA_KEY ] =
 		embla as EmblaCarouselType;
@@ -53,9 +54,10 @@ const setEmblaOnViewport = (
 
 /**
  * Helper to create mock carousel context with customizable properties.
+ * @param overrides Partial properties to override in the default context.
  */
 const createMockContext = (
-	overrides: Partial< CarouselContext > = {}
+	overrides: Partial< CarouselContext > = {},
 ): CarouselContext => ( {
 	options: { loop: true },
 	autoplay: false,
@@ -88,6 +90,7 @@ const createMockCarouselDOM = () => {
 
 /**
  * Helper to create mock Embla instance with all required methods.
+ * @param overrides Partial methods to override in the default mock instance.
  */
 const createMockEmblaInstance = ( overrides = {} ) => ( {
 	scrollPrev: jest.fn(),
@@ -124,11 +127,11 @@ describe( 'Carousel View Module', () => {
 			expect( storeConfig?.state ).toBeDefined();
 			expect(
 				Object.getOwnPropertyDescriptor( storeConfig.state, 'canScrollPrev' )
-					?.get
+					?.get,
 			).toBeDefined();
 			expect(
 				Object.getOwnPropertyDescriptor( storeConfig.state, 'canScrollNext' )
-					?.get
+					?.get,
 			).toBeDefined();
 		} );
 	} );
@@ -146,7 +149,7 @@ describe( 'Carousel View Module', () => {
 				const result =
 					Object.getOwnPropertyDescriptor(
 						storeConfig.state,
-						'canScrollPrev'
+						'canScrollPrev',
 					)?.get?.() ?? false;
 
 				expect( result ).toBe( true );
@@ -159,7 +162,7 @@ describe( 'Carousel View Module', () => {
 				const result =
 					Object.getOwnPropertyDescriptor(
 						storeConfig.state,
-						'canScrollPrev'
+						'canScrollPrev',
 					)?.get?.() ?? true;
 
 				expect( result ).toBe( false );
@@ -174,7 +177,7 @@ describe( 'Carousel View Module', () => {
 				const result =
 					Object.getOwnPropertyDescriptor(
 						storeConfig.state,
-						'canScrollNext'
+						'canScrollNext',
 					)?.get?.() ?? false;
 
 				expect( result ).toBe( true );
@@ -187,7 +190,7 @@ describe( 'Carousel View Module', () => {
 				const result =
 					Object.getOwnPropertyDescriptor(
 						storeConfig.state,
-						'canScrollNext'
+						'canScrollNext',
 					)?.get?.() ?? true;
 
 				expect( result ).toBe( false );
@@ -234,7 +237,7 @@ describe( 'Carousel View Module', () => {
 				storeConfig.actions.scrollPrev();
 
 				expect( consoleSpy ).toHaveBeenCalledWith(
-					'Carousel: Embla instance not found for scrollPrev'
+					'Carousel: Embla instance not found for scrollPrev',
 				);
 
 				consoleSpy.mockRestore();
@@ -286,7 +289,7 @@ describe( 'Carousel View Module', () => {
 				storeConfig.actions.scrollNext();
 
 				expect( consoleSpy ).toHaveBeenCalledWith(
-					'Carousel: Embla instance not found for scrollNext'
+					'Carousel: Embla instance not found for scrollNext',
 				);
 
 				consoleSpy.mockRestore();
@@ -360,7 +363,7 @@ describe( 'Carousel View Module', () => {
 			it( 'should be defined as a function', () => {
 				expect( storeConfig?.callbacks?.isSlideActive ).toBeDefined();
 				expect( typeof storeConfig?.callbacks?.isSlideActive ).toBe(
-					'function'
+					'function',
 				);
 			} );
 
@@ -517,7 +520,7 @@ describe( 'Carousel View Module', () => {
 			it( 'should be defined as a function', () => {
 				expect( storeConfig?.callbacks?.initCarousel ).toBeDefined();
 				expect( typeof storeConfig?.callbacks?.initCarousel ).toBe(
-					'function'
+					'function',
 				);
 			} );
 
@@ -534,7 +537,7 @@ describe( 'Carousel View Module', () => {
 
 				expect( consoleSpy ).toHaveBeenCalledWith(
 					'Carousel: Invalid root element',
-					null
+					null,
 				);
 				expect( result ).toBeUndefined();
 
@@ -554,7 +557,7 @@ describe( 'Carousel View Module', () => {
 				const result = storeConfig.callbacks.initCarousel();
 
 				expect( consoleSpy ).toHaveBeenCalledWith(
-					'Carousel: Viewport (.embla) not found'
+					'Carousel: Viewport (.embla) not found',
 				);
 				expect( result ).toBeUndefined();
 
@@ -581,7 +584,7 @@ describe( 'Carousel View Module', () => {
 
 				expect( consoleErrorSpy ).toHaveBeenCalledWith(
 					'Carousel: Error in initCarousel',
-					expect.any( Error )
+					expect.any( Error ),
 				);
 				expect( result ).toBeNull();
 
