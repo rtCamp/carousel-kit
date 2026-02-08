@@ -10,7 +10,7 @@
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://cdn.statically.io/gh/rtCamp/core-carousel/dist/core-carousel.zip"
+                "url": "https://cdn.statically.io/gh/rtCamp/core-carousel@dist/core-carousel.zip"
             }
         },
         {
