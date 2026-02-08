@@ -37,7 +37,7 @@ The plugin provides a suite of blocks that work together:
 
 ## Live Demo
 
-[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/core-carousel/main/blueprint.json)
+[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/core-carousel/try/playground/blueprint.json)
 
 ## Contributors
 
