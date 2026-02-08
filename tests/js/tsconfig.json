@@ -1,0 +1,9 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../_output/js",
+		"noEmit": true,
+		"types": ["jest", "node"]
+	},
+	"include": ["./**/*.ts", "./**/*.tsx"]
+}

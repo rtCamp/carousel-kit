@@ -2,9 +2,12 @@
 /**
  * Plugin Name: Core Carousel
  * Description: Carousel block using Embla and WordPress Interactivity API.
- * Plugin URI:  https://rtcamp.com
+ * Plugin URI:  https://github.com/rtCamp/core-carousel
+ * Requires at least: 6.1
+ * Requires PHP: 7.4
  * Author:      rtCamp
  * Author URI:  https://rtcamp.com
+ * Contributors: iamdanih17, immasud
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Version:     1.0.0

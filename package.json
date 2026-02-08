@@ -20,7 +20,10 @@
     "lint:php:fix": "composer run-script format",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
-    "test:actions": "act"
+    "test:actions": "act",
+    "test:js": "wp-scripts test-unit-js",
+    "test:js:watch": "wp-scripts test-unit-js --watch",
+    "test:js:coverage": "wp-scripts test-unit-js --coverage"
   },
   "dependencies": {
     "@wordpress/babel-preset-default": "8.38.0",
@@ -42,9 +45,12 @@
   "devDependencies": {
     "@commitlint/cli": "20.4.1",
     "@commitlint/config-conventional": "20.4.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
-    "@types/wordpress__block-editor": "14.21.7",
+    "@types/wordpress__block-editor": "15.0.0",
     "@types/wordpress__blocks": "12.5.18",
     "@wordpress/scripts": "^31.2.0",
     "conventional-changelog-cli": "5.0.0",
@@ -54,6 +60,7 @@
   },
   "overrides": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "webpack-dev-server": ">=5.2.1"
   }
 }

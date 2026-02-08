@@ -138,7 +138,7 @@ class Plugin {
 	 * @return array
 	 */
 	private function load_patterns_from_disk(): array {
-		$patterns_dir = CORE_CAROUSEL_PATH . '/examples';
+		$patterns_dir = CORE_CAROUSEL_PATH . '/examples/patterns';
 		$data         = [];
 
 		if ( ! is_dir( $patterns_dir ) ) {
