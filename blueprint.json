@@ -6,14 +6,13 @@
     },
     "landingPage": "/",
     "steps": [
-        		{
-        			"step": "installPlugin",
-        			"pluginData": {
-        				"resource": "url",
-        				"url": "https://corsproxy.io/?https://github.com/rtCamp/core-carousel/releases/latest/download/core-carousel.zip"
-        			}
-        		},
-        
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "url",
+                "url": "https://cdn.statically.io/gh/rtCamp/core-carousel/dist/core-carousel.zip"
+            }
+        },
         {
             "step": "login",
             "username": "admin",

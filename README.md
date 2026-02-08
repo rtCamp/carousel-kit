@@ -42,7 +42,7 @@ The plugin provides a suite of blocks that work together:
 ## Contributors
 
 - [Danish Shakeel](https://github.com/danish17)
-- [Masud Rana](https://github.com/theMasudRana)
+- [Masud Rana](https://github.com/mr-masudrana00)
 
 ## License
 GPL-2.0-or-later
