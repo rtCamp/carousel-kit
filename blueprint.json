@@ -31,7 +31,7 @@
             "step": "importWxr",
             "file": {
                 "resource": "url",
-                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/try/playground/content.xml"
+                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/try/playground/examples/data/core-carousel.xml"
             }
         },
         {
