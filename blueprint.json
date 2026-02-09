@@ -4,7 +4,7 @@
         "php": "8.2",
         "wp": "latest"
     },
-    "landingPage": "/",
+    "landingPage": "/core-carousel",
     "steps": [
         {
             "step": "installPlugin",
@@ -19,8 +19,15 @@
             "password": "password"
         },
         {
+            "step": "importWxr",
+            "file": {
+                "resource": "url",
+                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/try/playground/main/core-carousel.xml"
+            }
+        },
+        {
             "step": "runPHP",
-            "code": "<?php require_once 'wordpress/wp-load.php';\n\n$post_content = '<!-- wp:heading -->\\n<h2 class=\"wp-block-heading\">Core Carousel: A Composable System</h2>\\n<!-- /wp:heading -->\\n\\n<!-- wp:paragraph -->\\n<p>This demo showcases the <strong>Core Carousel</strong> system. Notice how the navigation controls and dots are separate blocks, allowing for total layout freedom.</p>\\n<!-- /wp:paragraph -->\\n\\n<!-- wp:core-carousel/carousel {\"loop\":true,\"autoplay\":true,\"autoplayDelay\":4000,\"slideGap\":20} -->\\n<div class=\"wp-block-core-carousel-carousel\">\\n    <!-- wp:core-carousel/carousel-viewport -->\\n    <div class=\"wp-block-core-carousel-carousel-viewport\">\\n        <!-- wp:core-carousel/carousel-slide -->\\n        <div class=\"wp-block-core-carousel-carousel-slide\">\\n            <!-- wp:cover {\"url\":\"https://s.w.org/images/core/5.9/architecture.jpg\",\"dimRatio\":50,\"minHeight\":400,\"minHeightUnit\":\"px\",\"isDark\":true} -->\\n            <div class=\"wp-block-cover is-light\" style=\"min-height:400px\"><img class=\"wp-block-cover__image-background\" src=\"https://s.w.org/images/core/5.9/architecture.jpg\" data-object-fit=\"cover\"/><div class=\"wp-block-cover__inner-container\"><!-- wp:heading {\"textAlign\":\"center\",\"level\":3} --><h3 class=\"wp-block-heading has-text-align-center\">Slide One</h3><!-- /wp:heading --></div></div>\\n            <!-- /wp:cover -->\\n        </div>\\n        <!-- /wp:core-carousel/carousel-slide -->\\n\\n        <!-- wp:core-carousel/carousel-slide -->\\n        <div class=\"wp-block-core-carousel-carousel-slide\">\\n            <!-- wp:cover {\"url\":\"https://s.w.org/images/core/5.9/puebla.jpg\",\"dimRatio\":50,\"minHeight\":400,\"minHeightUnit\":\"px\",\"isDark\":true} -->\\n            <div class=\"wp-block-cover is-light\" style=\"min-height:400px\"><img class=\"wp-block-cover__image-background\" src=\"https://s.w.org/images/core/5.9/puebla.jpg\" data-object-fit=\"cover\"/><div class=\"wp-block-cover__inner-container\"><!-- wp:heading {\"textAlign\":\"center\",\"level\":3} --><h3 class=\"wp-block-heading has-text-align-center\">Slide Two</h3><!-- /wp:heading --></div></div>\\n            <!-- /wp:cover -->\\n        </div>\\n        <!-- /wp:core-carousel/carousel-slide -->\\n\\n        <!-- wp:core-carousel/carousel-slide -->\\n        <div class=\"wp-block-core-carousel-carousel-slide\">\\n            <!-- wp:cover {\"url\":\"https://s.w.org/images/core/5.9/victoria.jpg\",\"dimRatio\":50,\"minHeight\":400,\"minHeightUnit\":\"px\",\"isDark\":true} -->\\n            <div class=\"wp-block-cover is-light\" style=\"min-height:400px\"><img class=\"wp-block-cover__image-background\" src=\"https://s.w.org/images/core/5.9/victoria.jpg\" data-object-fit=\"cover\"/><div class=\"wp-block-cover__inner-container\"><!-- wp:heading {\"textAlign\":\"center\",\"level\":3} --><h3 class=\"wp-block-heading has-text-align-center\">Slide Three</h3><!-- /wp:heading --></div></div>\\n            <!-- /wp:cover -->\\n        </div>\\n        <!-- /wp:core-carousel/carousel-slide -->\\n    </div>\\n    <!-- /wp:core-carousel/carousel-viewport -->\\n\\n    <!-- wp:spacer {\"height\":\"20px\"} -->\\n    <div style=\"height:20px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\\n    <!-- /wp:spacer -->\\n\n    <!-- wp:group {\"layout\":{\"type\":\"flex\",\"flexWrap\":\"nowrap\",\"justifyContent\":\"space-between\"}} -->\\n    <div class=\"wp-block-group\">\\n        <!-- wp:core-carousel/carousel-dots /-->\\n        <!-- wp:core-carousel/carousel-controls /-->\\n    </div>\\n    <!-- /wp:group -->\\n</div>\\n<!-- /wp:core-carousel/carousel -->';\n\n$post_id = wp_insert_post( array(\n    'post_title'   => 'Core Carousel Interactive Demo',\n    'post_content' => $post_content,\n    'post_status'  => 'publish',\n    'post_type'    => 'page',\n) );\n\nupdate_option( 'show_on_front', 'page' );\nupdate_option( 'page_on_front', $post_id );"
+            "code": "<?php require_once 'wordpress/wp-load.php'; $posts = get_posts(['post_type'=>'page', 'title'=>'Core Carousel Interactive Demo']); if($posts) { update_option('show_on_front', 'page'); update_option('page_on_front', $posts[0]->ID); }"
         }
     ]
 }
