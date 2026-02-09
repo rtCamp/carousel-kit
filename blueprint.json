@@ -22,7 +22,7 @@
             "step": "importWxr",
             "file": {
                 "resource": "url",
-                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/try/playground/main/core-carousel.xml"
+                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/main/core-carousel.xml"
             }
         },
         {
