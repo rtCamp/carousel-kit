@@ -70,6 +70,7 @@ The plugin provides a suite of blocks that work together:
 
 ### Settings Panel
 ![Settings Panel](https://github.com/user-attachments/assets/e0510e0b-44ba-4c56-ab15-d0ce9bd47322)
+
 *Carousel configuration options in the block sidebar.*
 
 ## FAQ
@@ -133,7 +134,7 @@ Have a feature request? [Open an issue](https://github.com/rtCamp/core-carousel/
 ## Contributors
 
 - [Danish Shakeel](https://github.com/danish17)
-- [Masud Rana](https://github.com/mr-masudrana00)
+- [Masud Rana](https://github.com/theMasudRana)
 
 ## License
 GPL-2.0-or-later
