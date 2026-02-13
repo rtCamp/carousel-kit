@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset
-	name="WPCS for core-carousel"
+	name="WPCS for carousel-kit"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PHPCSStandards/PHP_CodeSniffer/master/phpcs.xsd"
 >
@@ -9,7 +9,7 @@
 	<!--
 		What to scan: include any root-level PHP files, and the /inc folder -->
 	<file>./src/inc/</file>
-	<file>./core-carousel.php</file>
+	<file>./carousel-kit.php</file>
 
 	<!-- These are excluded from the above paths.-->
 	<exclude-pattern>**/build/**</exclude-pattern>
@@ -219,7 +219,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="core-carousel" />
+				<element value="carousel-kit" />
 			</property>
 		</properties>
 	</rule>

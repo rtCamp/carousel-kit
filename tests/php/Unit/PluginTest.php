@@ -9,17 +9,17 @@
  * - Block pattern registration and caching
  * - Error handling and edge cases
  *
- * @package Core_Carousel\Tests\Unit
+ * @package Carousel_Kit\Tests\Unit
  */
 
 declare(strict_types=1);
 
-namespace Core_Carousel\Tests\Unit;
+namespace Carousel_Kit\Tests\Unit;
 
 use Brain\Monkey\Actions;
 use Brain\Monkey\Filters;
 use Brain\Monkey\Functions;
-use Core_Carousel\Plugin;
+use Carousel_Kit\Plugin;
 
 /**
  * Tests for the Plugin class.
@@ -84,8 +84,8 @@ class PluginTest extends UnitTestCase {
 		$result = $this->invokeMethod( $instance, 'register_block_category', [ $existing_categories ] );
 
 		$this->assertCount( 2, $result );
-		$this->assertSame( 'core-carousel', $result[1]['slug'] );
-		$this->assertSame( 'Core Carousel', $result[1]['title'] );
+		$this->assertSame( 'carousel-kit', $result[1]['slug'] );
+		$this->assertSame( 'Carousel Kit', $result[1]['title'] );
 	}
 
 	/**
@@ -114,7 +114,7 @@ class PluginTest extends UnitTestCase {
 		$this->assertCount( 3, $result );
 		$this->assertSame( 'media', $result[0]['slug'] );
 		$this->assertSame( 'design', $result[1]['slug'] );
-		$this->assertSame( 'core-carousel', $result[2]['slug'] );
+		$this->assertSame( 'carousel-kit', $result[2]['slug'] );
 	}
 
 	/**
@@ -129,7 +129,7 @@ class PluginTest extends UnitTestCase {
 		$result   = $this->invokeMethod( $instance, 'register_block_category', [ [] ] );
 
 		$this->assertCount( 1, $result );
-		$this->assertSame( 'core-carousel', $result[0]['slug'] );
+		$this->assertSame( 'carousel-kit', $result[0]['slug'] );
 	}
 
 	/**
@@ -217,7 +217,7 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'register_block_pattern_category' )
 			->once()
 			->with(
-				'core-carousel',
+				'carousel-kit',
 				\Mockery::type( 'array' )
 			)
 			->andReturnUsing(
@@ -246,7 +246,7 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'register_block_pattern_category' )
 			->once()
 			->with(
-				'core-carousel',
+				'carousel-kit',
 				\Mockery::on(
 					function ( $args ) use ( &$captured_args ): bool {
 						$captured_args = $args;
@@ -261,7 +261,7 @@ class PluginTest extends UnitTestCase {
 		$this->assertIsArray( $captured_args );
 		$this->assertNotNull( $captured_args );
 		$this->assertArrayHasKey( 'label', $captured_args );
-		$this->assertSame( 'Core Carousel', $captured_args['label'] );
+		$this->assertSame( 'Carousel Kit', $captured_args['label'] );
 	}
 
 	/**
@@ -272,7 +272,7 @@ class PluginTest extends UnitTestCase {
 	public function test_register_block_patterns_uses_cache(): void {
 		$cached_patterns = [
 			[
-				'slug' => 'core-carousel/test-pattern',
+				'slug' => 'carousel-kit/test-pattern',
 				'args' => [
 					'title'   => 'Test Pattern',
 					'content' => '<!-- wp:paragraph --><p>Test</p><!-- /wp:paragraph -->',
@@ -285,12 +285,12 @@ class PluginTest extends UnitTestCase {
 		Functions\when( '__' )->returnArg();
 		Functions\expect( 'get_transient' )
 			->once()
-			->with( 'core_carousel_patterns_cache' )
+			->with( 'carousel_kit_patterns_cache' )
 			->andReturn( $cached_patterns );
 
 		Functions\expect( 'register_block_pattern' )
 			->once()
-			->with( 'core-carousel/test-pattern', \Mockery::type( 'array' ) )
+			->with( 'carousel-kit/test-pattern', \Mockery::type( 'array' ) )
 			->andReturnUsing(
 				function () use ( &$pattern_registered ): void {
 					$pattern_registered = true;
@@ -311,7 +311,7 @@ class PluginTest extends UnitTestCase {
 	public function test_register_block_patterns_handles_empty(): void {
 		Functions\expect( 'get_transient' )
 			->once()
-			->with( 'core_carousel_patterns_cache' )
+			->with( 'carousel_kit_patterns_cache' )
 			->andReturn( [] );
 
 		Functions\expect( 'register_block_pattern' )->never();
@@ -331,21 +331,21 @@ class PluginTest extends UnitTestCase {
 	public function test_register_block_patterns_registers_multiple(): void {
 		$cached_patterns = [
 			[
-				'slug' => 'core-carousel/pattern-one',
+				'slug' => 'carousel-kit/pattern-one',
 				'args' => [
 					'title'   => 'Pattern One',
 					'content' => '<!-- wp:paragraph --><p>One</p><!-- /wp:paragraph -->',
 				],
 			],
 			[
-				'slug' => 'core-carousel/pattern-two',
+				'slug' => 'carousel-kit/pattern-two',
 				'args' => [
 					'title'   => 'Pattern Two',
 					'content' => '<!-- wp:paragraph --><p>Two</p><!-- /wp:paragraph -->',
 				],
 			],
 			[
-				'slug' => 'core-carousel/pattern-three',
+				'slug' => 'carousel-kit/pattern-three',
 				'args' => [
 					'title'   => 'Pattern Three',
 					'content' => '<!-- wp:paragraph --><p>Three</p><!-- /wp:paragraph -->',
@@ -372,9 +372,9 @@ class PluginTest extends UnitTestCase {
 		$this->invokeMethod( $instance, 'register_block_patterns' );
 
 		$this->assertCount( 3, $registered_patterns );
-		$this->assertContains( 'core-carousel/pattern-one', $registered_patterns );
-		$this->assertContains( 'core-carousel/pattern-two', $registered_patterns );
-		$this->assertContains( 'core-carousel/pattern-three', $registered_patterns );
+		$this->assertContains( 'carousel-kit/pattern-one', $registered_patterns );
+		$this->assertContains( 'carousel-kit/pattern-two', $registered_patterns );
+		$this->assertContains( 'carousel-kit/pattern-three', $registered_patterns );
 	}
 
 	/**
@@ -386,7 +386,7 @@ class PluginTest extends UnitTestCase {
 		// Pattern missing 'args' key
 		$cached_patterns = [
 			[
-				'slug' => 'core-carousel/valid-pattern',
+				'slug' => 'carousel-kit/valid-pattern',
 				'args' => [
 					'title'   => 'Valid',
 					'content' => '<!-- wp:paragraph --><p>Valid</p><!-- /wp:paragraph -->',

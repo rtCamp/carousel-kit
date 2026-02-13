@@ -40,14 +40,14 @@ jobs:
           tag_name: v${{ steps.get_version.outputs.VERSION }}
           name: v${{ steps.get_version.outputs.VERSION }}
           generate_release_notes: true
-          files: core-carousel.zip
+          files: carousel-kit.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare Distribution Bundle
         run: |
           mkdir dist-bundle
-          cp core-carousel.zip dist-bundle/
+          cp carousel-kit.zip dist-bundle/
 
       - name: Deploy to Dist Branch
         uses: s0/git-publish-subdir-action@develop

@@ -20,7 +20,7 @@ parameters:
 		bootstrapFiles:
 				- tests/phpstan/constants.php
 		paths:
-				- core-carousel.php
+				- carousel-kit.php
 				- src/inc/
 				- templates/
 				- examples/

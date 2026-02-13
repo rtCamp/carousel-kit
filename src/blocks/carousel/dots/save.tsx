@@ -2,7 +2,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 
 export default function Save() {
 	const blockProps = useBlockProps.save( {
-		className: 'core-carousel-dots',
+		className: 'carousel-kit-dots',
 	} );
 
 	return (
@@ -11,7 +11,7 @@ export default function Save() {
 
 			<template data-wp-each--snap="context.scrollSnaps">
 				<button
-					className="core-carousel-dot"
+					className="carousel-kit-dot"
 					data-wp-class--is-active="callbacks.isDotActive"
 					data-wp-bind--aria-current="callbacks.isDotActive"
 					data-wp-on--click="actions.onDotClick"

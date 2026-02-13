@@ -1,49 +1,49 @@
 /**
  * Styles for the controls (previous/next) buttons
  */
-.core-carousel-controls {
+.carousel-kit-controls {
 	display: flex;
 	gap: var(--wp--style--block-gap, 1rem);
 }
 
-.core-carousel-controls__btn {
+.carousel-kit-controls__btn {
 	display: flex;
 	gap: 0.5rem;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--core-carousel-control-bg, unset);
-	color: var(--core-carousel-control-color, inherit);
+	background-color: var(--carousel-kit-control-bg, unset);
+	color: var(--carousel-kit-control-color, inherit);
 	cursor: pointer;
-	padding: var(--core-carousel-control-padding, 0.5rem);
-	border: var(--core-carousel-control-border, 1.25px solid rgba(28, 28, 28, 0.3));
-	border-radius: var(--core-carousel-control-radius, 50%);
+	padding: var(--carousel-kit-control-padding, 0.5rem);
+	border: var(--carousel-kit-control-border, 1.25px solid rgba(28, 28, 28, 0.3));
+	border-radius: var(--carousel-kit-control-radius, 50%);
 	transition: all 0.125s ease-in-out;
-	width: var(--core-carousel-control-size, 2.5rem);
-	height: var(--core-carousel-control-size, 2.5rem);
+	width: var(--carousel-kit-control-size, 2.5rem);
+	height: var(--carousel-kit-control-size, 2.5rem);
 }
 
-.core-carousel-controls__btn:not(:disabled):hover {
-	background-color: var(--core-carousel-control-bg-hover, rgba(248, 248, 248, 1));
-	border: var(--core-carousel-control-border-hover, 1.25px solid rgba(28, 28, 28, 0.75));
-	color: var(--core-carousel-control-color-hover, inherit);
+.carousel-kit-controls__btn:not(:disabled):hover {
+	background-color: var(--carousel-kit-control-bg-hover, rgba(248, 248, 248, 1));
+	border: var(--carousel-kit-control-border-hover, 1.25px solid rgba(28, 28, 28, 0.75));
+	color: var(--carousel-kit-control-color-hover, inherit);
 }
 
-.core-carousel-controls__btn:disabled {
+.carousel-kit-controls__btn:disabled {
 	cursor: not-allowed;
 	opacity: 0.25;
 }
 
 // In RTL mode, rotate the icons 180 degrees to flip their direction
-[dir="rtl"] .core-carousel-controls__btn svg {
+[dir="rtl"] .carousel-kit-controls__btn svg {
 	transform: rotate(180deg);
 }
 
 // Vertical mode adjustments
-.core-carousel[data-axis="y"] .core-carousel-controls__btn svg {
+.carousel-kit[data-axis="y"] .carousel-kit-controls__btn svg {
 	transform: rotate(90deg);
 }
 
 // Handle RTL + Vertical intersection if needed (optional)
-.core-carousel[data-axis="y"][dir="rtl"] .core-carousel-controls__btn svg {
+.carousel-kit[data-axis="y"][dir="rtl"] .carousel-kit-controls__btn svg {
 	transform: rotate(-90deg); // or 270deg
 }

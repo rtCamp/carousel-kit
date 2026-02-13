@@ -3,7 +3,7 @@
 This block uses the **WordPress Interactivity API** to manage state and logic. You can consume this state in your own custom blocks to build advanced features like progress bars, slide counters, or synchronized sliders.
 
 ## Store Namespace
-`core-carousel/carousel`
+`carousel-kit/carousel`
 
 ## Context (`CarouselContext`)
 
@@ -30,7 +30,7 @@ Create a progress bar that animates while the carousel is auto-playing.
 **save.tsx**
 ```jsx
 <div
-    data-wp-interactive="core-carousel/carousel"
+    data-wp-interactive="carousel-kit/carousel"
     data-wp-bind--key="context.timerIterationId"
     data-wp-bind--style="state.barDuration"
     data-wp-class--is-playing="context.isPlaying"
@@ -40,7 +40,7 @@ Create a progress bar that animates while the carousel is auto-playing.
 
 **view.ts**
 ```js
-store('core-carousel/carousel', {
+store('carousel-kit/carousel', {
     state: {
         get barDuration() {
             const { autoplay } = getContext();
@@ -64,7 +64,7 @@ Highlight slide content when active using the `callbacks.isSlideActive` helper.
 
 ```jsx
 <div
-    data-wp-interactive="core-carousel/carousel"
+    data-wp-interactive="carousel-kit/carousel"
     data-wp-class--is-active="callbacks.isSlideActive"
     className="my-card"
 >
@@ -78,8 +78,8 @@ Highlight slide content when active using the `callbacks.isSlideActive` helper.
 
 ### Editor Interactivity: "Find & Bind"
 Gutenberg's `InnerBlocks` can isolate React Contexts, causing state sync issues between parent and deeply nested children in the editor. To guarantee reliable interactivity:
-1. **Attach**: The Viewport component attaches the vanilla Embla instance directly to its DOM node using a Symbol key: `element[Symbol.for("core-carousel.carousel")] = embla`.
-2. **Find**: Child components (Controls/Dots) attempt to find the API via Context first. If missing, they traverse the DOM up to the common wrapper (`.core-carousel`) and then search for the sibling `.embla` viewport.
+1. **Attach**: The Viewport component attaches the vanilla Embla instance directly to its DOM node using a Symbol key: `element[Symbol.for("carousel-kit.carousel")] = embla`.
+2. **Find**: Child components (Controls/Dots) attempt to find the API via Context first. If missing, they traverse the DOM up to the common wrapper (`.carousel-kit`) and then search for the sibling `.embla` viewport.
 3. **Bind**: A retry mechanism (`setTimeout` + `useEffect`) ensures the Viewport has finished initializing before binding listeners.
 
 ### Dots Implementation

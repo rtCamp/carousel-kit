@@ -16,14 +16,14 @@ export default function Edit() {
 	const ref = useRef<HTMLDivElement>( null );
 
 	const blockProps = useBlockProps( {
-		className: 'core-carousel-controls',
+		className: 'carousel-kit-controls',
 	} );
 
 	const getEmblaFromDOM = () => {
 		if ( ! ref.current ) {
 			return null;
 		}
-		const wrapper = ref.current.closest( '.core-carousel' );
+		const wrapper = ref.current.closest( '.carousel-kit' );
 		if ( ! wrapper ) {
 			return null;
 		}
@@ -49,26 +49,26 @@ export default function Edit() {
 	return (
 		<div { ...blockProps } ref={ ref }>
 			<button
-				className="core-carousel-controls__btn core-carousel-controls__btn--prev"
+				className="carousel-kit-controls__btn carousel-kit-controls__btn--prev"
 				onClick={ ( e ) => {
 					e.stopPropagation();
 					handleScroll( 'prev' );
 				} }
 				type="button"
 				disabled={ ! canScrollPrev }
-				aria-label={ __( 'Previous Slide', 'core-carousel' ) }
+				aria-label={ __( 'Previous Slide', 'carousel-kit' ) }
 			>
 				<PreviousIcon />
 			</button>
 			<button
-				className="core-carousel-controls__btn core-carousel-controls__btn--next"
+				className="carousel-kit-controls__btn carousel-kit-controls__btn--next"
 				onClick={ ( e ) => {
 					e.stopPropagation();
 					handleScroll( 'next' );
 				} }
 				type="button"
 				disabled={ ! canScrollNext }
-				aria-label={ __( 'Next Slide', 'core-carousel' ) }
+				aria-label={ __( 'Next Slide', 'carousel-kit' ) }
 			>
 				<NextIcon />
 			</button>

@@ -5,9 +5,9 @@ export default function Edit( {
 	context,
 }: {
 	attributes: CarouselSlideAttributes;
-	context: { 'core-carousel/carousel/allowedSlideBlocks'?: string[] };
+	context: { 'carousel-kit/carousel/allowedSlideBlocks'?: string[] };
 } ) {
-	const allowedBlocks = context[ 'core-carousel/carousel/allowedSlideBlocks' ];
+	const allowedBlocks = context[ 'carousel-kit/carousel/allowedSlideBlocks' ];
 
 	const blockProps = useBlockProps( {
 		className: 'embla__slide',

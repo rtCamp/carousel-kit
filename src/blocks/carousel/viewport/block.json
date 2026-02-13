@@ -2,15 +2,15 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "core-carousel/carousel-viewport",
+	"name": "carousel-kit/carousel-viewport",
 	"title": "Carousel Viewport",
-	"category": "core-carousel",
+	"category": "carousel-kit",
 	"icon": "cover-image",
 	"parent": [
-		"core-carousel/carousel"
+		"carousel-kit/carousel"
 	],
 	"description": "Viewport container for carousel slides.",
-	"textdomain": "core-carousel",
+	"textdomain": "carousel-kit",
 	"attributes": {},
 	"supports": {
 		"interactivity": true

@@ -4,13 +4,13 @@
         "php": "8.2",
         "wp": "latest"
     },
-    "landingPage": "/core-carousel",
+    "landingPage": "/carousel-kit",
     "steps": [
         {
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://cdn.statically.io/gh/rtCamp/core-carousel@dist/core-carousel.zip"
+                "url": "https://cdn.statically.io/gh/rtCamp/carousel-kit@dist/carousel-kit.zip"
             }
         },
         {
@@ -22,12 +22,12 @@
             "step": "importWxr",
             "file": {
                 "resource": "url",
-                "url": "https://raw.githubusercontent.com/rtCamp/core-carousel/main/examples/data/core-carousel.xml"
+                "url": "https://raw.githubusercontent.com/rtCamp/carousel-kit/main/examples/data/carousel-kit.xml"
             }
         },
         {
             "step": "runPHP",
-            "code": "<?php require_once 'wordpress/wp-load.php'; $posts = get_posts(['post_type'=>'page', 'title'=>'Core Carousel Interactive Demo']); if($posts) { update_option('show_on_front', 'page'); update_option('page_on_front', $posts[0]->ID); }"
+            "code": "<?php require_once 'wordpress/wp-load.php'; $posts = get_posts(['post_type'=>'page', 'title'=>'Carousel Kit Interactive Demo']); if($posts) { update_option('show_on_front', 'page'); update_option('page_on_front', $posts[0]->ID); }"
         }
     ]
 }

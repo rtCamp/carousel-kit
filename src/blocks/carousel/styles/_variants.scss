@@ -3,19 +3,19 @@
  */
 
 /* 2 Columns */
-:where(.core-carousel).is-style-columns-2,
-:where(.core-carousel) .embla .wp-block-post-template.columns-2 {
-	--core-carousel-slide-width: 50%;
+:where(.carousel-kit).is-style-columns-2,
+:where(.carousel-kit) .embla .wp-block-post-template.columns-2 {
+	--carousel-kit-slide-width: 50%;
 }
 
 /* 3 Columns */
-:where(.core-carousel).is-style-columns-3,
-:where(.core-carousel) .embla .wp-block-post-template.columns-3 {
-	--core-carousel-slide-width: 33.333%;
+:where(.carousel-kit).is-style-columns-3,
+:where(.carousel-kit) .embla .wp-block-post-template.columns-3 {
+	--carousel-kit-slide-width: 33.333%;
 }
 
 /* 4 Columns */
-:where(.core-carousel).is-style-columns-4,
-:where(.core-carousel) .embla .wp-block-post-template.columns-4 {
-	--core-carousel-slide-width: 25%;
+:where(.carousel-kit).is-style-columns-4,
+:where(.carousel-kit) .embla .wp-block-post-template.columns-4 {
+	--carousel-kit-slide-width: 25%;
 }

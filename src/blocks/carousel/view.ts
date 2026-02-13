@@ -10,7 +10,7 @@ type ElementWithRef = {
 	ref?: HTMLElement | null;
 };
 
-const EMBLA_KEY = Symbol.for( 'core-carousel.carousel' );
+const EMBLA_KEY = Symbol.for( 'carousel-kit.carousel' );
 
 type EmblaViewportElement = HTMLElement & {
 	[EMBLA_KEY]?: EmblaCarouselType;
@@ -35,7 +35,7 @@ const getEmblaFromElement = (
 	if ( ! element ) {
 		return null;
 	}
-	const wrapper = element.closest( '.core-carousel' );
+	const wrapper = element.closest( '.carousel-kit' );
 	const viewport = wrapper?.querySelector(
 		'.embla',
 	) as EmblaViewportElement | null;
@@ -46,7 +46,7 @@ const getEmblaFromElement = (
 	return emblaInstances.get( viewport ) || viewport[ EMBLA_KEY ] || null;
 };
 
-store( 'core-carousel/carousel', {
+store( 'carousel-kit/carousel', {
 	state: {
 		get canScrollPrev() {
 			const context = getContext<CarouselContext>();

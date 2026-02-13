@@ -5,7 +5,7 @@ export default function Save() {
 		className: 'embla__slide',
 		role: 'group',
 		'aria-roledescription': 'slide',
-		'data-wp-interactive': 'core-carousel/carousel',
+		'data-wp-interactive': 'carousel-kit/carousel',
 		'data-wp-class--is-active': 'callbacks.isSlideActive',
 		'data-wp-bind--aria-current': 'callbacks.isSlideActive',
 	} );

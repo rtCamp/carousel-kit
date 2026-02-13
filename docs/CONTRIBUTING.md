@@ -1,4 +1,4 @@
-# Contributing to Core Carousel
+# Contributing to Carousel Kit
 
 Thank you for your interest in contributing! We welcome all contributions, from bug reports to feature requests and code changes.
 
@@ -38,4 +38,4 @@ To create a production-ready ZIP file:
 make zip
 ```
 
-This will create `core-carousel.zip` in the project root, optimized for distribution (no dev dependencies).
+This will create `carousel-kit.zip` in the project root, optimized for distribution (no dev dependencies).

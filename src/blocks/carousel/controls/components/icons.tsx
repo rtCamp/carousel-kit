@@ -1,7 +1,7 @@
 export const PreviousIcon = () => {
 	return (
 		<svg
-			className="core-carousel-controls__icon"
+			className="carousel-kit-controls__icon"
 			width="13"
 			height="8"
 			viewBox="0 0 13 8"
@@ -19,7 +19,7 @@ export const PreviousIcon = () => {
 export const NextIcon = () => {
 	return (
 		<svg
-			className="core-carousel-controls__icon"
+			className="carousel-kit-controls__icon"
 			width="13"
 			height="8"
 			viewBox="0 0 13 8"

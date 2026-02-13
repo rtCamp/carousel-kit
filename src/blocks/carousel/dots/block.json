@@ -2,15 +2,15 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "core-carousel/carousel-dots",
+	"name": "carousel-kit/carousel-dots",
 	"title": "Carousel Dots",
-	"category": "core-carousel",
+	"category": "carousel-kit",
 	"icon": "ellipsis",
 	"ancestor": [
-		"core-carousel/carousel"
+		"carousel-kit/carousel"
 	],
 	"description": "Navigation dots for the carousel.",
-	"textdomain": "core-carousel",
+	"textdomain": "carousel-kit",
 	"attributes": {},
 	"supports": {
 		"interactivity": true

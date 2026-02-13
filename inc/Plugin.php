@@ -2,14 +2,14 @@
 /**
  * Plugin manifest class.
  *
- * @package Core_Carousel
+ * @package Carousel_Kit
  */
 
 declare(strict_types=1);
 
-namespace Core_Carousel;
+namespace Carousel_Kit;
 
-use Core_Carousel\Traits\Singleton;
+use Carousel_Kit\Traits\Singleton;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,8 +53,8 @@ class Plugin {
 			$categories,
 			[
 				[
-					'slug'  => 'core-carousel',
-					'title' => __( 'Core Carousel', 'core-carousel' ),
+					'slug'  => 'carousel-kit',
+					'title' => __( 'Carousel Kit', 'carousel-kit' ),
 				],
 			]
 		);
@@ -76,11 +76,11 @@ class Plugin {
 
 		foreach ( $blocks as $block ) {
 			// Ensure path constant is defined before use to avoid fatal errors.
-			if ( ! defined( 'CORE_CAROUSEL_BUILD_PATH' ) ) {
+			if ( ! defined( 'CAROUSEL_KIT_BUILD_PATH' ) ) {
 				continue;
 			}
 
-			register_block_type( CORE_CAROUSEL_BUILD_PATH . '/blocks/' . $block );
+			register_block_type( CAROUSEL_KIT_BUILD_PATH . '/blocks/' . $block );
 		}
 	}
 
@@ -91,10 +91,10 @@ class Plugin {
 	 */
 	public function register_pattern_category(): void {
 		register_block_pattern_category(
-			'core-carousel',
+			'carousel-kit',
 			[
-				'label'       => __( 'Core Carousel', 'core-carousel' ),
-				'description' => __( 'Pre-configured carousel patterns for various use cases.', 'core-carousel' ),
+				'label'       => __( 'Carousel Kit', 'carousel-kit' ),
+				'description' => __( 'Pre-configured carousel patterns for various use cases.', 'carousel-kit' ),
 			]
 		);
 	}
@@ -108,12 +108,12 @@ class Plugin {
 	 * @return void
 	 */
 	public function register_block_patterns(): void {
-		if ( ! defined( 'CORE_CAROUSEL_PATH' ) ) {
+		if ( ! defined( 'CAROUSEL_KIT_PATH' ) ) {
 			return;
 		}
 
 		// Use cached patterns if available and not in debug mode.
-		$cache_key = 'core_carousel_patterns_cache';
+		$cache_key = 'carousel_kit_patterns_cache';
 		$patterns  = get_transient( $cache_key );
 
 		if ( ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || false === $patterns ) {
@@ -138,7 +138,7 @@ class Plugin {
 	 * @return array
 	 */
 	private function load_patterns_from_disk(): array {
-		$patterns_dir = CORE_CAROUSEL_PATH . '/examples/patterns';
+		$patterns_dir = CAROUSEL_KIT_PATH . '/examples/patterns';
 		$data         = [];
 
 		if ( ! is_dir( $patterns_dir ) ) {
@@ -183,7 +183,7 @@ class Plugin {
 			// Parse categories.
 			$categories = ! empty( $file_headers['categories'] )
 			? array_filter( array_map( 'trim', explode( ',', $file_headers['categories'] ) ) )
-			: [ 'core-carousel' ];
+			: [ 'carousel-kit' ];
 
 			$data[] = [
 				'slug' => $file_headers['slug'],

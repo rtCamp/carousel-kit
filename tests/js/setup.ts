@@ -1,5 +1,5 @@
 /**
- * Jest setup file for Core Carousel tests.
+ * Jest setup file for Carousel Kit tests.
  *
  * This file runs before each test file and sets up global mocks
  * for WordPress and Embla Carousel dependencies.

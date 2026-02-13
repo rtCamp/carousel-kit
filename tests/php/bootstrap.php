@@ -1,22 +1,22 @@
 <?php
 /**
- * PHPUnit bootstrap file for Core Carousel plugin.
+ * PHPUnit bootstrap file for Carousel Kit plugin.
  *
- * @package Core_Carousel\Tests
+ * @package Carousel_Kit\Tests
  */
 
 declare(strict_types=1);
 
-namespace Core_Carousel\Tests;
+namespace Carousel_Kit\Tests;
 
 // Load Composer autoloader.
 require_once dirname( __DIR__, 2 ) . '/vendor/autoload.php';
 
 // Define plugin constants for testing.
-define( 'CORE_CAROUSEL_PATH', dirname( __DIR__, 2 ) );
-define( 'CORE_CAROUSEL_URL', 'https://example.com/wp-content/plugins/core-carousel' );
-define( 'CORE_CAROUSEL_BUILD_PATH', CORE_CAROUSEL_PATH . '/build' );
-define( 'CORE_CAROUSEL_BUILD_URL', CORE_CAROUSEL_URL . '/build' );
+define( 'CAROUSEL_KIT_PATH', dirname( __DIR__, 2 ) );
+define( 'CAROUSEL_KIT_URL', 'https://example.com/wp-content/plugins/carousel-kit' );
+define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
+define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
 
 // Define WordPress constants needed for testing.
 if ( ! defined( 'ABSPATH' ) ) {

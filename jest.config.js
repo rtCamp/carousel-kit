@@ -1,5 +1,5 @@
 /**
- * Jest configuration for Core Carousel plugin.
+ * Jest configuration for Carousel Kit plugin.
  *
  * Extends @wordpress/scripts default configuration with:
  * - Custom test setup for WordPress and Embla mocks
@@ -15,7 +15,7 @@ module.exports = {
 	...defaultConfig,
 
 	// Display name for clarity in multi-project setups
-	displayName: 'core-carousel',
+	displayName: 'carousel-kit',
 
 	// Test setup files run after Jest environment is set up
 	setupFilesAfterEnv: [

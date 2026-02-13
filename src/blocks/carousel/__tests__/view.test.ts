@@ -21,7 +21,7 @@ import {
 import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 
 // Symbol key used by the view.ts for Embla instances
-const EMBLA_KEY = Symbol.for( 'core-carousel.carousel' );
+const EMBLA_KEY = Symbol.for( 'carousel-kit.carousel' );
 
 // Type for viewport element with Embla instance attached
 type EmblaViewportElement = HTMLElement & {
@@ -35,7 +35,7 @@ import '../view';
 
 // Get the store config that was passed to store()
 const storeCall = ( store as jest.Mock ).mock.calls.find(
-	( call: unknown[] ) => call[ 0 ] === 'core-carousel/carousel',
+	( call: unknown[] ) => call[ 0 ] === 'carousel-kit/carousel',
 );
 const storeConfig = storeCall ? storeCall[ 1 ] : null;
 
@@ -79,7 +79,7 @@ const createMockCarouselDOM = () => {
 	viewport.className = 'embla';
 
 	const wrapper = document.createElement( 'div' );
-	wrapper.className = 'core-carousel';
+	wrapper.className = 'carousel-kit';
 	wrapper.appendChild( viewport );
 
 	const button = document.createElement( 'button' );
@@ -112,7 +112,7 @@ describe( 'Carousel View Module', () => {
 			// storeCall being defined proves store was called with the correct namespace
 			expect( storeCall ).toBeDefined();
 			expect( storeConfig ).not.toBeNull();
-			expect( storeCall[ 0 ] ).toBe( 'core-carousel/carousel' );
+			expect( storeCall[ 0 ] ).toBe( 'carousel-kit/carousel' );
 		} );
 
 		it( 'should register store with all required sections', () => {

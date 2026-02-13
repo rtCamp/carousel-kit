@@ -45,8 +45,8 @@ export default function Edit( {
 		},
 		{
 			orientation: carouselOptions?.axis === 'y' ? 'vertical' : 'horizontal',
-			allowedBlocks: [ 'core-carousel/carousel-slide', 'core/query' ],
-			template: [ [ 'core-carousel/carousel-slide' ] ],
+			allowedBlocks: [ 'carousel-kit/carousel-slide', 'core/query' ],
+			template: [ [ 'carousel-kit/carousel-slide' ] ],
 		},
 	);
 
@@ -56,7 +56,7 @@ export default function Edit( {
 	const { insertBlock } = useDispatch( 'core/block-editor' );
 
 	const addSlide = () => {
-		const block = createBlock( 'core-carousel/carousel-slide' );
+		const block = createBlock( 'carousel-kit/carousel-slide' );
 		insertBlock( block, undefined, clientId );
 	};
 
@@ -173,14 +173,14 @@ export default function Edit( {
 			<BlockControls>
 				<ToolbarButton
 					icon={ plus }
-					label={ __( 'Add Slide', 'core-carousel' ) }
+					label={ __( 'Add Slide', 'carousel-kit' ) }
 					onClick={ addSlide }
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Viewport Actions', 'core-carousel' ) }>
+				<PanelBody title={ __( 'Viewport Actions', 'carousel-kit' ) }>
 					<Button variant="secondary" onClick={ addSlide } icon={ plus }>
-						{ __( 'Add Slide', 'core-carousel' ) }
+						{ __( 'Add Slide', 'carousel-kit' ) }
 					</Button>
 				</PanelBody>
 			</InspectorControls>

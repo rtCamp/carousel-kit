@@ -1,7 +1,7 @@
-# Core Carousel
+# Carousel Kit
 
-![Build Status](https://github.com/rtCamp/core-carousel/actions/workflows/release.yml/badge.svg?branch=main)
-![Latest Release](https://img.shields.io/github/v/release/rtCamp/core-carousel)
+![Build Status](https://github.com/rtCamp/carousel-kit/actions/workflows/release.yml/badge.svg?branch=main)
+![Latest Release](https://img.shields.io/github/v/release/rtCamp/carousel-kit)
 
 **A modular, high-performance carousel block for WordPress, powered by the Interactivity API and Embla Carousel.**
 
@@ -28,7 +28,7 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 ## Browser Support
 
-Core Carousel supports all modern browsers:
+Carousel Kit supports all modern browsers:
 
 | Browser | Minimum Version |
 |---------|-----------------|
@@ -77,7 +77,7 @@ The plugin provides a suite of blocks that work together:
 
 ### Does it work with Full Site Editing (FSE)?
 
-Yes! Core Carousel is fully compatible with Full Site Editing. You can use the carousel block in templates, template parts, and anywhere blocks are supported.
+Yes! Carousel Kit is fully compatible with Full Site Editing. You can use the carousel block in templates, template parts, and anywhere blocks are supported.
 
 ### Can I nest other blocks inside slides?
 
@@ -125,11 +125,11 @@ Planned features for upcoming releases:
 - [ ] **Breakpoint-specific settings** — Different slides per view at different screen sizes
 - [ ] **Additional patterns** — More pre-built carousel patterns
 
-Have a feature request? [Open an issue](https://github.com/rtCamp/core-carousel/issues) on GitHub.
+Have a feature request? [Open an issue](https://github.com/rtCamp/carousel-kit/issues) on GitHub.
 
 ## Live Demo
 
-[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/core-carousel/main/blueprint.json)
+[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/carousel-kit/main/blueprint.json)
 
 ## Contributors
 

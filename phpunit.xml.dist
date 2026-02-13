@@ -17,7 +17,7 @@
 	<source>
 		<include>
 			<directory suffix=".php">inc</directory>
-			<file>core-carousel.php</file>
+			<file>carousel-kit.php</file>
 		</include>
 		<exclude>
 			<directory>vendor</directory>

@@ -2,14 +2,14 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "core-carousel/carousel",
+	"name": "carousel-kit/carousel",
 	"title": "Carousel",
-	"category": "core-carousel",
+	"category": "carousel-kit",
 	"icon": "columns",
 	"description": "Carousel container using Embla and Interactivity API.",
-	"textdomain": "core-carousel",
+	"textdomain": "carousel-kit",
 	"providesContext": {
-		"core-carousel/carousel/allowedSlideBlocks": "allowedSlideBlocks"
+		"carousel-kit/carousel/allowedSlideBlocks": "allowedSlideBlocks"
 	},
 	"supports": {
 		"interactivity": true,

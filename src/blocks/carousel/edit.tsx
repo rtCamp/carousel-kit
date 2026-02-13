@@ -22,8 +22,8 @@ import { EditorCarouselContext } from './editor-context';
 import type { EmblaCarouselType } from 'embla-carousel';
 
 const TEMPLATE: Template[] = [
-	[ 'core-carousel/carousel-viewport', {} ],
-	[ 'core-carousel/carousel-controls', {} ],
+	[ 'carousel-kit/carousel-viewport', {} ],
+	[ 'carousel-kit/carousel-controls', {} ],
 ];
 
 export default function Edit( {
@@ -65,12 +65,12 @@ export default function Edit( {
 	const suggestions = blockTypes?.map( ( block ) => block.name ) || [];
 
 	const blockProps = useBlockProps( {
-		className: 'core-carousel',
+		className: 'carousel-kit',
 		dir: direction,
 		'data-axis': axis,
 		style: {
-			'--core-carousel-gap': `${ attributes.slideGap }px`,
-			'--core-carousel-height': axis === 'y' ? height : undefined,
+			'--carousel-kit-gap': `${ attributes.slideGap }px`,
+			'--carousel-kit-height': axis === 'y' ? height : undefined,
 		} as React.CSSProperties,
 	} );
 
@@ -119,29 +119,29 @@ export default function Edit( {
 	return (
 		<EditorCarouselContext.Provider value={ contextValue }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Carousel Settings', 'core-carousel' ) }>
+				<PanelBody title={ __( 'Carousel Settings', 'carousel-kit' ) }>
 					<ToggleControl
-						label={ __( 'Loop', 'core-carousel' ) }
+						label={ __( 'Loop', 'carousel-kit' ) }
 						checked={ loop }
 						onChange={ ( value ) => setAttributes( { loop: value } ) }
 						help={ __(
 							'Infinite scrolling of slides (Frontend only). Disabled in editor for stability.',
-							'core-carousel',
+							'carousel-kit',
 						) }
 					/>
 					<ToggleControl
-						label={ __( 'Free Drag', 'core-carousel' ) }
+						label={ __( 'Free Drag', 'carousel-kit' ) }
 						checked={ dragFree }
 						onChange={ ( value ) => setAttributes( { dragFree: value } ) }
-						help={ __( 'Enables momentum scrolling.', 'core-carousel' ) }
+						help={ __( 'Enables momentum scrolling.', 'carousel-kit' ) }
 					/>
 					<SelectControl
-						label={ __( 'Alignment', 'core-carousel' ) }
+						label={ __( 'Alignment', 'carousel-kit' ) }
 						value={ carouselAlign }
 						options={ [
-							{ label: __( 'Start', 'core-carousel' ), value: 'start' },
-							{ label: __( 'Center', 'core-carousel' ), value: 'center' },
-							{ label: __( 'End', 'core-carousel' ), value: 'end' },
+							{ label: __( 'Start', 'carousel-kit' ), value: 'start' },
+							{ label: __( 'Center', 'carousel-kit' ), value: 'center' },
+							{ label: __( 'End', 'carousel-kit' ), value: 'end' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( {
@@ -150,12 +150,12 @@ export default function Edit( {
 						}
 					/>
 					<SelectControl
-						label={ __( 'Contain Scroll', 'core-carousel' ) }
+						label={ __( 'Contain Scroll', 'carousel-kit' ) }
 						value={ containScroll }
 						options={ [
-							{ label: __( 'Trim Snaps', 'core-carousel' ), value: 'trimSnaps' },
-							{ label: __( 'Keep Snaps', 'core-carousel' ), value: 'keepSnaps' },
-							{ label: __( 'None', 'core-carousel' ), value: '' },
+							{ label: __( 'Trim Snaps', 'carousel-kit' ), value: 'trimSnaps' },
+							{ label: __( 'Keep Snaps', 'carousel-kit' ), value: 'keepSnaps' },
+							{ label: __( 'None', 'carousel-kit' ), value: '' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( {
@@ -164,18 +164,18 @@ export default function Edit( {
 						}
 						help={ __(
 							'Prevents excess scrolling at the beginning or end.',
-							'core-carousel',
+							'carousel-kit',
 						) }
 					/>
 					<ToggleControl
-						label={ __( 'Scroll Auto', 'core-carousel' ) }
+						label={ __( 'Scroll Auto', 'carousel-kit' ) }
 						checked={ slidesToScroll === 'auto' }
 						onChange={ ( isAuto ) => setAttributes( { slidesToScroll: isAuto ? 'auto' : '1' } ) }
-						help={ __( 'Scrolls the number of slides currently visible in the viewport.', 'core-carousel' ) }
+						help={ __( 'Scrolls the number of slides currently visible in the viewport.', 'carousel-kit' ) }
 					/>
 					{ slidesToScroll !== 'auto' && (
 						<RangeControl
-							label={ __( 'Slides to Scroll', 'core-carousel' ) }
+							label={ __( 'Slides to Scroll', 'carousel-kit' ) }
 							value={ parseInt( slidesToScroll, 10 ) || 1 }
 							onChange={ ( value ) =>
 								setAttributes( { slidesToScroll: ( value || 1 ).toString() } )
@@ -185,11 +185,11 @@ export default function Edit( {
 						/>
 					) }
 					<SelectControl
-						label={ __( 'Direction', 'core-carousel' ) }
+						label={ __( 'Direction', 'carousel-kit' ) }
 						value={ direction }
 						options={ [
-							{ label: __( 'Left to Right (LTR)', 'core-carousel' ), value: 'ltr' },
-							{ label: __( 'Right to Left (RTL)', 'core-carousel' ), value: 'rtl' },
+							{ label: __( 'Left to Right (LTR)', 'carousel-kit' ), value: 'ltr' },
+							{ label: __( 'Right to Left (RTL)', 'carousel-kit' ), value: 'rtl' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( {
@@ -198,15 +198,15 @@ export default function Edit( {
 						}
 						help={ __(
 							'Choose content direction. RTL is typically used for Arabic, Hebrew, and other right-to-left languages.',
-							'core-carousel',
+							'carousel-kit',
 						) }
 					/>
 					<SelectControl
-						label={ __( 'Orientation', 'core-carousel' ) }
+						label={ __( 'Orientation', 'carousel-kit' ) }
 						value={ axis }
 						options={ [
-							{ label: __( 'Horizontal', 'core-carousel' ), value: 'x' },
-							{ label: __( 'Vertical', 'core-carousel' ), value: 'y' },
+							{ label: __( 'Horizontal', 'carousel-kit' ), value: 'x' },
+							{ label: __( 'Vertical', 'carousel-kit' ), value: 'y' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( {
@@ -216,29 +216,29 @@ export default function Edit( {
 					/>
 					{ axis === 'y' && (
 						<TextControl
-							label={ __( 'Height', 'core-carousel' ) }
+							label={ __( 'Height', 'carousel-kit' ) }
 							value={ height }
 							onChange={ ( value ) => setAttributes( { height: value } ) }
 							help={ __(
 								'Set a fixed height for vertical carousel (e.g., 400px).',
-								'core-carousel',
+								'carousel-kit',
 							) }
 						/>
 					) }
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Autoplay Options', 'core-carousel' ) }
+					title={ __( 'Autoplay Options', 'carousel-kit' ) }
 					initialOpen={ false }
 				>
 					<ToggleControl
-						label={ __( 'Enable Autoplay', 'core-carousel' ) }
+						label={ __( 'Enable Autoplay', 'carousel-kit' ) }
 						checked={ autoplay }
 						onChange={ ( value ) => setAttributes( { autoplay: value } ) }
 					/>
 					{ autoplay && (
 						<>
 							<RangeControl
-								label={ __( 'Delay (ms)', 'core-carousel' ) }
+								label={ __( 'Delay (ms)', 'carousel-kit' ) }
 								value={ autoplayDelay }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayDelay: value ?? 1000 } )
@@ -248,25 +248,25 @@ export default function Edit( {
 								step={ 100 }
 							/>
 							<ToggleControl
-								label={ __( 'Stop on Interaction', 'core-carousel' ) }
+								label={ __( 'Stop on Interaction', 'carousel-kit' ) }
 								checked={ autoplayStopOnInteraction }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayStopOnInteraction: value } )
 								}
 								help={ __(
 									'Stop autoplay when user interacts with carousel.',
-									'core-carousel',
+									'carousel-kit',
 								) }
 							/>
 							<ToggleControl
-								label={ __( 'Stop on Mouse Enter', 'core-carousel' ) }
+								label={ __( 'Stop on Mouse Enter', 'carousel-kit' ) }
 								checked={ autoplayStopOnMouseEnter }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayStopOnMouseEnter: value } )
 								}
 								help={ __(
 									'Stop autoplay when mouse hovers over carousel.',
-									'core-carousel',
+									'carousel-kit',
 								) }
 							/>
 						</>
@@ -275,12 +275,12 @@ export default function Edit( {
 			</InspectorControls>
 			<InspectorAdvancedControls>
 				<TextControl
-					label={ __( 'ARIA Label', 'core-carousel' ) }
+					label={ __( 'ARIA Label', 'carousel-kit' ) }
 					value={ ariaLabel }
 					onChange={ ( value ) => setAttributes( { ariaLabel: value } ) }
 					help={ __(
 						"Provide a descriptive label for screen readers (e.g., 'Featured Products').",
-						'core-carousel',
+						'carousel-kit',
 					) }
 				/>
 				{ /* FormTokenField does not allow "help" prop */ }
@@ -289,13 +289,13 @@ export default function Edit( {
 						<>
 							{ __(
 								'Use this to allow only certain blocks in the slide. If empty, all blocks will be allowed.',
-								'core-carousel',
+								'carousel-kit',
 							) }
 						</>
 					}
 				>
 					<FormTokenField
-						label={ __( 'Allowed Slide Blocks', 'core-carousel' ) }
+						label={ __( 'Allowed Slide Blocks', 'carousel-kit' ) }
 						value={ allowedSlideBlocks || [] }
 						suggestions={ suggestions as string[] }
 						maxSuggestions={ 10 }
@@ -309,9 +309,9 @@ export default function Edit( {
 				</BaseControl>
 			</InspectorAdvancedControls>
 			<InspectorControls group="styles">
-				<PanelBody title={ __( 'Layout', 'core-carousel' ) }>
+				<PanelBody title={ __( 'Layout', 'carousel-kit' ) }>
 					<RangeControl
-						label={ __( 'Slide Gap (px)', 'core-carousel' ) }
+						label={ __( 'Slide Gap (px)', 'carousel-kit' ) }
 						value={ attributes.slideGap }
 						onChange={ ( value ) => setAttributes( { slideGap: value ?? 0 } ) }
 						min={ 0 }

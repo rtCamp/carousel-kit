@@ -5,7 +5,7 @@
  * This file is loaded by PHPStan to provide type information
  * for WordPress and plugin constants.
  *
- * @package Core_Carousel
+ * @package Carousel_Kit
  */
 
 // WordPress core constants.
@@ -14,7 +14,7 @@ define( 'DAY_IN_SECONDS', 86400 );
 define( 'WP_DEBUG', false );
 
 // Plugin constants.
-define( 'CORE_CAROUSEL_PATH', '/var/www/html/wp-content/plugins/core-carousel' );
-define( 'CORE_CAROUSEL_URL', 'https://example.com/wp-content/plugins/core-carousel' );
-define( 'CORE_CAROUSEL_BUILD_PATH', CORE_CAROUSEL_PATH . '/build' );
-define( 'CORE_CAROUSEL_BUILD_URL', CORE_CAROUSEL_URL . '/build' );
+define( 'CAROUSEL_KIT_PATH', '/var/www/html/wp-content/plugins/carousel-kit' );
+define( 'CAROUSEL_KIT_URL', 'https://example.com/wp-content/plugins/carousel-kit' );
+define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
+define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
