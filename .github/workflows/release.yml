@@ -34,22 +34,14 @@ jobs:
       - name: Build Plugin ZIP
         run: make zip
 
-            - name: Create Release and Upload Asset
-
-              uses: softprops/action-gh-release@v1
-
-              with:
-
-                tag_name: v${{ steps.get_version.outputs.VERSION }}
-
-                name: v${{ steps.get_version.outputs.VERSION }}
-
-                generate_release_notes: true
-
-                files: carousel-kit.zip
-
-              env:
-
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          name: v${{ steps.get_version.outputs.VERSION }}
+          generate_release_notes: true
+          files: carousel-kit.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       
