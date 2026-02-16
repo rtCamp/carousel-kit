@@ -1,3 +1,10 @@
+# [1.0.1](https://github.com/rtCamp/carousel-system-interactivity-api/compare/1.0.0...1.0.1) (2026-02-16)
+
+### Bug Fixes
+
+* **carousel:** resolve spacing issues in loop mode where gaps were missing between last and first slide
+* **carousel:** allow infinite loop in editor viewport to match frontend behavior
+
 # 1.0.0 (2026-02-03)
 
 

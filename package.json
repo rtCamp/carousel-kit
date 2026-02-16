@@ -1,6 +1,6 @@
 {
   "name": "core-carousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Carousel block using Embla and WordPress Interactivity API",
   "author": "rtCamp",
   "private": true,
