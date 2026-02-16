@@ -81,7 +81,7 @@ export default function Edit( {
 			const options = carouselOptions as any;
 
 			embla = EmblaCarousel( emblaRef.current!, {
-				loop: false,
+				loop: options?.loop ?? false,
 				dragFree: options?.dragFree ?? false,
 				containScroll: options?.containScroll || 'trimSnaps',
 				axis: options?.axis || 'x',

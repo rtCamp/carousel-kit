@@ -59,6 +59,7 @@ export default function Save( {
 		'aria-label': ariaLabel,
 		dir: direction,
 		'data-axis': axis,
+		'data-loop': loop ? 'true' : undefined,
 		'data-wp-interactive': 'carousel-kit/carousel',
 		'data-wp-context': JSON.stringify( context ),
 		'data-wp-init': 'callbacks.initCarousel', // Use init for mounting

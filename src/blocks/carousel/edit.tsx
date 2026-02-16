@@ -68,6 +68,7 @@ export default function Edit( {
 		className: 'carousel-kit',
 		dir: direction,
 		'data-axis': axis,
+		'data-loop': loop ? 'true' : undefined,
 		style: {
 			'--carousel-kit-gap': `${ attributes.slideGap }px`,
 			'--carousel-kit-height': axis === 'y' ? height : undefined,
