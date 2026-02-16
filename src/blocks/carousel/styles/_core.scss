@@ -48,14 +48,14 @@
  * When looping is enabled, Embla v8 doesn't support CSS 'gap'.
  * We switch to margin for consistent spacing in loop mode.
  */
-:where(.core-carousel[data-loop="true"]) .embla__container,
-:where(.core-carousel[data-loop="true"]) .embla .wp-block-post-template {
+:where(.carousel-kit[data-loop="true"]) .embla__container,
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template {
 	gap: 0;
 }
 
-:where(.core-carousel[data-loop="true"]) .embla__slide,
-:where(.core-carousel[data-loop="true"]) .embla .wp-block-post-template li {
-	margin-inline-end: var(--core-carousel-gap, 0);
+:where(.carousel-kit[data-loop="true"]) .embla__slide,
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template li {
+	margin-inline-end: var(--carousel-kit-gap, 0);
 }
 
 /* Vertical Axis adjustments */
@@ -83,7 +83,10 @@
 }
 
 /* Vertical + Loop specific */
-:where(.core-carousel[data-axis="y"][data-loop="true"]) .embla__slide,
-:where(.core-carousel[data-axis="y"][data-loop="true"]) .embla .wp-block-post-template li {
-	margin-block-end: var(--core-carousel-gap, 0);
+:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla__slide,
+:where(.carousel-kit[data-axis="y"][data-loop="true"])
+	.embla
+	.wp-block-post-template
+	li {
+	margin-block-end: var(--carousel-kit-gap, 0);
 }

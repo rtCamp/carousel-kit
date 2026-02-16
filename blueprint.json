@@ -10,7 +10,7 @@
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://github.com/rtCamp/core-carousel/releases/latest/download/core-carousel.zip"
+                "url": "https://github.com/rtCamp/carousel-kit/releases/latest/download/carousel-kit.zip"
             }
         },
         {

@@ -46,7 +46,7 @@ jobs:
 
                 generate_release_notes: true
 
-                files: core-carousel.zip
+                files: carousel-kit.zip
 
               env:
 
