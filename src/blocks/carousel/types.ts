@@ -23,6 +23,7 @@ export type CarouselViewportAttributes = Record<string, never>;
 export type CarouselSlideAttributes = Record<string, never>;
 export type CarouselControlsAttributes = Record<string, never>;
 export type CarouselDotsAttributes = Record<string, never>;
+export type CarouselCounterAttributes = Record<string, never>;
 
 export type CarouselContext = {
 	options: EmblaOptionsType & {

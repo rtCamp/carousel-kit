@@ -1,0 +1,19 @@
+/**
+ * Styles for carousel counter/slide indicator
+ */
+.carousel-kit-counter {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--carousel-kit-counter-gap, 0.25rem);
+	font-size: var(--carousel-kit-counter-font-size, inherit);
+	line-height: 1.5;
+	color: var(--carousel-kit-counter-color, inherit);
+}
+
+.carousel-kit-counter__separator {
+	color: var(--carousel-kit-counter-separator-color, inherit);
+}
+
+.carousel-kit-counter__total {
+	color: var(--carousel-kit-counter-total-color, inherit);
+}
