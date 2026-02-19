@@ -69,6 +69,7 @@ class Plugin {
 		$blocks = [
 			'carousel',
 			'carousel/controls',
+			'carousel/counter',
 			'carousel/dots',
 			'carousel/viewport',
 			'carousel/slide',
