@@ -22,15 +22,15 @@
 	height: var(--carousel-kit-control-size, 2.5rem);
 }
 
+.carousel-kit-controls__btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.25;
+}
+
 .carousel-kit-controls__btn:not(:disabled):hover {
 	background-color: var(--carousel-kit-control-bg-hover, rgba(248, 248, 248, 1));
 	border: var(--carousel-kit-control-border-hover, 1.25px solid rgba(28, 28, 28, 0.75));
 	color: var(--carousel-kit-control-color-hover, inherit);
-}
-
-.carousel-kit-controls__btn:disabled {
-	cursor: not-allowed;
-	opacity: 0.25;
 }
 
 // In RTL mode, rotate the icons 180 degrees to flip their direction

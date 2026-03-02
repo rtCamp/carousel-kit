@@ -15,11 +15,10 @@
 	border: var(--carousel-kit-dot-border, none);
 	cursor: pointer;
 	padding: 0;
-	transition: all 0.2s ease;
+	transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .carousel-kit-dot.is-active {
 	background-color: var(--carousel-kit-dot-active-color, rgba(28, 28, 28, 1));
-	width: var(--carousel-kit-dot-active-size, 0.75rem);
-	height: var(--carousel-kit-dot-active-size, 0.75rem);
+	transform: scale(var(--carousel-kit-dot-active-scale, 1.5));
 }
