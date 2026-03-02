@@ -133,6 +133,14 @@ store( 'carousel-kit/carousel', {
 			const index = ( snap?.index || 0 ) + 1;
 			return context.ariaLabelPattern.replace( '%d', index.toString() );
 		},
+		getCurrentSlideNumber: () => {
+			const context = getContext<CarouselContext>();
+			return ( context.selectedIndex + 1 ).toString();
+		},
+		getTotalSlides: () => {
+			const context = getContext<CarouselContext>();
+			return ( context.scrollSnaps?.length || 1 ).toString();
+		},
 		initCarousel: () => {
 			try {
 				const context = getContext<CarouselContext>();
