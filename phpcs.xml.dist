@@ -8,7 +8,7 @@
 
 	<!--
 		What to scan: include any root-level PHP files, and the /inc folder -->
-	<file>./src/inc/</file>
+	<file>./inc/</file>
 	<file>./carousel-kit.php</file>
 
 	<!-- These are excluded from the above paths.-->
