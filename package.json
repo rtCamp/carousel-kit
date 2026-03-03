@@ -8,13 +8,13 @@
     "node": "^22.0.0",
     "npm": "^10.0.0"
   },
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/rtCamp/carousel-kit"
-	},
-	"bugs": {
-		"url": "https://github.com/rtCamp/carousel-kit/issues"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtCamp/carousel-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/rtCamp/carousel-kit/issues"
+  },
   "scripts": {
     "build": "wp-scripts build --experimental-modules --webpack-src-dir=./src --output-path=./build",
     "start": "wp-scripts start --experimental-modules --webpack-src-dir=./src --output-path=./build",
