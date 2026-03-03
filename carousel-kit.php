@@ -17,22 +17,34 @@
  * @package carousel-kit
  */
 
+namespace Carousel_Kit;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'CAROUSEL_KIT_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'CAROUSEL_KIT_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
-define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
-define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
+/**
+ * Define plugin constants.
+ */
+function constants(): void {
+	define( 'CAROUSEL_KIT_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+	define( 'CAROUSEL_KIT_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+	define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
+	define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
+}
 
-require_once CAROUSEL_KIT_PATH . '/vendor/autoload.php';
+constants();
+
+require_once __DIR__ . '/inc/Autoloader.php';
+if ( ! Autoloader::autoload() ) {
+	return;
+}
 
 /**
  * Plugin loader.
  */
-function carousel_kit_loader() {
-	\Carousel_Kit\Plugin::get_instance();
+function carousel_kit_loader(): void {
+	Plugin::get_instance();
 }
 
 carousel_kit_loader();
