@@ -11,6 +11,11 @@ declare(strict_types=1);
 
 namespace Carousel_Kit;
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class - Autoloader
  */
