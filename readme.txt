@@ -1,5 +1,5 @@
 === Carousel Kit ===
-Contributors: rtcamp, danish17, immasud
+Contributors: rtcamp, danish17, immasud, gagan0123, up1512001
 Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
 Tested up to: 6.9.1
