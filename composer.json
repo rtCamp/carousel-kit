@@ -62,11 +62,11 @@
 		}
 	},
 	"scripts": {
-		"format": "vendor/bin/phpcbf",
-		"lint": "vendor/bin/phpcs",
-		"phpstan": "vendor/bin/phpstan analyse --memory-limit=4G",
-		"test": "vendor/bin/phpunit",
-		"test:unit": "vendor/bin/phpunit --testsuite unit",
-		"test:coverage": "vendor/bin/phpunit --coverage-html tests/_output/coverage"
+		"format": "phpcbf",
+		"lint": "phpcs",
+		"phpstan": "phpstan analyse --memory-limit=4G",
+		"test": "phpunit",
+		"test:unit": "phpunit --testsuite unit",
+		"test:coverage": "phpunit --coverage-html tests/_output/coverage"
 	}
 }
