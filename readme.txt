@@ -1,8 +1,8 @@
 === Carousel Kit ===
 Contributors: rtcamp, danish17, immasud
 Tags: carousel, slider, block, interactivity-api, embla
-Requires at least: 6.5
-Tested up to: 6.9
+Requires at least: 6.6
+Tested up to: 6.9.1
 Requires PHP: 8.2
 Stable tag: 1.0.3
 License: GPL-2.0-or-later

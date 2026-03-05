@@ -29,11 +29,11 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 | Requirement | Minimum      | Recommended |
 | ----------- | ------------ | ----------- |
-| WordPress   | 6.5+         | 6.9+        |
+| WordPress   | 6.6+         | 6.9+        |
 | PHP         | 8.2+         | 8.2+        |
 | Gutenberg   | Not required | —           |
 
-> **Note:** The Interactivity API became stable in WordPress 6.5. This plugin works with WordPress core—no Gutenberg plugin required.
+> **Note:** This plugin works with WordPress core—no Gutenberg plugin required.
 
 ## Browser Support
 
