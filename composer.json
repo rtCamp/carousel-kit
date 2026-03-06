@@ -48,6 +48,7 @@
 		"slevomat/coding-standard": "^8.0",
 		"squizlabs/php_codesniffer": "^3.9",
 		"szepeviktor/phpstan-wordpress": "^2.0.2",
+		"wp-cli/i18n-command": "^2.6",
 		"wp-coding-standards/wpcs": "^3.1",
 		"wpackagist-plugin/plugin-check": "~1.6.0",
 		"yoast/phpunit-polyfills": "^3.0"
@@ -68,6 +69,7 @@
 		"phpstan": "phpstan analyse --memory-limit=2G",
 		"test": "phpunit",
 		"test:unit": "phpunit --testsuite unit",
-		"test:coverage": "phpunit --coverage-html tests/_output/coverage"
+		"test:coverage": "phpunit --coverage-html tests/_output/coverage",
+		"pot": "XDEBUG_MODE=off wp i18n make-pot . languages/carousel-kit.pot --exclude=tests,.github,.husky,docs,examples,src"
 	}
 }

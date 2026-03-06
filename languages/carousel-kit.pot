@@ -1,0 +1,312 @@
+# Copyright (C) 2026 rtCamp
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Carousel Kit 1.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/carousel-kit\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-06T07:02:47+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: carousel-kit\n"
+
+#. Plugin Name of the plugin
+#: carousel-kit.php
+#: inc/Plugin.php:57
+#: inc/Plugin.php:96
+msgid "Carousel Kit"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: carousel-kit.php
+msgid "https://github.com/rtCamp/carousel-kit"
+msgstr ""
+
+#. Description of the plugin
+#: carousel-kit.php
+msgid "Carousel block using Embla and WordPress Interactivity API."
+msgstr ""
+
+#. Author of the plugin
+#: carousel-kit.php
+msgid "rtCamp"
+msgstr ""
+
+#. Author URI of the plugin
+#: carousel-kit.php
+msgid "https://rtcamp.com"
+msgstr ""
+
+#: inc/Plugin.php:97
+msgid "Pre-configured carousel patterns for various use cases."
+msgstr ""
+
+#: build/blocks/carousel/controls/index.js:1
+msgid "Previous Slide"
+msgstr ""
+
+#: build/blocks/carousel/controls/index.js:1
+msgid "Next Slide"
+msgstr ""
+
+#. translators: %d: slide number
+#: build/blocks/carousel/dots/index.js:2
+#: build/blocks/carousel/index.js:3
+#, js-format
+msgid "Go to slide %d"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Carousel Settings"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Loop"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Enables infinite scrolling of slides."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Free Drag"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Enables momentum scrolling."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Alignment"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Start"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Center"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "End"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Contain Scroll"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Trim Snaps"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Keep Snaps"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "None"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Prevents excess scrolling at the beginning or end."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Scroll Auto"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Scrolls the number of slides currently visible in the viewport."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Slides to Scroll"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Direction"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Left to Right (LTR)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Right to Left (RTL)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Choose content direction. RTL is typically used for Arabic, Hebrew, and other right-to-left languages."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Orientation"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Horizontal"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Vertical"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Height"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Set a fixed height for vertical carousel (e.g., 400px)."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Autoplay Options"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Enable Autoplay"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Delay (ms)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Stop on Interaction"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Stop autoplay when user interacts with carousel."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Stop on Mouse Enter"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Stop autoplay when mouse hovers over carousel."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "ARIA Label"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Provide a descriptive label for screen readers (e.g., 'Featured Products')."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Use this to allow only certain blocks in the slide. If empty, all blocks will be allowed."
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Allowed Slide Blocks"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Layout"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Slide Gap (px)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Carousel"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "How many slides would you like to start with?"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "1 Slide"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Slides"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+msgid "Skip"
+msgstr ""
+
+#: build/blocks/carousel/index.js:1
+#: build/blocks/carousel/viewport/index.js:1
+msgid "Add Slide"
+msgstr ""
+
+#: build/blocks/carousel/index.js:3
+msgid "Default (100%)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:3
+msgid "2 Columns (50%)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:3
+msgid "3 Columns (33%)"
+msgstr ""
+
+#: build/blocks/carousel/index.js:3
+msgid "4 Columns (25%)"
+msgstr ""
+
+#: build/blocks/carousel/viewport/index.js:1
+msgid "Viewport Actions"
+msgstr ""
+
+#: build/blocks/carousel/block.json
+msgctxt "block title"
+msgid "Carousel"
+msgstr ""
+
+#: build/blocks/carousel/block.json
+msgctxt "block description"
+msgid "Carousel container using Embla and Interactivity API."
+msgstr ""
+
+#: build/blocks/carousel/controls/block.json
+msgctxt "block title"
+msgid "Carousel Controls"
+msgstr ""
+
+#: build/blocks/carousel/controls/block.json
+msgctxt "block description"
+msgid "Navigation buttons for the carousel."
+msgstr ""
+
+#: build/blocks/carousel/dots/block.json
+msgctxt "block title"
+msgid "Carousel Dots"
+msgstr ""
+
+#: build/blocks/carousel/dots/block.json
+msgctxt "block description"
+msgid "Navigation dots for the carousel."
+msgstr ""
+
+#: build/blocks/carousel/slide/block.json
+msgctxt "block title"
+msgid "Carousel Slide"
+msgstr ""
+
+#: build/blocks/carousel/slide/block.json
+msgctxt "block description"
+msgid "A single slide within the carousel."
+msgstr ""
+
+#: build/blocks/carousel/viewport/block.json
+msgctxt "block title"
+msgid "Carousel Viewport"
+msgstr ""
+
+#: build/blocks/carousel/viewport/block.json
+msgctxt "block description"
+msgid "Viewport container for carousel slides."
+msgstr ""
