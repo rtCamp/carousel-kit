@@ -1,12 +1,18 @@
 {
   "name": "carousel-kit",
-  "version": "1.0.3",
   "description": "Carousel block using Embla and WordPress Interactivity API",
   "author": "rtCamp",
   "private": true,
   "engines": {
     "node": "^22.0.0",
     "npm": "^10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtCamp/carousel-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/rtCamp/carousel-kit/issues"
   },
   "scripts": {
     "build": "wp-scripts build --experimental-modules --webpack-src-dir=./src --output-path=./build",
@@ -20,6 +26,7 @@
     "lint:php:fix": "composer run-script format",
     "changelog": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
+    "i18n:pot": "wp i18n make-pot . languages/carousel-kit.pot --domain=carousel-kit --exclude=node_modules,vendor,tests --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/rtCamp/carousel-kit/issues\"}'",
     "test:actions": "act",
     "test:js": "wp-scripts test-unit-js",
     "test:js:watch": "wp-scripts test-unit-js --watch",
@@ -52,7 +59,7 @@
     "@types/react-dom": "^18.3.7",
     "@types/wordpress__block-editor": "15.0.0",
     "@types/wordpress__blocks": "12.5.18",
-    "@wordpress/scripts": "^31.2.0",
+    "@wordpress/scripts": "^31.5.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "husky": "9.1.7",
     "typescript": "^5.9.3"
@@ -60,6 +67,8 @@
   "overrides": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "webpack-dev-server": ">=5.2.1"
+    "webpack-dev-server": ">=5.2.1",
+    "minimatch": ">=10.2.1",
+    "serialize-javascript": ">=7.0.3"
   }
 }

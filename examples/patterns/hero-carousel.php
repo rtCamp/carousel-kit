@@ -5,14 +5,19 @@
  * Categories: carousel-kit
  * Description: A full-width hero carousel with large images and overlaid text
  */
+
+$pattern_images_url = trailingslashit( CAROUSEL_KIT_URL . '/examples/data/images' );
+$hero_slide_one     = $pattern_images_url . 'slide-autoplay-1.webp';
+$hero_slide_two     = $pattern_images_url . 'slide-autoplay-2.webp';
+$hero_slide_three   = $pattern_images_url . 'slide-autoplay-3.webp';
 ?>
 
 <!-- wp:carousel-kit/carousel {"loop":true,"autoplay":true,"autoplayDelay":5000,"ariaLabel":"Hero Carousel","metadata":{"categories":["carousel-kit"],"patternName":"carousel-kit/hero-carousel","name":"Carousel Kit: Hero Carousel"},"align":"wide","className":"wp-block-carousel-carousel"} -->
 <div class="wp-block-carousel-kit-carousel alignwide carousel-kit wp-block-carousel-carousel" role="region" aria-roledescription="carousel" aria-label="Hero Carousel" dir="ltr" data-axis="x" data-loop="true" data-wp-interactive="carousel-kit/carousel" data-wp-context="{&quot;options&quot;:{&quot;loop&quot;:true,&quot;dragFree&quot;:false,&quot;align&quot;:&quot;start&quot;,&quot;containScroll&quot;:&quot;trimSnaps&quot;,&quot;direction&quot;:&quot;ltr&quot;,&quot;axis&quot;:&quot;x&quot;,&quot;slidesToScroll&quot;:1},&quot;autoplay&quot;:{&quot;delay&quot;:5000,&quot;stopOnInteraction&quot;:true,&quot;stopOnMouseEnter&quot;:false},&quot;isPlaying&quot;:true,&quot;timerIterationId&quot;:0,&quot;selectedIndex&quot;:-1,&quot;scrollSnaps&quot;:[],&quot;canScrollPrev&quot;:false,&quot;canScrollNext&quot;:false,&quot;ariaLabelPattern&quot;:&quot;Go to slide %d&quot;}" data-wp-init="callbacks.initCarousel" style="--carousel-kit-gap:0px"><!-- wp:carousel-kit/carousel-viewport {"className":"wp-block-carousel-carousel-viewport"} -->
 	<div class="wp-block-carousel-kit-carousel-viewport embla wp-block-carousel-carousel-viewport">
 		<div class="embla__container"><!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
-			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"https://picsum.photos/1920/800?random=1","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
-				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="https://picsum.photos/1920/800?random=1" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
+			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"<?php echo esc_url( $hero_slide_one ); ?>","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
+				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $hero_slide_one ); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
 					<div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":1,"textColor":"white"} -->
 						<h1 class="wp-block-heading has-text-align-center has-white-color has-text-color">Welcome to Our Site</h1>
 						<!-- /wp:heading -->
@@ -34,8 +39,8 @@
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
-			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"https://picsum.photos/1920/800?random=2","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
-				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="https://picsum.photos/1920/800?random=2" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
+			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"<?php echo esc_url( $hero_slide_two ); ?>","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
+				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $hero_slide_two ); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
 					<div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":1,"textColor":"white"} -->
 						<h1 class="wp-block-heading has-text-align-center has-white-color has-text-color">Build Something Amazing</h1>
 						<!-- /wp:heading -->
@@ -50,8 +55,8 @@
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
-			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"https://picsum.photos/1920/800?random=3","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
-				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="https://picsum.photos/1920/800?random=3" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
+			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:cover {"url":"<?php echo esc_url( $hero_slide_three ); ?>","dimRatio":30,"minHeight":600,"minHeightUnit":"px"} -->
+				<div class="wp-block-cover" style="min-height:600px"><img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $hero_slide_three ); ?>" data-object-fit="cover" /><span aria-hidden="true" class="wp-block-cover__background has-background-dim-30 has-background-dim"></span>
 					<div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":1,"textColor":"white"} -->
 						<h1 class="wp-block-heading has-text-align-center has-white-color has-text-color">Join Our Community</h1>
 						<!-- /wp:heading -->

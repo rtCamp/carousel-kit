@@ -29,11 +29,11 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 | Requirement | Minimum      | Recommended |
 | ----------- | ------------ | ----------- |
-| WordPress   | 6.5+         | 6.6+        |
-| PHP         | 7.4+         | 8.2+        |
+| WordPress   | 6.6+         | 6.9+        |
+| PHP         | 8.2+         | 8.2+        |
 | Gutenberg   | Not required | —           |
 
-> **Note:** The Interactivity API became stable in WordPress 6.5. This plugin works with WordPress core—no Gutenberg plugin required.
+> **Note:** This plugin works with WordPress core—no Gutenberg plugin required.
 
 ## Browser Support
 
@@ -79,6 +79,10 @@ Yes. The carousel follows W3C accessibility guidelines with proper ARIA roles, l
 ### Can I have multiple carousels on the same page?
 
 Yes. Each carousel instance maintains its own independent state.
+
+### What data is removed on uninstall?
+
+On uninstall, Carousel Kit removes its cached pattern transient (`carousel_kit_patterns_cache`). It does not remove your posts or block content.
 
 ## Changelog
 
