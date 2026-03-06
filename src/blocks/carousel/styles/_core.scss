@@ -4,6 +4,11 @@
 	--carousel-kit-slide-width: 100%;
 }
 
+/* Full alignment needs to break out of the container */
+:where(.carousel-kit.alignfull) {
+	width: 100vw;
+}
+
 :where(.carousel-kit) .embla {
 	overflow: hidden;
 }
