@@ -13,8 +13,19 @@
 6. Activate the plugin.
 
 ## Composer Installation
-If you are managing your WordPress project with Composer:
+*Note: This plugin will soon be available via WPackagist. Until then, use the VCS method below:*
 
-```bash
-composer require rtcamp/carousel-kit
-```
+1. **Add the repository to `composer.json`:**
+
+   ```json
+   "repositories": [
+       {
+           "type": "vcs",
+           "url": "https://github.com/rtCamp/carousel-kit"
+       }
+   ],
+2. Run the installation command:
+
+    ```bash
+    composer require rtcamp/carousel-kit:dev-main
+    ```
