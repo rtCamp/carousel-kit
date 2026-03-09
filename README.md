@@ -98,13 +98,16 @@ Have a feature request? [Open an issue](https://github.com/rtCamp/carousel-kit/i
 
 ## Contributors
 
+- [rtCamp](https://github.com/rtCamp)
 - [Danish Shakeel](https://github.com/danish17)
 - [Masud Rana](https://github.com/theMasudRana)
-- [rtCamp](https://profiles.wordpress.org/rtcamp)
+- [Gagan Deep Singh](https://github.com/gagan0123)
+- [Utsav Patel](https://github.com/up1512001)
+- [Sagar Tamang](https://github.com/mi5t4n)
 - [Aviral Mittal](https://github.com/aviral-mittal)
 - [Vishal Kotak](https://github.com/vishal4669)
-- [Aishwarrya Pande](https://github.com/AishwarryaPande)
 - [Raj Patel](https://github.com/imrraaj)
+- [Aishwarrya Pande](https://github.com/AishwarryaPande)
 
 
 ## License
