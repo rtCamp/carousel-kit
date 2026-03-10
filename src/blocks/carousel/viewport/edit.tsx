@@ -71,6 +71,11 @@ export default function Edit( {
 	const emblaApiRef = useRef<EmblaCarouselType | undefined>();
 	const initEmblaRef = useRef<() => void>();
 
+	// viewportEl is state so it triggers hook setup after the DOM mounts.
+	// initEmblaRef is a ref so the MutationObserver callback always reads
+	// the latest init function without re-subscribing.
+	const [ viewportEl, setViewportEl ] = useState<HTMLDivElement | null>( null );
+
 	// Set viewportEl once on mount. Skips null to avoid state updates during unmount.
 	const viewportCallbackRef = useCallback( ( node: HTMLDivElement | null ) => {
 		if ( node ) {
@@ -81,11 +86,6 @@ export default function Edit( {
 	const ref = useMergeRefs( [ emblaRef, blockProps.ref, viewportCallbackRef ] );
 
 	const { insertBlock } = useDispatch( 'core/block-editor' );
-
-	// viewportEl is state so it triggers hook setup after the DOM mounts.
-	// initEmblaRef is a ref so the MutationObserver callback always reads
-	// the latest init function without re-subscribing.
-	const [ viewportEl, setViewportEl ] = useState<HTMLDivElement | null>( null );
 
 	useEmblaResizeObserver( viewportEl, emblaApiRef );
 	useEmblaQueryLoopObserver( viewportEl, initEmblaRef );
@@ -123,10 +123,12 @@ export default function Edit( {
 	);
 
 	useEffect( () => {
-		if ( emblaApiRef.current ) {
-			// Defer until after React's commit phase so the new slide DOM is ready.
-			setTimeout( () => emblaApiRef.current?.reInit(), 0 );
+		if ( ! emblaApiRef.current ) {
+			return;
 		}
+		// Defer until after React's commit phase so the new slide DOM is ready.
+		const timerId = setTimeout( () => emblaApiRef.current?.reInit(), 0 );
+		return () => clearTimeout( timerId );
 	}, [ slideCount ] );
 
 	/**
