@@ -1,11 +1,11 @@
 # Installation
 
 ## Requirements
-- WordPress 6.5 or higher
+- WordPress 6.6 or higher
 - PHP 8.2 or higher
 
 ## Manual Installation
-1. Download the `carousel-kit.zip` file from the [Releases](https://github.com/rtCamp/carousel-system-interactivity-api/releases) page.
+1. Download the `carousel-kit.zip` file from the [Releases](https://github.com/rtCamp/carousel-kit/releases) page.
 2. Log in to your WordPress admin dashboard.
 3. Go to **Plugins > Add New Plugin**.
 4. Click **Upload Plugin**.

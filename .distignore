@@ -1,0 +1,75 @@
+# Exclude from WordPress.org distribution
+
+# Git/Version Control
+.git/
+.github/
+.gitignore
+
+# Development Configuration
+.editorconfig
+.eslintignore
+.eslintrc.json
+.husky/
+.npmrc
+.nvmrc
+.stylelintignore
+babel.config.js
+commitlint.config.js
+jest.config.js
+Makefile
+phpcs.xml.dist
+phpstan.neon.dist
+phpunit.xml.dist
+tsconfig.json
+
+# Source files (build output is included)
+src/
+
+# Tests
+tests/
+
+# Documentation
+docs/
+DEVELOPMENT.md
+
+# WordPress.org assets (separate from plugin)
+wp-assets/
+
+# Dependencies
+node_modules/
+vendor/bin
+vendor/antecedent
+vendor/brain
+vendor/hamcrest
+vendor/mockery
+vendor/myclabs
+vendor/nikic
+vendor/phar-io
+vendor/phpcompatibility
+vendor/phpcsstandards
+vendor/phpstan
+vendor/phpunit
+vendor/sebastian
+vendor/sirbrillig
+vendor/slevomat
+vendor/squizlabs
+vendor/staabm
+vendor/szepeviktor
+vendor/theseer
+vendor/wpackagist-plugin
+vendor/yoast
+
+# Package files
+package.json
+package-lock.json
+composer.json
+composer.lock
+blueprint.json
+
+# Other
+*.log
+*.map
+*.zip
+.distignore
+.DS_Store
+Thumbs.db

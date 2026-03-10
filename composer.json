@@ -32,8 +32,7 @@
 		}
 	],
 	"require": {
-		"php": "^8.2",
-		"scrivo/highlight.php": "^9.18"
+		"php": "^8.2"
 	},
 	"require-dev": {
 		"automattic/vipwpcs": "^3.0",
@@ -65,7 +64,7 @@
 	"scripts": {
 		"format": "phpcbf",
 		"lint": "phpcs",
-		"phpstan": "phpstan analyse --memory-limit=2G",
+		"phpstan": "phpstan analyse --memory-limit=4G",
 		"test": "phpunit",
 		"test:unit": "phpunit --testsuite unit",
 		"test:coverage": "phpunit --coverage-html tests/_output/coverage"

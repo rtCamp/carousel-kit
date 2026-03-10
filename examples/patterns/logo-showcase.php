@@ -5,6 +5,13 @@
  * Categories: carousel-kit
  * Description: Display partner or client logos in a continuous carousel
  */
+
+$pattern_images_url = trailingslashit( CAROUSEL_KIT_URL . '/examples/data/images' );
+$logo_one           = $pattern_images_url . 'logo-placeholder-1.svg';
+$logo_two           = $pattern_images_url . 'logo-placeholder-2.svg';
+$logo_three         = $pattern_images_url . 'logo-placeholder-3.svg';
+$logo_four          = $pattern_images_url . 'logo-placeholder-4.svg';
+$logo_five          = $pattern_images_url . 'logo-placeholder-5.svg';
 ?>
 
 <!-- wp:carousel-kit/carousel {"loop":true,"autoplayDelay":3000,"autoplayStopOnInteraction":false,"ariaLabel":"Partner Logos","metadata":{"categories":["carousel-kit"],"patternName":"carousel-kit/logo-showcase","name":"Carousel Kit: Logo Showcase"},"className":"wp-block-carousel-carousel is-style-columns-3"} -->
@@ -16,35 +23,35 @@
 	<div class="wp-block-carousel-kit-carousel-viewport embla wp-block-carousel-carousel-viewport">
 		<div class="embla__container"><!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="https://placehold.co/260x100/e8e8e8/666666?text=Brand+Logo" alt="Partner Logo 1" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_one ); ?>" alt="Partner Logo 1" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="https://placehold.co/260x100/e8e8e8/666666?text=Brand+Logo" alt="Partner Logo 2" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_two ); ?>" alt="Partner Logo 2" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="https://placehold.co/260x100/e8e8e8/666666?text=Brand+Logo" alt="Partner Logo 3" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_three ); ?>" alt="Partner Logo 3" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="https://placehold.co/260x100/e8e8e8/666666?text=Brand+Logo" alt="Partner Logo 4" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_four ); ?>" alt="Partner Logo 4" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:carousel-kit/carousel-slide -->
 
 			<!-- wp:carousel-kit/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-carousel-kit-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="carousel-kit/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="https://placehold.co/260x100/e8e8e8/666666?text=Brand+Logo" alt="Partner Logo 5" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_five ); ?>" alt="Partner Logo 5" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:carousel-kit/carousel-slide -->
