@@ -71,10 +71,11 @@ export default function Edit( {
 	const emblaApiRef = useRef<EmblaCarouselType | undefined>();
 	const initEmblaRef = useRef<() => void>();
 
-	// Callback ref to set viewportEl exactly once on mount, avoiding extra
-	// render cycles when useEffect re-runs due to carouselOptions changes.
+	// Set viewportEl once on mount. Skips null to avoid state updates during unmount.
 	const viewportCallbackRef = useCallback( ( node: HTMLDivElement | null ) => {
-		setViewportEl( node );
+		if ( node ) {
+			setViewportEl( node );
+		}
 	}, [] );
 
 	const ref = useMergeRefs( [ emblaRef, blockProps.ref, viewportCallbackRef ] );
