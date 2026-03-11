@@ -82,12 +82,24 @@ export function useEmblaResizeObserver(
 		// Observe first slide for column style changes (2/3/4 columns)
 		const observeFirstSlide = () => {
 			const container = viewportEl.querySelector( '.embla__container, .wp-block-post-template' );
-			const firstSlide = container?.querySelector( '.embla__slide, .wp-block-post' );
+			const firstSlide = container?.querySelector( '.embla__slide, .wp-block-post' ) ?? null;
 
-			// Only re-observe if the first slide changed
-			if ( firstSlide && firstSlide !== observedSlide ) {
+			// If the first slide hasn't changed, there's nothing to do.
+			if ( firstSlide === observedSlide ) {
+				return;
+			}
+
+			// If we were observing a previous slide, stop observing it.
+			if ( observedSlide ) {
+				resizeObserver.unobserve( observedSlide );
+			}
+
+			// If a new first slide exists, start observing it; otherwise clear the reference.
+			if ( firstSlide ) {
 				observedSlide = firstSlide;
 				resizeObserver.observe( firstSlide );
+			} else {
+				observedSlide = null;
 			}
 		};
 
