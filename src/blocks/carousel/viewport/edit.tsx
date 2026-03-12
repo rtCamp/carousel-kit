@@ -187,7 +187,7 @@ export default function Edit( {
 				container: queryLoopContainer || undefined,
 				watchDrag: false, // Clicks in slide gaps must not trigger Embla scroll in the editor.
 				watchSlides: false, // Gutenberg injects block UI nodes into .embla__container; Embla's built-in MutationObserver would call reInit() on those, corrupting slide order and transforms.
-				watchResize: false, // Replaced by a manual debounced ResizeObserver in useEmblaResizeObserver.
+				watchResize: false, // Replaced by a manual debounced ResizeObserver in useCarouselObservers.
 			} );
 
 			( viewport as { [EMBLA_KEY]?: typeof embla } )[ EMBLA_KEY ] = embla;
