@@ -21,8 +21,7 @@ parameters:
 				- tests/phpstan/constants.php
 		paths:
 				- carousel-kit.php
-				- src/inc/
-				- templates/
+				- inc/
 				- examples/
 		excludePaths:
 			analyse:

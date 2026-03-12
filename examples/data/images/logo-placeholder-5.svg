@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="100" viewBox="0 0 260 100" role="img" aria-labelledby="title5 desc5">
+  <title id="title5">Brand Logo 5</title>
+  <desc id="desc5">Placeholder logo image for demo patterns.</desc>
+  <rect width="260" height="100" rx="12" fill="#ecfeff"/>
+  <path d="M28 64C28 45 44 30 63 30V64Z" fill="#0891b2"/>
+  <text x="78" y="58" font-size="20" font-family="Arial, sans-serif" fill="#0e7490">Brand Five</text>
+</svg>

@@ -173,7 +173,7 @@ class Plugin {
 			}
 
 			ob_start();
-			include $pattern_file;
+			include $pattern_file; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable -- $pattern_file is sourced from glob() in a fixed plugin directory (examples/patterns/*.php).
 			$content = ob_get_clean();
 
 			if ( false === $content || '' === trim( $content ) ) {

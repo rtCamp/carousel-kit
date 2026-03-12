@@ -5,6 +5,11 @@
  * Categories: carousel-kit
  * Description: A carousel block containing a query loop displaying posts in a grid layout.
  */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 
 <!-- wp:carousel-kit/carousel {"ariaLabel":"Carousel Kit: Query Loop Carousel","slideGap":16,"metadata":{"name":"Carousel Kit: Query Loop Carousel","categories":["carousel-kit"],"patternName":"carousel-kit/query-loop-carousel"},"align":"wide","className":"wp-block-carousel-carousel is-style-default"} -->

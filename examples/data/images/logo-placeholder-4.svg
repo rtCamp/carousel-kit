@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="100" viewBox="0 0 260 100" role="img" aria-labelledby="title4 desc4">
+  <title id="title4">Brand Logo 4</title>
+  <desc id="desc4">Placeholder logo image for demo patterns.</desc>
+  <rect width="260" height="100" rx="12" fill="#fff7ed"/>
+  <rect x="24" y="30" width="36" height="36" fill="#ea580c"/>
+  <text x="78" y="58" font-size="20" font-family="Arial, sans-serif" fill="#9a3412">Brand Four</text>
+</svg>

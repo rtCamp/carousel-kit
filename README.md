@@ -29,11 +29,11 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 | Requirement | Minimum      | Recommended |
 | ----------- | ------------ | ----------- |
-| WordPress   | 6.5+         | 6.6+        |
-| PHP         | 7.4+         | 8.2+        |
+| WordPress   | 6.6+         | 6.9+        |
+| PHP         | 8.2+         | 8.2+        |
 | Gutenberg   | Not required | —           |
 
-> **Note:** The Interactivity API became stable in WordPress 6.5. This plugin works with WordPress core—no Gutenberg plugin required.
+> **Note:** This plugin works with WordPress core—no Gutenberg plugin required.
 
 ## Browser Support
 
@@ -80,6 +80,10 @@ Yes. The carousel follows W3C accessibility guidelines with proper ARIA roles, l
 
 Yes. Each carousel instance maintains its own independent state.
 
+### What data is removed on uninstall?
+
+On uninstall, Carousel Kit removes its cached pattern transient (`carousel_kit_patterns_cache`). It does not remove your posts or block content.
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for full release history.
@@ -94,13 +98,16 @@ Have a feature request? [Open an issue](https://github.com/rtCamp/carousel-kit/i
 
 ## Contributors
 
+- [rtCamp](https://github.com/rtCamp)
 - [Danish Shakeel](https://github.com/danish17)
 - [Masud Rana](https://github.com/theMasudRana)
-- [rtCamp](https://profiles.wordpress.org/rtcamp)
+- [Gagan Deep Singh](https://github.com/gagan0123)
+- [Utsav Patel](https://github.com/up1512001)
+- [Sagar Tamang](https://github.com/mi5t4n)
 - [Aviral Mittal](https://github.com/aviral-mittal)
 - [Vishal Kotak](https://github.com/vishal4669)
-- [Aishwarrya Pande](https://github.com/AishwarryaPande)
 - [Raj Patel](https://github.com/imrraaj)
+- [Aishwarrya Pande](https://github.com/AishwarryaPande)
 
 
 ## License
