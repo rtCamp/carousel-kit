@@ -42,6 +42,7 @@
     "@wordpress/data": "^10.10.0",
     "@wordpress/dom-ready": "^4.37.0",
     "@wordpress/element": "6.38.0",
+    "@wordpress/hooks": "4.41.0",
     "@wordpress/i18n": "^6.10.0",
     "@wordpress/icons": "11.5.0",
     "@wordpress/interactivity": "6.37.0",
