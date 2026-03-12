@@ -25,6 +25,10 @@ import { createBlock, type BlockConfiguration } from '@wordpress/blocks';
 import type { CarouselAttributes } from './types';
 import { EditorCarouselContext } from './editor-context';
 import type { EmblaCarouselType } from 'embla-carousel';
+import { getSlideTemplates, type SlideTemplate } from './templates';
+import TemplatePicker from './components/TemplatePicker';
+
+type SetupStep = 'slide-count' | 'template';
 
 export default function Edit( {
 	attributes,
@@ -55,6 +59,8 @@ export default function Edit( {
 	const [ emblaApi, setEmblaApi ] = useState<EmblaCarouselType | undefined>();
 	const [ canScrollPrev, setCanScrollPrev ] = useState( false );
 	const [ canScrollNext, setCanScrollNext ] = useState( false );
+	const [ setupStep, setSetupStep ] = useState<SetupStep>( 'slide-count' );
+	const [ pendingSlideCount, setPendingSlideCount ] = useState<number>( 0 );
 
 	const { replaceInnerBlocks, insertBlock } = useDispatch( 'core/block-editor' );
 
@@ -155,16 +161,35 @@ export default function Edit( {
 			],
 		);
 
-	const handleSetup = ( slideCount: number ) => {
-		const slides = Array.from( { length: slideCount }, () =>
-			createBlock( 'carousel-kit/carousel-slide', {}, [
-				createBlock( 'core/paragraph', {} ),
-			] ),
-		);
+	/**
+	 * Handle the initial setup of the carousel block
+	 *
+	 * @param {number} count - The number of slides selected by the user.
+	 */
+	const handleSlideCountPicked = ( count: number ) => {
+		setPendingSlideCount( count );
+		setSetupStep( 'template' );
+	};
+
+	/**
+	 * Handle the selection of a slide template during setup.
+	 *
+	 * @param {SlideTemplate} template - The slide template selected by the user.
+	 */
+	const handleTemplateSelected = ( template: SlideTemplate ) => {
+		// Query Loop goes directly inside the viewport; regular templates get slide wrappers.
+		const viewportChildren = template.isQueryLoop
+			? [ createBlock( 'core/query', {}, [] ) ]
+			: Array.from( { length: Math.max( pendingSlideCount, 1 ) }, () =>
+				createBlock( 'carousel-kit/carousel-slide', {}, template.innerBlocks() ),
+			);
 
 		replaceInnerBlocks(
 			clientId,
-			[ createBlock( 'carousel-kit/carousel-viewport', {}, slides ), createNavGroup() ],
+			[
+				createBlock( 'carousel-kit/carousel-viewport', {}, viewportChildren ),
+				createNavGroup(),
+			],
 			false,
 		);
 	};
@@ -393,30 +418,45 @@ export default function Edit( {
 					<Placeholder
 						icon="columns"
 						label={ __( 'Carousel', 'carousel-kit' ) }
-						instructions={ __( 'How many slides would you like to start with?', 'carousel-kit' ) }
+						instructions={
+							setupStep === 'slide-count'
+								? __( 'How many slides would you like to start with?', 'carousel-kit' )
+								: __( 'Choose a slide template:', 'carousel-kit' )
+						}
 						className="carousel-kit-setup"
 					>
-						<div className="carousel-kit-setup__options">
-							{ [ 1, 2, 3, 4 ].map( ( count ) => (
+						{ setupStep === 'slide-count' && (
+							<>
+								<div className="carousel-kit-setup__options">
+									{ [ 1, 2, 3, 4 ].map( ( count ) => (
+										<Button
+											key={ count }
+											variant="secondary"
+											className="carousel-kit-setup__option"
+											onClick={ () => handleSlideCountPicked( count ) }
+										>
+											{ count === 1
+												? __( '1 Slide', 'carousel-kit' )
+												: `${ count } ${ __( 'Slides', 'carousel-kit' ) }` }
+										</Button>
+									) ) }
+								</div>
 								<Button
-									key={ count }
-									variant="secondary"
-									className="carousel-kit-setup__option"
-									onClick={ () => handleSetup( count ) }
+									variant="link"
+									className="carousel-kit-setup__skip"
+									onClick={ handleSkip }
 								>
-									{ count === 1
-										? __( '1 Slide', 'carousel-kit' )
-										: `${ count } ${ __( 'Slides', 'carousel-kit' ) }` }
+									{ __( 'Skip', 'carousel-kit' ) }
 								</Button>
-							) ) }
-						</div>
-						<Button
-							variant="link"
-							className="carousel-kit-setup__skip"
-							onClick={ handleSkip }
-						>
-							{ __( 'Skip', 'carousel-kit' ) }
-						</Button>
+							</>
+						) }
+						{ setupStep === 'template' && (
+							<TemplatePicker
+								templates={ getSlideTemplates() }
+								onSelect={ handleTemplateSelected }
+								onBack={ () => setSetupStep( 'slide-count' ) }
+							/>
+						) }
 					</Placeholder>
 				</div>
 			</EditorCarouselContext.Provider>
