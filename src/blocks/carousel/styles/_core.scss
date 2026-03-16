@@ -43,6 +43,27 @@
 	margin-inline-end: 0;
 	margin-block-start: 0;
 	margin-block-end: 0;
+
+	/* Vertical alignment support */
+	display: flex;
+	flex-direction: column;
+
+	&.is-vertically-aligned-top {
+		justify-content: flex-start;
+	}
+
+	&.is-vertically-aligned-center,
+	&.is-vertically-aligned-middle {
+		justify-content: center;
+	}
+
+	&.is-vertically-aligned-bottom {
+		justify-content: flex-end;
+	}
+
+	&.is-vertically-aligned-space-between {
+		justify-content: space-between;
+	}
 }
 
 /**
