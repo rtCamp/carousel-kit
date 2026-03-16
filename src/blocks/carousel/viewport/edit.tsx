@@ -9,11 +9,12 @@ import { createBlock } from '@wordpress/blocks';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { plus } from '@wordpress/icons';
-import type { CarouselViewportAttributes } from '../types';
-import { useContext, useEffect, useRef, useCallback } from '@wordpress/element';
+import type { CarouselViewportAttributes, BlockEditorSelectors } from '../types';
+import { useContext, useEffect, useRef, useCallback, useState } from '@wordpress/element';
 import { useMergeRefs } from '@wordpress/compose';
 import { EditorCarouselContext } from '../editor-context';
 import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
+import { useCarouselObservers } from '../hooks/useCarouselObservers';
 
 const EMBLA_KEY = Symbol.for( 'carousel-system.carousel' );
 
@@ -34,18 +35,58 @@ export default function Edit( {
 		},
 	} );
 
-	const slideCount = useSelect(
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		( select ) => ( select( 'core/block-editor' ) as any ).getBlockCount( clientId ) as number,
+	/**
+	 * Single store subscription for slide count, IDs, and which slide (if any)
+	 * is currently selected — including nested child-block selection.
+	 */
+	const { slideCount, selectedSlideIndex } = useSelect(
+		( select ) => {
+			const blockEditor = select( 'core/block-editor' ) as BlockEditorSelectors;
+			const childBlocks = blockEditor.getBlocks( clientId );
+			const slideClientIds = childBlocks.map( ( block ) => block.clientId );
+			const count = slideClientIds.length;
+
+			const selectedBlockId = blockEditor.getSelectedBlockClientId();
+			let index = -1;
+			if ( selectedBlockId ) {
+				index = slideClientIds.indexOf( selectedBlockId );
+				if ( index === -1 ) {
+					const ancestorIds = blockEditor.getBlockParents( selectedBlockId );
+					const parentSlideId = ancestorIds.find( ( id ) => slideClientIds.includes( id ) );
+					if ( parentSlideId ) {
+						index = slideClientIds.indexOf( parentSlideId );
+					}
+				}
+			}
+
+			return { slideCount: count, selectedSlideIndex: index };
+		},
 		[ clientId ],
 	);
 
 	const hasSlides = slideCount > 0;
 
 	const emblaRef = useRef<HTMLDivElement>( null );
-	const ref = useMergeRefs( [ emblaRef, blockProps.ref ] );
+	const emblaApiRef = useRef<EmblaCarouselType | undefined>();
+	const initEmblaRef = useRef<() => void>();
+
+	// viewportEl is state so it triggers hook setup after the DOM mounts.
+	// initEmblaRef is a ref so the MutationObserver callback always reads
+	// the latest init function without re-subscribing.
+	const [ viewportEl, setViewportEl ] = useState<HTMLDivElement | null>( null );
+
+	// Set viewportEl once on mount. Skips null to avoid state updates during unmount.
+	const viewportCallbackRef = useCallback( ( node: HTMLDivElement | null ) => {
+		if ( node ) {
+			setViewportEl( node );
+		}
+	}, [] );
+
+	const ref = useMergeRefs( [ emblaRef, blockProps.ref, viewportCallbackRef ] );
 
 	const { insertBlock } = useDispatch( 'core/block-editor' );
+
+	useCarouselObservers( viewportEl, emblaApiRef, initEmblaRef );
 
 	const addSlide = useCallback( () => {
 		const block = createBlock( 'carousel-kit/carousel-slide' );
@@ -80,35 +121,62 @@ export default function Edit( {
 	);
 
 	useEffect( () => {
-		const api = emblaRef.current
-			? ( emblaRef.current as { [ EMBLA_KEY ]?: EmblaCarouselType } )[ EMBLA_KEY ]
-			: null;
-		if ( api ) {
-			setTimeout( () => api.reInit(), 10 );
+		if ( ! emblaApiRef.current ) {
+			return;
 		}
+		// Defer until after React's commit phase so the new slide DOM is ready.
+		const timerId = setTimeout( () => emblaApiRef.current?.reInit(), 0 );
+		return () => clearTimeout( timerId );
 	}, [ slideCount ] );
 
+	/**
+	 * Scroll Embla to the selected slide when the user picks a slide from the
+	 * Block Tree (List View) or when a block inside a slide is selected.
+	 *
+	 * Deferred with rAF because Gutenberg's own scrollIntoView fires
+	 * synchronously on selection, setting native scrollLeft on the viewport.
+	 * Our scroll-reset listener (see main init effect) clears that, and then
+	 * this rAF fires Embla's transform-based scroll.
+	 */
+	useEffect( () => {
+		if ( selectedSlideIndex < 0 ) {
+			return;
+		}
+		const id = requestAnimationFrame( () => {
+			const api = emblaApiRef.current;
+			if ( api && api.selectedScrollSnap() !== selectedSlideIndex ) {
+				api.scrollTo( selectedSlideIndex );
+			}
+		} );
+		return () => cancelAnimationFrame( id );
+	}, [ selectedSlideIndex ] );
+
+	/**
+	 * Core Embla initialisation effect.
+	 * Observer logic (resize + mutation) has been moved to dedicated hooks
+	 * to keep this effect focused on Embla lifecycle only.
+	 */
 	useEffect( () => {
 		if ( ! emblaRef.current ) {
 			return;
 		}
 
-		const viewportEl = emblaRef.current;
+		const viewport = emblaRef.current;
 		let embla: EmblaCarouselType | undefined;
 
-		const initEmbla = () => {
+		const init = () => {
 			if ( embla ) {
 				embla.destroy();
 			}
 
-			const queryLoopContainer = viewportEl.querySelector(
+			const queryLoopContainer = viewport.querySelector(
 				'.wp-block-post-template',
 			) as HTMLElement;
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const options = carouselOptions as any;
 
-			embla = EmblaCarousel( viewportEl, {
+			embla = EmblaCarousel( viewport, {
 				loop: options?.loop ?? false,
 				dragFree: options?.dragFree ?? false,
 				containScroll: options?.containScroll || 'trimSnaps',
@@ -119,16 +187,15 @@ export default function Edit( {
 				container: queryLoopContainer || undefined,
 				watchDrag: false, // Clicks in slide gaps must not trigger Embla scroll in the editor.
 				watchSlides: false, // Gutenberg injects block UI nodes into .embla__container; Embla's built-in MutationObserver would call reInit() on those, corrupting slide order and transforms.
-				watchResize: false, // Block toolbar appearing on selection can cause a layout shift that triggers an unwanted reInit.
+				watchResize: false, // Replaced by a manual debounced ResizeObserver in useCarouselObservers.
 			} );
 
-			( viewportEl as { [EMBLA_KEY]?: typeof embla } )[ EMBLA_KEY ] = embla;
+			( viewport as { [EMBLA_KEY]?: typeof embla } )[ EMBLA_KEY ] = embla;
+			emblaApiRef.current = embla;
 
 			const onSelect = () => {
-				const canPrev = embla!.canScrollPrev();
-				const canNext = embla!.canScrollNext();
-				setCanScrollPrev( canPrev );
-				setCanScrollNext( canNext );
+				setCanScrollPrev( embla!.canScrollPrev() );
+				setCanScrollNext( embla!.canScrollNext() );
 			};
 
 			embla.on( 'select', onSelect );
@@ -141,51 +208,47 @@ export default function Edit( {
 			setEmblaApi( embla );
 		};
 
-		initEmbla();
+		// Run initial setup.
+		init();
 
-		const observer = new MutationObserver( ( mutations ) => {
-			let shouldReInit = false;
+		// Keep ref in sync so observer hooks always call the latest init.
+		initEmblaRef.current = init;
 
-			for ( const mutation of mutations ) {
-				const target = mutation.target as HTMLElement;
-
-				if ( target.classList.contains( 'wp-block-post-template' ) ) {
-					shouldReInit = true;
-					break;
-				}
-
-				if (
-					mutation.addedNodes.length > 0 &&
-						( target.querySelector( '.wp-block-post-template' ) ||
-							Array.from( mutation.addedNodes ).some(
-								( node ) =>
-									node instanceof HTMLElement &&
-									node.classList.contains( 'wp-block-post-template' ),
-							) )
-				) {
-					shouldReInit = true;
-					break;
-				}
+		/**
+		 * Prevent native scroll offsets from corrupting Embla transforms.
+		 * Gutenberg's scrollIntoView (triggered by List View / Block Tree
+		 * selection) sets scrollLeft/scrollTop on the overflow:hidden viewport.
+		 * Embla assumes these are always 0, so we reset them immediately.
+		 *
+		 * Uses a passive listener and defers DOM writes to rAF to avoid
+		 * blocking the compositor thread and forcing synchronous reflow.
+		 */
+		let scrollResetRafId: number | undefined;
+		const resetNativeScroll = () => {
+			if ( scrollResetRafId ) {
+				return; // Already scheduled
 			}
+			scrollResetRafId = requestAnimationFrame( () => {
+				scrollResetRafId = undefined;
+				if ( viewport.scrollLeft !== 0 ) {
+					viewport.scrollLeft = 0;
+				}
+				if ( viewport.scrollTop !== 0 ) {
+					viewport.scrollTop = 0;
+				}
+			} );
+		};
 
-			if ( shouldReInit ) {
-				setTimeout( initEmbla, 10 );
-			}
-		} );
-
-		observer.observe( viewportEl, {
-			childList: true,
-			subtree: true,
-		} );
+		viewport.addEventListener( 'scroll', resetNativeScroll, { passive: true } );
 
 		return () => {
-			if ( embla ) {
-				embla.destroy();
+			if ( scrollResetRafId ) {
+				cancelAnimationFrame( scrollResetRafId );
 			}
-			if ( observer ) {
-				observer.disconnect();
-			}
-			delete ( viewportEl as { [EMBLA_KEY]?: typeof embla } )[ EMBLA_KEY ];
+			viewport.removeEventListener( 'scroll', resetNativeScroll );
+			embla?.destroy();
+			emblaApiRef.current = undefined;
+			delete ( viewport as { [EMBLA_KEY]?: typeof embla } )[ EMBLA_KEY ];
 		};
 	}, [ setEmblaApi, setCanScrollPrev, setCanScrollNext, carouselOptions ] );
 

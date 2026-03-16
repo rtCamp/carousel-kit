@@ -1,6 +1,5 @@
 # Configuration
 PLUGIN_SLUG := carousel-kit
-PLUGIN_VERSION := 1.0.0
 BUILD_DIR := build-dist
 ZIP_NAME := $(PLUGIN_SLUG).zip
 
@@ -50,17 +49,23 @@ dist:
 		--exclude='.*' \
 		--exclude='node_modules' \
 		--exclude='tests' \
+		--exclude='wp-assets' \
 		--exclude='phpunit.xml.dist' \
 		--exclude='phpcs.xml.dist' \
+		--exclude='phpstan.neon.dist' \
+		--exclude='babel.config.js' \
+		--exclude='commitlint.config.js' \
+		--exclude='jest.config.js' \
 		--exclude='webpack.config.js' \
 		--exclude='package.json' \
 		--exclude='package-lock.json' \
+		--exclude='blueprint.json' \
 		--exclude='tsconfig.json' \
 		--exclude='composer.json' \
 		--exclude='composer.lock' \
 		--exclude='Makefile' \
-		--exclude='README.md' \
 		--exclude='CHANGELOG.md' \
+		--exclude='DEVELOPMENT.md' \
 		--exclude='src' \
 		--exclude='$(BUILD_DIR)' \
 		--exclude='*.zip' \

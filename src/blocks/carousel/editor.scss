@@ -4,6 +4,7 @@
 
 // ── Setup chooser ────────────────────────────────────────────────────────────
 .carousel-kit-setup {
+
 	.carousel-kit-setup__options {
 		display: flex;
 		gap: 8px;
@@ -43,9 +44,11 @@
 }
 
 .carousel-kit {
+
 	/* Ensure selectable area */
 	padding: 0.625rem;
 	border: 1px dashed #ccc;
+	box-sizing: border-box;
 
 	&.is-selected {
 		border-color: var(--wp-admin-theme-color);

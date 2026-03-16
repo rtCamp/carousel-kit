@@ -24,6 +24,16 @@ export type CarouselSlideAttributes = Record<string, never>;
 export type CarouselControlsAttributes = Record<string, never>;
 export type CarouselDotsAttributes = Record<string, never>;
 
+/**
+ * Typed subset of the block editor store selectors used in this plugin.
+ * This avoids `as any` casts while keeping dot-notation and type safety.
+ */
+export interface BlockEditorSelectors {
+	getBlocks: ( clientId: string ) => Array<{ clientId: string }>;
+	getSelectedBlockClientId: () => string | null;
+	getBlockParents: ( clientId: string ) => string[];
+}
+
 export type CarouselContext = {
 	options: EmblaOptionsType & {
 		slidesToScroll?: number | 'auto';
