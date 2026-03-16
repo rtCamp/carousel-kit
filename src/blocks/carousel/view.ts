@@ -133,6 +133,12 @@ store( 'carousel-kit/carousel', {
 			const index = ( snap?.index || 0 ) + 1;
 			return context.ariaLabelPattern.replace( '%d', index.toString() );
 		},
+		getProgressBarStyle: () => {
+			const { scrollProgress } = getContext<CarouselContext>();
+			return {
+				width: `${ ( scrollProgress || 0 ) * 100 }%`,
+			};
+		},
 		initCarousel: () => {
 			try {
 				const context = getContext<CarouselContext>();
@@ -220,10 +226,14 @@ store( 'carousel-kit/carousel', {
 						context.scrollSnaps = embla
 							.scrollSnapList()
 							.map( ( _, index ) => ( { index } ) );
+						context.scrollProgress = embla.scrollProgress();
 					};
 
 					embla.on( 'select', updateState );
 					embla.on( 'reInit', updateState );
+					embla.on( 'scroll', () => {
+						context.scrollProgress = embla.scrollProgress();
+					} );
 
 					// Autoplay API Integration
 					embla.on( 'autoplay:timerset', () => {

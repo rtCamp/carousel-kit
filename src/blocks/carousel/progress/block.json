@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"version": "1.0.0",
+	"name": "carousel-kit/carousel-progress",
+	"title": "Carousel Progress",
+	"category": "carousel-kit",
+	"icon": "minus",
+	"ancestor": [
+		"carousel-kit/carousel"
+	],
+	"description": "Progress bar for the carousel.",
+	"textdomain": "carousel-kit",
+	"attributes": {},
+	"supports": {
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

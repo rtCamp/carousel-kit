@@ -70,6 +70,7 @@ class Plugin {
 			'carousel',
 			'carousel/controls',
 			'carousel/dots',
+			'carousel/progress',
 			'carousel/viewport',
 			'carousel/slide',
 		];

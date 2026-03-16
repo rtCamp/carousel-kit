@@ -1,0 +1,16 @@
+.carousel-kit-progress {
+	width: 100%;
+	height: 4px;
+	background-color: #eee;
+	overflow: hidden;
+	position: relative;
+	margin-top: 10px;
+
+	&__bar {
+		height: 100%;
+		background-color: #000;
+		width: 0;
+		transition: width 0.1s ease-out;
+		transform-origin: left;
+	}
+}
