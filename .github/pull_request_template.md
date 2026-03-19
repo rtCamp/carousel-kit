@@ -15,14 +15,14 @@ Describe the change and why it is needed.
 
 <!-- 'Closes' will automatically close the linked issue when this PR is merged. -->
 <!-- 'Relates to' is for issues that are relevant but won't be closed by this PR. -->
-Closes #
-Relates to #
+Closes #<issue-number>
+Relates to #<issue-number> (if applicable)
 
 ## What changed
 
--
--
--
+- <change summary 1>
+- <change summary 2>
+- <change summary 3>
 
 ## Breaking changes
 
