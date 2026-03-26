@@ -12,7 +12,7 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 - **Flexible Compound Block Architecture**: Mix and match any blocks inside the carousel.
 - **High Performance**: Viewport & Slide Engine powered by Embla Carousel.
 - **Interactivity API**: Reactive state management with `data-wp-interactive`.
-- **Dynamic Content**: Full support for WordPress **Query Loop** block.
+- **Dynamic Content**: Full support for WordPress **Query Loop** and **Terms Query** blocks.
 - **Accessibility**: W3C-compliant roles, labels, and keyboard navigation.
 - **RTL Support**: Built-in support for Right-to-Left languages.
 
@@ -68,9 +68,9 @@ Yes! Carousel Kit is fully compatible with Full Site Editing. You can use the ca
 
 Absolutely. Each slide is a container that accepts any WordPress block—images, paragraphs, groups, columns, and even other third-party blocks.
 
-### Does it support the Query Loop block?
+### Does it support the Query Loop and Terms Query blocks?
 
-Yes. Simply add a Query Loop block inside the Carousel Viewport, and each post in the loop becomes a slide automatically. No special configuration needed.
+Yes. Simply add a Query Loop or Terms Query block inside the Carousel Viewport, and each post or term in the loop becomes a slide automatically. No special configuration needed.
 
 ### Is it accessible?
 
