@@ -39,6 +39,7 @@ class Plugin {
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 		add_action( 'init', [ $this, 'register_pattern_category' ] );
 		add_action( 'init', [ $this, 'register_block_patterns' ] );
+		add_filter( 'render_block_core/term-template', [ $this, 'add_term_template_columns_class' ], 10, 3 );
 	}
 
 	/**
@@ -128,6 +129,36 @@ class Plugin {
 		foreach ( $patterns as $pattern ) {
 			register_block_pattern( $pattern['slug'], $pattern['args'] );
 		}
+	}
+
+	/**
+	 * Add columns-{N} class to term-template output.
+	 *
+	 * Gutenberg's post-template block natively adds a columns-{N} class based
+	 * on its grid layout columnCount, but term-template does not. This filter
+	 * bridges the gap so the carousel can detect the column count identically.
+	 *
+	 * @param string    $block_content Rendered block content.
+	 * @param array     $parsed_block  Parsed block data.
+	 * @param \WP_Block $block         Block instance.
+	 *
+	 * @return string
+	 */
+	public function add_term_template_columns_class( string $block_content, array $parsed_block, \WP_Block $block ): string {
+		$column_count = $block->attributes['layout']['columnCount'] ?? null;
+
+		if ( empty( $column_count ) ) {
+			return $block_content;
+		}
+
+		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if ( $processor->next_tag( 'ul' ) ) {
+			$processor->add_class( sanitize_title( 'columns-' . $column_count ) );
+			return $processor->get_updated_html();
+		}
+
+		return $block_content;
 	}
 
 	/**

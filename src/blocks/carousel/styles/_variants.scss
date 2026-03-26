@@ -4,18 +4,21 @@
 
 /* 2 Columns */
 :where(.carousel-kit).is-style-columns-2,
-:where(.carousel-kit) .embla .wp-block-post-template.columns-2 {
+:where(.carousel-kit) .embla .wp-block-post-template.columns-2,
+:where(.carousel-kit) .embla .wp-block-term-template.columns-2 {
 	--carousel-kit-slide-width: 50%;
 }
 
 /* 3 Columns */
 :where(.carousel-kit).is-style-columns-3,
-:where(.carousel-kit) .embla .wp-block-post-template.columns-3 {
+:where(.carousel-kit) .embla .wp-block-post-template.columns-3,
+:where(.carousel-kit) .embla .wp-block-term-template.columns-3 {
 	--carousel-kit-slide-width: 33.333%;
 }
 
 /* 4 Columns */
 :where(.carousel-kit).is-style-columns-4,
-:where(.carousel-kit) .embla .wp-block-post-template.columns-4 {
+:where(.carousel-kit) .embla .wp-block-post-template.columns-4,
+:where(.carousel-kit) .embla .wp-block-term-template.columns-4 {
 	--carousel-kit-slide-width: 25%;
 }

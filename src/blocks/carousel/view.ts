@@ -102,9 +102,9 @@ store( 'carousel-kit/carousel', {
 				return false;
 			}
 
-			// Check for either standard slide or Query Loop post
+			// Check for either standard slide, Query Loop post, or Terms Query term
 			const slide = getElementRef( getElement() )?.closest?.(
-				'.embla__slide, .wp-block-post',
+				'.embla__slide, .wp-block-post, .wp-block-term',
 			);
 
 			if ( ! slide || ! slide.parentElement ) {
@@ -115,7 +115,8 @@ store( 'carousel-kit/carousel', {
 			const slides = Array.from( slide.parentElement.children ).filter(
 				( child: Element ) =>
 					child.classList?.contains( 'embla__slide' ) ||
-					child.classList?.contains( 'wp-block-post' ),
+					child.classList?.contains( 'wp-block-post' ) ||
+					child.classList?.contains( 'wp-block-term' ),
 			);
 
 			const index = slides.indexOf( slide );
@@ -158,9 +159,9 @@ store( 'carousel-kit/carousel', {
 					return;
 				}
 
-				// Check for Query Loop container
+				// Check for Query Loop or Terms Query container
 				const queryLoopContainer = viewport.querySelector(
-					'.wp-block-post-template',
+					'.wp-block-post-template, .wp-block-term-template',
 				);
 
 				const startEmbla = () => {

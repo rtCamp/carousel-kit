@@ -32,7 +32,7 @@ export type CarouselDotsAttributes = Record<string, never>;
  * This avoids `as any` casts while keeping dot-notation and type safety.
  */
 export interface BlockEditorSelectors {
-	getBlocks: ( clientId: string ) => Array<{ clientId: string }>;
+	getBlocks: ( clientId: string ) => Array<{ clientId: string; name: string; attributes: Record<string, unknown>; innerBlocks: ReturnType<BlockEditorSelectors['getBlocks']> }>;
 	getSelectedBlockClientId: () => string | null;
 	getBlockParents: ( clientId: string ) => string[];
 }

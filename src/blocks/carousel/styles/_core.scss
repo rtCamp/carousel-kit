@@ -13,9 +13,13 @@
 	overflow: hidden;
 }
 
-/* Ensure the default container and Query Loop list are flex rows */
+/*
+ * Ensure the default container, Query Loop list and Terms Query list
+ * are flex rows
+ */
 :where(.carousel-kit) .embla__container,
-:where(.carousel-kit) .embla .wp-block-post-template {
+:where(.carousel-kit) .embla .wp-block-post-template,
+:where(.carousel-kit) .embla .wp-block-term-template {
 	display: flex;
 	flex-wrap: nowrap;
 	width: 100%;
@@ -25,15 +29,23 @@
 	gap: var(--carousel-kit-gap, 0);
 }
 
-/* Ensure intermediate wrappers (like wp-block-query) don't shrink */
-:where(.carousel-kit) .embla .wp-block-query {
+/*
+ * Ensure intermediate wrappers (like wp-block-query /
+ * wp-block-terms-query) don't shrink
+ */
+:where(.carousel-kit) .embla .wp-block-query,
+:where(.carousel-kit) .embla .wp-block-terms-query {
 	width: 100%;
 	min-width: 100%;
 }
 
-/* Force slides (including posts) to respect a configurable width variable */
+/*
+ * Force slides (including posts and terms) to respect a configurable
+ * width variable
+ */
 :where(.carousel-kit) .embla__slide,
-:where(.carousel-kit) .embla .wp-block-post-template li {
+:where(.carousel-kit) .embla .wp-block-post-template li,
+:where(.carousel-kit) .embla .wp-block-term-template li {
 	flex: 0 0 var(--carousel-kit-slide-width, 100%);
 	max-width: var(--carousel-kit-slide-width, 100%);
 	min-width: 0;
@@ -72,12 +84,14 @@
  * We switch to margin for consistent spacing in loop mode.
  */
 :where(.carousel-kit[data-loop="true"]) .embla__container,
-:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template {
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template,
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-term-template {
 	gap: 0;
 }
 
 :where(.carousel-kit[data-loop="true"]) .embla__slide,
-:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template li {
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template li,
+:where(.carousel-kit[data-loop="true"]) .embla .wp-block-term-template li {
 	margin-inline-end: var(--carousel-kit-gap, 0);
 }
 
@@ -93,12 +107,14 @@
 }
 
 :where(.carousel-kit[data-axis="y"]) .embla__slide,
-:where(.carousel-kit[data-axis="y"]) .embla .wp-block-post-template li {
+:where(.carousel-kit[data-axis="y"]) .embla .wp-block-post-template li,
+:where(.carousel-kit[data-axis="y"]) .embla .wp-block-term-template li {
 	margin-inline-end: 0;
 }
 
 /* Vertical + Loop specific */
 :where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla__slide,
-:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla .wp-block-post-template li {
+:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla .wp-block-post-template li,
+:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla .wp-block-term-template li {
 	margin-block-end: var(--carousel-kit-gap, 0);
 }
