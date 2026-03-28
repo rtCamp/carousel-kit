@@ -6,6 +6,11 @@
  * Description: Display partner or client logos in a continuous carousel
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $pattern_images_url = trailingslashit( CAROUSEL_KIT_URL . '/examples/data/images' );
 $logo_one           = $pattern_images_url . 'logo-placeholder-1.svg';
 $logo_two           = $pattern_images_url . 'logo-placeholder-2.svg';

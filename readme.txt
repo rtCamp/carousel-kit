@@ -1,10 +1,10 @@
 === Carousel Kit ===
-Contributors: rtcamp, danish17, immasud, gagan0123, up1512001
+Contributors: rtcamp, danish17, immasud, gagan0123, up1512001, mi5t4n, aviral89, vishal4669, imrraaj, aishwarryapande
 Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,23 @@ Yes. Each carousel instance maintains its own independent state.
 
 == Changelog ==
 
+= 1.0.4 =
+* New: Update minimum requirements to PHP 8.2 and WordPress 6.6
+* New: Implement PHP class autoloader for better performance and security
+* New: Add localization support and updated .pot files
+* New: Add uninstall.php for clean data removal upon plugin deletion
+* New: Add placeholder logos and updated hero carousel patterns
+* New: Add new screenshot images for WordPress.org plugin preview
+* New: Add direct access protection for core PHP files and Autoloader
+* Fix: Resolve CSS linting issues and remove unnecessary grid properties
+* Fix: Improve transition effects and clean up unused style properties
+* Fix: Update package dependencies (minimatch, serialize-javascript, svgo, and immutable)
+* Fix: Update @wordpress/scripts to allow minor updates and maintain compatibility
+* Fix: Refine .distignore and distribution targets to minimize package size
+* Fix: Standardize script paths in composer.json to use local binaries
+* Fix: Correct release links in documentation and update contributor lists
+* Fix: Update PHPCS and PHPStan configurations for better development workflow
+
 = 1.0.3 =
 * Fix: (Editor): Prevent ghost slides and state corruption when clicking between slides
 * Fix: Swap misplaced editor images and remove hardcoded aspect ratio
@@ -91,17 +108,5 @@ Yes. Each carousel instance maintains its own independent state.
 * Fix: Replace PNG images with optimized WEBP format
 * New: Setup wizard styles
 * New: Slide appender and setup wizard
-
-= 1.0.1 =
-* Fix: Resolve spacing issues in loop mode where gaps were missing between last and first slide
-* Fix: Allow infinite loop in editor viewport to match frontend behavior
-
-= 1.0.0 =
-* Initial release
-* Compound block architecture with Carousel, Viewport, Slide, Controls, and Dots
-* Embla Carousel v8 integration
-* WordPress Interactivity API support
-* Query Loop integration
-* RTL and accessibility support
 
 [CHECK THE FULL CHANGELOG](https://github.com/rtCamp/carousel-kit/blob/main/CHANGELOG.md)

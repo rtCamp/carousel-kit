@@ -5,6 +5,11 @@
  * Categories: carousel-kit
  * Description: Customer testimonials with centered alignment and quotes
  */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 
 <!-- wp:carousel-kit/carousel {"loop":true,"carouselAlign":"center","autoplay":true,"ariaLabel":"Customer Testimonials","slideGap":32,"metadata":{"categories":["carousel-kit"],"patternName":"carousel-kit/testimonial-carousel","name":"Carousel Kit: Testimonial Carousel"},"className":"wp-block-carousel-carousel"} -->

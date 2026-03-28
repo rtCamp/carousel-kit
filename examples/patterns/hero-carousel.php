@@ -6,6 +6,11 @@
  * Description: A full-width hero carousel with large images and overlaid text
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $pattern_images_url = trailingslashit( CAROUSEL_KIT_URL . '/examples/data/images' );
 $hero_slide_one     = $pattern_images_url . 'slide-autoplay-1.webp';
 $hero_slide_two     = $pattern_images_url . 'slide-autoplay-2.webp';

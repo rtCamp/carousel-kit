@@ -10,7 +10,7 @@
  * Domain Path: /languages
  * License:     GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version:     1.0.3
+ * Version:     1.0.4
  * Text Domain: carousel-kit
  *
  * @package carousel-kit

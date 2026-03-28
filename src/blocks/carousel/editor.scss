@@ -128,6 +128,7 @@
 	/* Ensure selectable area */
 	padding: 0.625rem;
 	border: 1px dashed var(--carousel-kit-border-dashed);
+	box-sizing: border-box;
 
 	&.is-selected {
 		border-color: var(--carousel-kit-accent);

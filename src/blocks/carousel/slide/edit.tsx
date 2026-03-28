@@ -1,16 +1,28 @@
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	useInnerBlocksProps,
+	BlockControls,
+	BlockVerticalAlignmentToolbar,
+} from '@wordpress/block-editor';
 import type { CarouselSlideAttributes } from '../types';
 
 export default function Edit( {
+	attributes,
+	setAttributes,
 	context,
 }: {
 	attributes: CarouselSlideAttributes;
+	setAttributes: ( attributes: Partial<CarouselSlideAttributes> ) => void;
 	context: { 'carousel-kit/carousel/allowedSlideBlocks'?: string[] };
 } ) {
 	const allowedBlocks = context[ 'carousel-kit/carousel/allowedSlideBlocks' ];
 
+	const { verticalAlignment } = attributes;
+
 	const blockProps = useBlockProps( {
-		className: 'embla__slide',
+		className: `embla__slide${
+			verticalAlignment ? ` is-vertically-aligned-${ verticalAlignment }` : ''
+		}`,
 	} );
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
@@ -19,5 +31,17 @@ export default function Edit( {
 		templateLock: false,
 	} );
 
-	return <div { ...innerBlocksProps } />;
+	return (
+		<>
+			<BlockControls>
+				<BlockVerticalAlignmentToolbar
+					value={ verticalAlignment }
+					onChange={ ( value ) =>
+						setAttributes( { verticalAlignment: value } )
+					}
+				/>
+			</BlockControls>
+			<div { ...innerBlocksProps } />
+		</>
+	);
 }

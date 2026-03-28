@@ -11,7 +11,11 @@
 	],
 	"description": "A single slide within the carousel.",
 	"textdomain": "carousel-kit",
-	"attributes": {},
+	"attributes": {
+		"verticalAlignment": {
+			"type": "string"
+		}
+	},
 	"usesContext": [
 		"carousel-kit/carousel/allowedSlideBlocks"
 	],
