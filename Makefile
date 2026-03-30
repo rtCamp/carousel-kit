@@ -61,8 +61,6 @@ dist:
 		--exclude='package-lock.json' \
 		--exclude='blueprint.json' \
 		--exclude='tsconfig.json' \
-		--exclude='composer.json' \
-		--exclude='composer.lock' \
 		--exclude='Makefile' \
 		--exclude='CHANGELOG.md' \
 		--exclude='DEVELOPMENT.md' \
