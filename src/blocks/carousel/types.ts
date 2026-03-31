@@ -55,4 +55,5 @@ export type CarouselContext = {
 	scrollProgress: number;
 	ariaLabelPattern: string;
 	ref?: HTMLElement | null;
+	slideCount: number;
 };

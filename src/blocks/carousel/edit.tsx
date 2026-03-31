@@ -56,6 +56,8 @@ export default function Edit( {
 	const [ canScrollPrev, setCanScrollPrev ] = useState( false );
 	const [ canScrollNext, setCanScrollNext ] = useState( false );
 	const [ scrollProgress, setScrollProgress ] = useState( 0 );
+	const [ selectedIndex, setSelectedIndex ] = useState( 0 );
+	const [ slideCount, setSlideCount ] = useState( 0 );
 
 	const { replaceInnerBlocks, insertBlock } = useDispatch( 'core/block-editor' );
 
@@ -129,6 +131,8 @@ export default function Edit( {
 			setCanScrollNext,
 			scrollProgress,
 			setScrollProgress,
+			selectedIndex,
+			slideCount,
 			carouselOptions,
 		} ),
 		[
@@ -136,6 +140,8 @@ export default function Edit( {
 			canScrollPrev,
 			canScrollNext,
 			scrollProgress,
+			selectedIndex,
+			slideCount,
 			carouselOptions,
 			setEmblaApi,
 			setCanScrollPrev,
@@ -144,28 +150,36 @@ export default function Edit( {
 		],
 	);
 
-	// Subscribe to Embla scroll event to update scrollProgress
-	useEffect(() => {
-		if (!emblaApi) return;
+	// Subscribe to Embla events to update scrollProgress, selectedIndex, and slideCount
+	useEffect( () => {
+		if ( ! emblaApi ) {
+			return;
+		}
 
 		const updateScrollProgress = () => {
-			setScrollProgress(emblaApi.scrollProgress());
+			setScrollProgress( emblaApi.scrollProgress() );
+		};
+
+		const updateState = () => {
+			setSelectedIndex( emblaApi.selectedScrollSnap() );
+			setSlideCount( emblaApi.slideNodes().length );
+			updateScrollProgress();
 		};
 
 		emblaApi
-			.on('scroll', updateScrollProgress)
-			.on('select', updateScrollProgress)
-			.on('reInit', updateScrollProgress);
+			.on( 'scroll', updateScrollProgress )
+			.on( 'select', updateState )
+			.on( 'reInit', updateState );
 
-		updateScrollProgress();
+		updateState();
 
 		return () => {
 			emblaApi
-				.off('scroll', updateScrollProgress)
-				.off('select', updateScrollProgress)
-				.off('reInit', updateScrollProgress);
+				.off( 'scroll', updateScrollProgress )
+				.off( 'select', updateState )
+				.off( 'reInit', updateState );
 		};
-	}, [emblaApi]);
+	}, [ emblaApi ] );
 
 	const createNavGroup = () =>
 		createBlock(
@@ -183,8 +197,8 @@ export default function Edit( {
 			],
 		);
 
-	const handleSetup = ( slideCount: number ) => {
-		const slides = Array.from( { length: slideCount }, () =>
+	const handleSetup = ( count: number ) => {
+		const slides = Array.from( { length: count }, () =>
 			createBlock( 'carousel-kit/carousel-slide', {}, [
 				createBlock( 'core/paragraph', {} ),
 			] ),

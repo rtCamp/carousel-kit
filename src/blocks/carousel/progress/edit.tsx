@@ -8,10 +8,16 @@ export default function Edit() {
 		className: 'carousel-kit-progress',
 	} );
 
-	const { scrollProgress, slideCount } = useContext( EditorCarouselContext ) as { scrollProgress?: number, slideCount?: number };
+	const { scrollProgress, selectedIndex, slideCount, carouselOptions } =
+		useContext( EditorCarouselContext );
 
-	// Hide if only one slide
-	if (slideCount === 1) return null;
+	if ( slideCount <= 1 ) {
+		return null;
+	}
+
+	const progress = carouselOptions?.loop
+		? selectedIndex / ( slideCount - 1 )
+		: Math.max( 0, Math.min( 1, scrollProgress || 0 ) );
 
 	return (
 		<div { ...blockProps }>
@@ -19,11 +25,11 @@ export default function Edit() {
 				className="carousel-kit-progress__bar"
 				role="progressbar"
 				aria-label={ __( 'Carousel progress', 'carousel-kit' ) }
-				aria-valuenow={ Math.round((scrollProgress || 0) * 100) }
-				aria-valuemin={0}
-				aria-valuemax={100}
+				aria-valuenow={ Math.round( progress * 100 ) }
+				aria-valuemin={ 0 }
+				aria-valuemax={ 100 }
 				style={ {
-					width: `${ ( scrollProgress || 0 ) * 100 }%`,
+					transform: `translate3d(${ progress * 100 }%, 0px, 0px)`,
 				} }
 			/>
 		</div>
