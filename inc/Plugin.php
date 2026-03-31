@@ -211,7 +211,7 @@ class Plugin {
 	 *
 	 * @return string Modified block content.
 	 */
-	public function handle_lazy_load_images( string $block_content, array $parsed_block, ?WP_Block $instance ): string {
+	public function handle_lazy_load_images( string $block_content, array $parsed_block, WP_Block $instance ): string {
 		// Bail early if the parent block to check lazyLoadImages setting is not set.
 		if ( ! isset( $instance->context["carousel-kit/carousel/lazyLoadImages"] ) ) {
 			return $block_content;
