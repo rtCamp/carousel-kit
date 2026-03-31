@@ -85,6 +85,10 @@
 		"slidesToScroll": {
 			"type": "string",
 			"default": "1"
+		},
+		"lazyLoadImages": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"editorScript": "file:./index.js",
