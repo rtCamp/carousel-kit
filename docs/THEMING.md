@@ -31,7 +31,7 @@ Easily theme the carousel using CSS variables or block supports. Navigation bloc
 | `--rt-carousel-dot-color`           | `rgb(221, 221, 221)`  | Color of inactive dots |
 | `--rt-carousel-dot-radius`          | `50%`                 | Shape of the dots      |
 | `--rt-carousel-dot-border`          | `none`                | Border style for dots  |
-| `--rt-carousel-dot-active-size`     | `0.75rem`             | Size of active dot     |
+| `--rt-carousel-dot-active-scale`    | `0.75rem`             | Size of active dot     |
 | `--rt-carousel-dot-active-color`    | `rgba(28, 28, 28, 1)` | Color of active dot    |
 
 ## Overriding Styles
