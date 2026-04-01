@@ -40,33 +40,9 @@ if ( ! Autoloader::autoload() ) {
 }
 
 /**
- * Migrate block names and clean up data from the old "carousel-kit" plugin.
- *
- * Runs once on activation. Replaces `<!-- wp:carousel-kit/ -->` block
- * delimiters in post_content with `<!-- wp:rt-carousel/ -->` and removes
- * the orphaned transient.
+ * Initialize the migration class to handle any necessary data migrations from the old "carousel-kit" plugin.
  */
-function rt_carousel_migrate(): void {
-	$migrated_option = 'rt_carousel_migrated_from_carousel_kit';
-
-	if ( get_option( $migrated_option ) ) {
-		return;
-	}
-
-	global $wpdb;
-
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration on activation; no persistent query.
-	$wpdb->query(
-		"UPDATE {$wpdb->posts}
-		 SET post_content = REPLACE( post_content, 'wp:carousel-kit/', 'wp:rt-carousel/' )
-		 WHERE post_content LIKE '%wp:carousel-kit/%'"
-	);
-
-	delete_transient( 'carousel_kit_patterns_cache' );
-	update_option( $migrated_option, '1' );
-}
-
-register_activation_hook( __FILE__, __NAMESPACE__ . '\\rt_carousel_migrate' );
+Migration::init();
 
 /**
  * Plugin loader.
