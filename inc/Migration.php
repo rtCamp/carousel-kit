@@ -26,6 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Migration {
 
 	private const MIGRATED_OPTION = 'rt_carousel_migrated_from_carousel_kit';
+	private const LOCK_OPTION     = 'rt_carousel_migration_lock';
+	private const LOCK_TIMEOUT    = 300; // 5 minutes.
 	private const BATCH_SIZE      = 500;
 
 	/**
@@ -47,24 +49,38 @@ class Migration {
 	}
 
 	/**
-	 * Uses add_option as an atomic guard to prevent concurrent requests
-	 * from running the migration simultaneously.
+	 * Acquires an atomic lock, runs the migration, and only sets the
+	 * permanent flag after success. If the process crashes mid-migration,
+	 * the lock expires after LOCK_TIMEOUT seconds and the next request
+	 * retries. Already-migrated posts won't match the LIKE clause, so
+	 * retrying is safe.
 	 *
 	 * @internal Called via plugins_loaded hook only.
 	 */
 	private static function migrate(): void {
-		if ( ! add_option( self::MIGRATED_OPTION, '1', '', true ) ) {
+		if ( get_option( self::MIGRATED_OPTION ) ) {
 			return;
+		}
+
+		// Atomic lock: add_option returns false if key already exists.
+		$now = time();
+		if ( ! add_option( self::LOCK_OPTION, $now, '', false ) ) {
+			$locked_at = (int) get_option( self::LOCK_OPTION );
+			if ( ( $now - $locked_at ) < self::LOCK_TIMEOUT ) {
+				return; // Another process is still running.
+			}
+			// Lock is stale (process crashed) — reclaim it.
+			update_option( self::LOCK_OPTION, $now, false );
 		}
 
 		$success = self::migrate_post_content();
 
-		if ( ! $success ) {
-			delete_option( self::MIGRATED_OPTION );
-			return;
+		if ( $success ) {
+			self::cleanup_legacy_data();
+			update_option( self::MIGRATED_OPTION, '1', true );
 		}
 
-		self::cleanup_legacy_data();
+		delete_option( self::LOCK_OPTION );
 	}
 
 	/**
@@ -119,9 +135,9 @@ class Migration {
 				return false;
 			}
 
-			// Avoid infinite loop if REPLACE has no effect (e.g. collation mismatch).
+			// LIKE matched but REPLACE changed nothing — likely a collation mismatch.
 			if ( 0 === $result ) {
-				break;
+				return false;
 			}
 		}
 
@@ -142,5 +158,6 @@ class Migration {
 	 */
 	public static function uninstall(): void {
 		delete_option( self::MIGRATED_OPTION );
+		delete_option( self::LOCK_OPTION );
 	}
 }
