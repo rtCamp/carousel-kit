@@ -7,6 +7,7 @@
 			"phpstan/extension-installer": true,
 			"composer/installers": true
 		},
+		"autoloader-suffix": "RtCarousel",
 		"platform": {
 			"php": "8.2"
 		},

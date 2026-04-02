@@ -39,6 +39,30 @@ class Plugin {
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 		add_action( 'init', [ $this, 'register_pattern_category' ] );
 		add_action( 'init', [ $this, 'register_block_patterns' ] );
+		add_action( 'admin_init', [ $this, 'deactivate_legacy_plugin' ] );
+	}
+
+	/**
+	 * Deactivate the old "Carousel Kit" plugin if still active.
+	 */
+	public function deactivate_legacy_plugin(): void {
+		$old_plugin = 'carousel-kit/carousel-kit.php';
+
+		if ( ! is_plugin_active( $old_plugin ) ) {
+			return;
+		}
+
+		deactivate_plugins( $old_plugin, true );
+
+		add_action(
+			'admin_notices',
+			static function (): void {
+				printf(
+					'<div class="notice notice-info is-dismissible"><p>%s</p></div>',
+					esc_html__( 'The old "Carousel Kit" plugin has been deactivated. rtCarousel is its replacement.', 'rt-carousel' )
+				);
+			}
+		);
 	}
 
 	/**
