@@ -43,7 +43,9 @@ class Plugin {
 	}
 
 	/**
-	 * Deactivate the old "Carousel Kit" plugin if still active.
+	 * Deactivate the legacy "Carousel Kit" plugin if still active.
+	 *
+	 * Handles both single-site and network-wide activations.
 	 */
 	public function deactivate_legacy_plugin(): void {
 		$old_plugin = 'carousel-kit/carousel-kit.php';
@@ -52,7 +54,21 @@ class Plugin {
 			return;
 		}
 
-		deactivate_plugins( $old_plugin, true );
+		$network_wide = is_multisite() && is_plugin_active_for_network( $old_plugin );
+		if ( $network_wide && ! current_user_can( 'manage_network_plugins' ) ) {
+			return;
+		}
+
+		if ( ! $network_wide && ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		// Silent flag prevents deactivation hooks from firing redirect.
+		deactivate_plugins( $old_plugin, true, $network_wide );
+
+		if ( is_plugin_active( $old_plugin ) ) {
+			return;
+		}
 
 		add_action(
 			'admin_notices',
