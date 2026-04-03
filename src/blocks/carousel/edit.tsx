@@ -50,6 +50,7 @@ export default function Edit( {
 		autoplayStopOnMouseEnter,
 		ariaLabel,
 		slidesToScroll = '1',
+		lazyLoadImages,
 	} = attributes;
 
 	const [ emblaApi, setEmblaApi ] = useState<EmblaCarouselType | undefined>();
@@ -198,6 +199,15 @@ export default function Edit( {
 						checked={ dragFree }
 						onChange={ ( value ) => setAttributes( { dragFree: value } ) }
 						help={ __( 'Enables momentum scrolling.', 'carousel-kit' ) }
+					/>
+					<ToggleControl
+						label={ __( 'Lazy Load Images', 'carousel-kit' ) }
+						checked={ lazyLoadImages }
+						onChange={ ( value ) => setAttributes( { lazyLoadImages: value } ) }
+						help={ __(
+							'Load images only when they enter the viewport.',
+							'carousel-kit',
+						) }
 					/>
 					<SelectControl
 						label={ __( 'Alignment', 'carousel-kit' ) }

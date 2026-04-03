@@ -9,7 +9,8 @@
 	"description": "Carousel container using Embla and Interactivity API.",
 	"textdomain": "carousel-kit",
 	"providesContext": {
-		"carousel-kit/carousel/allowedSlideBlocks": "allowedSlideBlocks"
+		"carousel-kit/carousel/allowedSlideBlocks": "allowedSlideBlocks",
+		"carousel-kit/carousel/lazyLoadImages": "lazyLoadImages"
 	},
 	"supports": {
 		"interactivity": true,
@@ -85,6 +86,10 @@
 		"slidesToScroll": {
 			"type": "string",
 			"default": "1"
+		},
+		"lazyLoadImages": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"editorScript": "file:./index.js",

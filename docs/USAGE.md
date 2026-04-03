@@ -23,6 +23,18 @@ The parent block acts as the controller and wrapper. It handles configuration, s
 | `axis`                      | string  | `'x'`         | Carousel axis direction (`'x'` for horizontal, `'y'` for vertical). |
 | `direction`                 | string  | `'ltr'`       | Carousel item direction: `'ltr'` (left-to-right) or `'rtl'` (right-to-left). |
 | `slidesToScroll`            | number  | `1`           | Number of slides to scroll per navigation action. |
+| `lazyLoadImages`            | boolean | `true`        | Add `loading="lazy"` to images in slides. Slides can opt out via `disableLazyLoadImages`. |
+
+---
+
+### Child Block: `carousel-kit/carousel-slide`
+The child block that serves as a container for individual slide content. Each slide can display custom blocks as defined by the parent's `allowedSlideBlocks` configuration.
+
+#### Attributes
+
+| Attribute                   | Type    | Default       | Description                                 |
+| :-------------------------- | :------ | :------------ | :------------------------------------------ |
+| `disableLazyLoadImages`     | boolean | `false`       | Disable lazy loading for images in this slide (when carousel lazy loading is enabled). |
 
 ---
 

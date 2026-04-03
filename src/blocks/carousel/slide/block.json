@@ -14,10 +14,15 @@
 	"attributes": {
 		"verticalAlignment": {
 			"type": "string"
+		},
+		"disableLazyLoadImages": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"usesContext": [
-		"carousel-kit/carousel/allowedSlideBlocks"
+		"carousel-kit/carousel/allowedSlideBlocks",
+		"carousel-kit/carousel/lazyLoadImages"
 	],
 	"editorScript": "file:./index.js"
 }
