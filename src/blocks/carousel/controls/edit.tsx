@@ -1,6 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useContext, useRef } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
 import { EditorCarouselContext } from '../editor-context';
 import { NextIcon, PreviousIcon } from './components/icons';
 import type { EmblaCarouselType } from 'embla-carousel';
@@ -14,6 +15,8 @@ export default function Edit() {
 		canScrollNext,
 	} = useContext( EditorCarouselContext );
 	const ref = useRef<HTMLDivElement>( null );
+
+	const { clearSelectedBlock } = useDispatch( 'core/block-editor' );
 
 	const blockProps = useBlockProps( {
 		className: 'carousel-kit-controls',
@@ -37,13 +40,17 @@ export default function Edit() {
 
 	const handleScroll = ( direction: 'prev' | 'next' ) => {
 		const api = contextApi || getEmblaFromDOM();
-		if ( api ) {
-			if ( direction === 'prev' ) {
-				api.scrollPrev();
-			} else {
-				api.scrollNext();
-			}
+		if ( ! api ) {
+			return;
 		}
+
+		if ( direction === 'prev' ) {
+			api.scrollPrev();
+		} else {
+			api.scrollNext();
+		}
+
+		clearSelectedBlock();
 	};
 
 	return (
