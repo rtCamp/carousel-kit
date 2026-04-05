@@ -2,7 +2,7 @@
 
 ## Block Configuration
 
-### Parent Block: `carousel-kit/carousel`
+### Parent Block: `rt-carousel/carousel`
 The parent block acts as the controller and wrapper. It handles configuration, state, and context for all child blocks.
 
 #### Attributes
@@ -31,15 +31,15 @@ The parent block acts as the controller and wrapper. It handles configuration, s
 ### Creating Restricted Carousels
 To create a specialized carousel (e.g., testimonials only), set the `allowedSlideBlocks` attribute on the parent block:
 
-```json
-<!-- wp:carousel-kit/carousel {"allowedSlideBlocks":["rt-blocks/testimonial-card"]} -->
+```html
+<!-- wp:rt-carousel/carousel {"allowedSlideBlocks":["rt-blocks/testimonial-card"]} -->
     <!-- wp:core/heading {"content":"User Testimonials"} /-->
-    <!-- wp:carousel-kit/carousel-viewport -->
-        <!-- wp:carousel-kit/carousel-slide -->
+    <!-- wp:rt-carousel/carousel-viewport -->
+        <!-- wp:rt-carousel/carousel-slide -->
             <!-- wp:rt-blocks/testimonial-card /-->
-        <!-- /wp:carousel-kit/carousel-slide -->
-    <!-- /wp:carousel-kit/carousel-viewport -->
-<!-- /wp:carousel-kit/carousel -->
+        <!-- /wp:rt-carousel/carousel-slide -->
+    <!-- /wp:rt-carousel/carousel-viewport -->
+<!-- /wp:rt-carousel/carousel -->
 ```
 
 ---
@@ -62,5 +62,5 @@ You can create dynamic post sliders or content carousels using the WordPress Que
 | Use Case | Recommended Block |
 | :--- | :--- |
 | Dynamic Content (Posts, Pages, Products, Custom Post Types) | Query Loop (`core/query`) |
-| Static Content (Hero Slider, Logo Showcase, Manual Testimonials) | Carousel Slide (`carousel-kit/carousel-slide`) |
-| Mixed Content (Slide 1 is a Video, Slide 2 is Text) | Carousel Slide (`carousel-kit/carousel-slide`) |
+| Static Content (Hero Slider, Logo Showcase, Manual Testimonials) | Carousel Slide (`rt-carousel/carousel-slide`) |
+| Mixed Content (Slide 1 is a Video, Slide 2 is Text) | Carousel Slide (`rt-carousel/carousel-slide`) |

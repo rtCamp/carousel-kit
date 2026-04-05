@@ -16,14 +16,14 @@ export default function Edit() {
 	const ref = useRef<HTMLDivElement>( null );
 
 	const blockProps = useBlockProps( {
-		className: 'carousel-kit-controls',
+		className: 'rt-carousel-controls',
 	} );
 
 	const getEmblaFromDOM = () => {
 		if ( ! ref.current ) {
 			return null;
 		}
-		const wrapper = ref.current.closest( '.carousel-kit' );
+		const wrapper = ref.current.closest( '.rt-carousel' );
 		if ( ! wrapper ) {
 			return null;
 		}
@@ -49,26 +49,26 @@ export default function Edit() {
 	return (
 		<div { ...blockProps } ref={ ref }>
 			<button
-				className="carousel-kit-controls__btn carousel-kit-controls__btn--prev"
+				className="rt-carousel-controls__btn rt-carousel-controls__btn--prev"
 				onClick={ ( e ) => {
 					e.stopPropagation();
 					handleScroll( 'prev' );
 				} }
 				type="button"
 				disabled={ ! canScrollPrev }
-				aria-label={ __( 'Previous Slide', 'carousel-kit' ) }
+				aria-label={ __( 'Previous Slide', 'rt-carousel' ) }
 			>
 				<PreviousIcon />
 			</button>
 			<button
-				className="carousel-kit-controls__btn carousel-kit-controls__btn--next"
+				className="rt-carousel-controls__btn rt-carousel-controls__btn--next"
 				onClick={ ( e ) => {
 					e.stopPropagation();
 					handleScroll( 'next' );
 				} }
 				type="button"
 				disabled={ ! canScrollNext }
-				aria-label={ __( 'Next Slide', 'carousel-kit' ) }
+				aria-label={ __( 'Next Slide', 'rt-carousel' ) }
 			>
 				<NextIcon />
 			</button>

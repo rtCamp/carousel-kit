@@ -10,7 +10,7 @@ type ElementWithRef = {
 	ref?: HTMLElement | null;
 };
 
-const EMBLA_KEY = Symbol.for( 'carousel-kit.carousel' );
+const EMBLA_KEY = Symbol.for( 'rt-carousel.carousel' );
 
 type EmblaViewportElement = HTMLElement & {
 	[EMBLA_KEY]?: EmblaCarouselType;
@@ -35,7 +35,7 @@ const getEmblaFromElement = (
 	if ( ! element ) {
 		return null;
 	}
-	const wrapper = element.closest( '.carousel-kit' );
+	const wrapper = element.closest( '.rt-carousel' );
 	const viewport = wrapper?.querySelector(
 		'.embla',
 	) as EmblaViewportElement | null;
@@ -46,7 +46,7 @@ const getEmblaFromElement = (
 	return emblaInstances.get( viewport ) || viewport[ EMBLA_KEY ] || null;
 };
 
-store( 'carousel-kit/carousel', {
+store( 'rt-carousel/carousel', {
 	state: {
 		get canScrollPrev() {
 			const context = getContext<CarouselContext>();
@@ -96,7 +96,7 @@ store( 'carousel-kit/carousel', {
 	callbacks: {
 		isSlideActive: () => {
 			// Track initialization state to prevent errors when Embla isn't ready
-			// See: https://github.com/rtCamp/carousel-kit/issues/78
+			// See: https://github.com/rtCamp/rt-carousel/issues/78
 			const context = getContext<CarouselContext>();
 			if ( ! context.initialized ) {
 				return false;

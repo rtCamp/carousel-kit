@@ -1,4 +1,4 @@
-=== Carousel Kit ===
+=== rtCarousel ===
 Contributors: rtcamp, danish17, immasud, gagan0123, up1512001, mi5t4n, aviral89, vishal4669, imrraaj, aishwarryapande
 Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
@@ -12,7 +12,7 @@ A modular, high-performance carousel block for WordPress, powered by the Interac
 
 == Description ==
 
-**Carousel Kit** is a flexible, accessible carousel block for the WordPress block editor. Build dynamic carousels for posts, testimonials, images, and more—without writing code.
+**rtCarousel** is a flexible, accessible carousel block for the WordPress block editor. Build dynamic carousels for posts, testimonials, images, and more—without writing code.
 
 = Features =
 
@@ -43,13 +43,13 @@ A modular, high-performance carousel block for WordPress, powered by the Interac
 
 This plugin release includes transpiled production assets for performance. The complete, human-readable source code is publicly available at:
 
-* https://github.com/rtCamp/carousel-kit
+* https://github.com/rtCamp/rt-carousel
 
 Build scripts, development files, and original TypeScript/JavaScript/PHP sources are maintained in that repository.
 
 == Installation ==
 
-1. Upload the `carousel-kit` folder to `/wp-content/plugins/`
+1. Upload the `rt-carousel` folder to `/wp-content/plugins/`
 2. Activate the plugin through the **Plugins** menu in WordPress
 3. In the block editor, search for "Carousel" and insert the block
 
@@ -57,7 +57,7 @@ Build scripts, development files, and original TypeScript/JavaScript/PHP sources
 
 = Does it work with Full Site Editing? =
 
-Yes! Carousel Kit is fully compatible with FSE. Use it in templates, template parts, and anywhere blocks are supported.
+Yes! rtCarousel is fully compatible with FSE. Use it in templates, template parts, and anywhere blocks are supported.
 
 = Can I nest other blocks inside slides? =
 
@@ -109,4 +109,4 @@ Yes. Each carousel instance maintains its own independent state.
 * New: Setup wizard styles
 * New: Slide appender and setup wizard
 
-[CHECK THE FULL CHANGELOG](https://github.com/rtCamp/carousel-kit/blob/main/CHANGELOG.md)
+[CHECK THE FULL CHANGELOG](https://github.com/rtCamp/rt-carousel/blob/main/CHANGELOG.md)

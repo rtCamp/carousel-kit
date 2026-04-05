@@ -13,9 +13,9 @@ export default function Edit( {
 }: {
 	attributes: CarouselSlideAttributes;
 	setAttributes: ( attributes: Partial<CarouselSlideAttributes> ) => void;
-	context: { 'carousel-kit/carousel/allowedSlideBlocks'?: string[] };
+	context: { 'rt-carousel/carousel/allowedSlideBlocks'?: string[] };
 } ) {
-	const allowedBlocks = context[ 'carousel-kit/carousel/allowedSlideBlocks' ];
+	const allowedBlocks = context[ 'rt-carousel/carousel/allowedSlideBlocks' ];
 
 	const { verticalAlignment } = attributes;
 

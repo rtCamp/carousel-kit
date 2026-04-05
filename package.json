@@ -1,5 +1,5 @@
 {
-  "name": "carousel-kit",
+  "name": "rt-carousel",
   "version": "1.0.4",
   "description": "Carousel block using Embla and WordPress Interactivity API",
   "author": "rtCamp",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rtCamp/carousel-kit"
+    "url": "https://github.com/rtCamp/rt-carousel"
   },
   "bugs": {
-    "url": "https://github.com/rtCamp/carousel-kit/issues"
+    "url": "https://github.com/rtCamp/rt-carousel/issues"
   },
   "scripts": {
     "build": "wp-scripts build --experimental-modules --webpack-src-dir=./src --output-path=./build",
@@ -27,7 +27,7 @@
     "lint:php:fix": "composer run-script format",
     "changelog": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
-    "i18n:pot": "wp i18n make-pot . languages/carousel-kit.pot --domain=carousel-kit --exclude=node_modules,vendor,tests --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/rtCamp/carousel-kit/issues\"}'",
+    "i18n:pot": "wp i18n make-pot . languages/rt-carousel.pot --domain=rt-carousel --exclude=node_modules,vendor,tests --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/rtCamp/rt-carousel/issues\"}'",
     "test:actions": "act",
     "test:js": "wp-scripts test-unit-js",
     "test:js:watch": "wp-scripts test-unit-js --watch",

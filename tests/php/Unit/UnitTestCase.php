@@ -1,13 +1,13 @@
 <?php
 /**
- * Base test case for Carousel Kit unit tests.
+ * Base test case for rtCarousel unit tests.
  *
- * @package Carousel_Kit\Tests\Unit
+ * @package Rt_Carousel\Tests\Unit
  */
 
 declare(strict_types=1);
 
-namespace Carousel_Kit\Tests\Unit;
+namespace Rt_Carousel\Tests\Unit;
 
 use Brain\Monkey;
 use PHPUnit\Framework\TestCase;

@@ -9,7 +9,7 @@ export default function Save( { attributes }: { attributes: CarouselSlideAttribu
 		}`,
 		role: 'group',
 		'aria-roledescription': 'slide',
-		'data-wp-interactive': 'carousel-kit/carousel',
+		'data-wp-interactive': 'rt-carousel/carousel',
 		'data-wp-class--is-active': 'callbacks.isSlideActive',
 		'data-wp-bind--aria-current': 'callbacks.isSlideActive',
 	} );

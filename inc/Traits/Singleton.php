@@ -22,10 +22,10 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package carousel-kit
+ * @package rt-carousel
  */
 
-namespace Carousel_Kit\Traits;
+namespace Rt_Carousel\Traits;
 
 trait Singleton {
 
@@ -75,9 +75,9 @@ trait Singleton {
 			$instance[ $called_class ] = new $called_class();
 
 			/**
-			 * Dependent items can use the carousel_kit_singleton_init_{$called_class} hook to execute code
+			 * Dependent items can use the rt_carousel_singleton_init_{$called_class} hook to execute code
 			 */
-			do_action( sprintf( 'carousel_kit_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+			do_action( sprintf( 'rt_carousel_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 		}
 
 		return $instance[ $called_class ];

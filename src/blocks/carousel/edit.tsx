@@ -69,7 +69,7 @@ export default function Edit( {
 		( select ) => {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const innerBlocks = ( select( 'core/block-editor' ) as any ).getBlocks( clientId ) as Array<{ name: string; clientId: string }>;
-			return innerBlocks.find( ( b ) => b.name === 'carousel-kit/carousel-viewport' )?.clientId;
+			return innerBlocks.find( ( b ) => b.name === 'rt-carousel/carousel-viewport' )?.clientId;
 		},
 		[ clientId ],
 	);
@@ -78,7 +78,7 @@ export default function Edit( {
 		if ( ! viewportClientId ) {
 			return;
 		}
-		insertBlock( createBlock( 'carousel-kit/carousel-slide' ), undefined, viewportClientId );
+		insertBlock( createBlock( 'rt-carousel/carousel-slide' ), undefined, viewportClientId );
 	}, [ insertBlock, viewportClientId ] );
 
 	const showSetup = ! hasInnerBlocks;
@@ -92,13 +92,13 @@ export default function Edit( {
 	const suggestions = blockTypes?.map( ( block ) => block.name ) || [];
 
 	const blockProps = useBlockProps( {
-		className: 'carousel-kit',
+		className: 'rt-carousel',
 		dir: direction,
 		'data-axis': axis,
 		'data-loop': loop ? 'true' : undefined,
 		style: {
-			'--carousel-kit-gap': `${ attributes.slideGap }px`,
-			'--carousel-kit-height': axis === 'y' ? height : undefined,
+			'--rt-carousel-gap': `${ attributes.slideGap }px`,
+			'--rt-carousel-height': axis === 'y' ? height : undefined,
 		} as React.CSSProperties,
 	} );
 
@@ -150,21 +150,21 @@ export default function Edit( {
 				},
 			},
 			[
-				createBlock( 'carousel-kit/carousel-controls', {} ),
-				createBlock( 'carousel-kit/carousel-dots', {} ),
+				createBlock( 'rt-carousel/carousel-controls', {} ),
+				createBlock( 'rt-carousel/carousel-dots', {} ),
 			],
 		);
 
 	const handleSetup = ( slideCount: number ) => {
 		const slides = Array.from( { length: slideCount }, () =>
-			createBlock( 'carousel-kit/carousel-slide', {}, [
+			createBlock( 'rt-carousel/carousel-slide', {}, [
 				createBlock( 'core/paragraph', {} ),
 			] ),
 		);
 
 		replaceInnerBlocks(
 			clientId,
-			[ createBlock( 'carousel-kit/carousel-viewport', {}, slides ), createNavGroup() ],
+			[ createBlock( 'rt-carousel/carousel-viewport', {}, slides ), createNavGroup() ],
 			false,
 		);
 	};
@@ -175,7 +175,7 @@ export default function Edit( {
 	const handleSkip = () => {
 		replaceInnerBlocks(
 			clientId,
-			[ createBlock( 'carousel-kit/carousel-viewport', {} ), createNavGroup() ],
+			[ createBlock( 'rt-carousel/carousel-viewport', {} ), createNavGroup() ],
 			false,
 		);
 	};
@@ -183,64 +183,64 @@ export default function Edit( {
 	const inspectorControls = (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Carousel Settings', 'carousel-kit' ) }>
+				<PanelBody title={ __( 'Carousel Settings', 'rt-carousel' ) }>
 					<ToggleControl
-						label={ __( 'Loop', 'carousel-kit' ) }
+						label={ __( 'Loop', 'rt-carousel' ) }
 						checked={ loop }
 						onChange={ ( value ) => setAttributes( { loop: value } ) }
 						help={ __(
 							'Enables infinite scrolling of slides.',
-							'carousel-kit',
+							'rt-carousel',
 						) }
 					/>
 					<ToggleControl
-						label={ __( 'Free Drag', 'carousel-kit' ) }
+						label={ __( 'Free Drag', 'rt-carousel' ) }
 						checked={ dragFree }
 						onChange={ ( value ) => setAttributes( { dragFree: value } ) }
-						help={ __( 'Enables momentum scrolling.', 'carousel-kit' ) }
+						help={ __( 'Enables momentum scrolling.', 'rt-carousel' ) }
 					/>
 					<SelectControl
-						label={ __( 'Alignment', 'carousel-kit' ) }
+						label={ __( 'Alignment', 'rt-carousel' ) }
 						value={ carouselAlign }
 						options={ [
-							{ label: __( 'Start', 'carousel-kit' ), value: 'start' },
-							{ label: __( 'Center', 'carousel-kit' ), value: 'center' },
-							{ label: __( 'End', 'carousel-kit' ), value: 'end' },
+							{ label: __( 'Start', 'rt-carousel' ), value: 'start' },
+							{ label: __( 'Center', 'rt-carousel' ), value: 'center' },
+							{ label: __( 'End', 'rt-carousel' ), value: 'end' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { carouselAlign: value as CarouselAttributes[ 'carouselAlign' ] } )
 						}
 					/>
 					<SelectControl
-						label={ __( 'Contain Scroll', 'carousel-kit' ) }
+						label={ __( 'Contain Scroll', 'rt-carousel' ) }
 						value={ containScroll }
 						options={ [
-							{ label: __( 'Trim Snaps', 'carousel-kit' ), value: 'trimSnaps' },
-							{ label: __( 'Keep Snaps', 'carousel-kit' ), value: 'keepSnaps' },
-							{ label: __( 'None', 'carousel-kit' ), value: '' },
+							{ label: __( 'Trim Snaps', 'rt-carousel' ), value: 'trimSnaps' },
+							{ label: __( 'Keep Snaps', 'rt-carousel' ), value: 'keepSnaps' },
+							{ label: __( 'None', 'rt-carousel' ), value: '' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { containScroll: value as CarouselAttributes[ 'containScroll' ] } )
 						}
 						help={ __(
 							'Prevents excess scrolling at the beginning or end.',
-							'carousel-kit',
+							'rt-carousel',
 						) }
 					/>
 					<ToggleControl
-						label={ __( 'Scroll Auto', 'carousel-kit' ) }
+						label={ __( 'Scroll Auto', 'rt-carousel' ) }
 						checked={ slidesToScroll === 'auto' }
 						onChange={ ( isAuto ) =>
 							setAttributes( { slidesToScroll: isAuto ? 'auto' : '1' } )
 						}
 						help={ __(
 							'Scrolls the number of slides currently visible in the viewport.',
-							'carousel-kit',
+							'rt-carousel',
 						) }
 					/>
 					{ slidesToScroll !== 'auto' && (
 						<RangeControl
-							label={ __( 'Slides to Scroll', 'carousel-kit' ) }
+							label={ __( 'Slides to Scroll', 'rt-carousel' ) }
 							value={ parseInt( slidesToScroll, 10 ) || 1 }
 							onChange={ ( value ) =>
 								setAttributes( { slidesToScroll: ( value || 1 ).toString() } )
@@ -250,26 +250,26 @@ export default function Edit( {
 						/>
 					) }
 					<SelectControl
-						label={ __( 'Direction', 'carousel-kit' ) }
+						label={ __( 'Direction', 'rt-carousel' ) }
 						value={ direction }
 						options={ [
-							{ label: __( 'Left to Right (LTR)', 'carousel-kit' ), value: 'ltr' },
-							{ label: __( 'Right to Left (RTL)', 'carousel-kit' ), value: 'rtl' },
+							{ label: __( 'Left to Right (LTR)', 'rt-carousel' ), value: 'ltr' },
+							{ label: __( 'Right to Left (RTL)', 'rt-carousel' ), value: 'rtl' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { direction: value as CarouselAttributes[ 'direction' ] } )
 						}
 						help={ __(
 							'Choose content direction. RTL is typically used for Arabic, Hebrew, and other right-to-left languages.',
-							'carousel-kit',
+							'rt-carousel',
 						) }
 					/>
 					<SelectControl
-						label={ __( 'Orientation', 'carousel-kit' ) }
+						label={ __( 'Orientation', 'rt-carousel' ) }
 						value={ axis }
 						options={ [
-							{ label: __( 'Horizontal', 'carousel-kit' ), value: 'x' },
-							{ label: __( 'Vertical', 'carousel-kit' ), value: 'y' },
+							{ label: __( 'Horizontal', 'rt-carousel' ), value: 'x' },
+							{ label: __( 'Vertical', 'rt-carousel' ), value: 'y' },
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { axis: value as CarouselAttributes[ 'axis' ] } )
@@ -277,29 +277,29 @@ export default function Edit( {
 					/>
 					{ axis === 'y' && (
 						<TextControl
-							label={ __( 'Height', 'carousel-kit' ) }
+							label={ __( 'Height', 'rt-carousel' ) }
 							value={ height }
 							onChange={ ( value ) => setAttributes( { height: value } ) }
 							help={ __(
 								'Set a fixed height for vertical carousel (e.g., 400px).',
-								'carousel-kit',
+								'rt-carousel',
 							) }
 						/>
 					) }
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Autoplay Options', 'carousel-kit' ) }
+					title={ __( 'Autoplay Options', 'rt-carousel' ) }
 					initialOpen={ false }
 				>
 					<ToggleControl
-						label={ __( 'Enable Autoplay', 'carousel-kit' ) }
+						label={ __( 'Enable Autoplay', 'rt-carousel' ) }
 						checked={ autoplay }
 						onChange={ ( value ) => setAttributes( { autoplay: value } ) }
 					/>
 					{ autoplay && (
 						<>
 							<RangeControl
-								label={ __( 'Delay (ms)', 'carousel-kit' ) }
+								label={ __( 'Delay (ms)', 'rt-carousel' ) }
 								value={ autoplayDelay }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayDelay: value ?? 1000 } )
@@ -309,25 +309,25 @@ export default function Edit( {
 								step={ 100 }
 							/>
 							<ToggleControl
-								label={ __( 'Stop on Interaction', 'carousel-kit' ) }
+								label={ __( 'Stop on Interaction', 'rt-carousel' ) }
 								checked={ autoplayStopOnInteraction }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayStopOnInteraction: value } )
 								}
 								help={ __(
 									'Stop autoplay when user interacts with carousel.',
-									'carousel-kit',
+									'rt-carousel',
 								) }
 							/>
 							<ToggleControl
-								label={ __( 'Stop on Mouse Enter', 'carousel-kit' ) }
+								label={ __( 'Stop on Mouse Enter', 'rt-carousel' ) }
 								checked={ autoplayStopOnMouseEnter }
 								onChange={ ( value ) =>
 									setAttributes( { autoplayStopOnMouseEnter: value } )
 								}
 								help={ __(
 									'Stop autoplay when mouse hovers over carousel.',
-									'carousel-kit',
+									'rt-carousel',
 								) }
 							/>
 						</>
@@ -336,12 +336,12 @@ export default function Edit( {
 			</InspectorControls>
 			<InspectorAdvancedControls>
 				<TextControl
-					label={ __( 'ARIA Label', 'carousel-kit' ) }
+					label={ __( 'ARIA Label', 'rt-carousel' ) }
 					value={ ariaLabel }
 					onChange={ ( value ) => setAttributes( { ariaLabel: value } ) }
 					help={ __(
 						"Provide a descriptive label for screen readers (e.g., 'Featured Products').",
-						'carousel-kit',
+						'rt-carousel',
 					) }
 				/>
 				{ /* FormTokenField does not allow "help" prop */ }
@@ -350,13 +350,13 @@ export default function Edit( {
 						<>
 							{ __(
 								'Use this to allow only certain blocks in the slide. If empty, all blocks will be allowed.',
-								'carousel-kit',
+								'rt-carousel',
 							) }
 						</>
 					}
 				>
 					<FormTokenField
-						label={ __( 'Allowed Slide Blocks', 'carousel-kit' ) }
+						label={ __( 'Allowed Slide Blocks', 'rt-carousel' ) }
 						value={ allowedSlideBlocks || [] }
 						suggestions={ suggestions as string[] }
 						maxSuggestions={ 10 }
@@ -370,9 +370,9 @@ export default function Edit( {
 				</BaseControl>
 			</InspectorAdvancedControls>
 			<InspectorControls group="styles">
-				<PanelBody title={ __( 'Layout', 'carousel-kit' ) }>
+				<PanelBody title={ __( 'Layout', 'rt-carousel' ) }>
 					<RangeControl
-						label={ __( 'Slide Gap (px)', 'carousel-kit' ) }
+						label={ __( 'Slide Gap (px)', 'rt-carousel' ) }
 						value={ attributes.slideGap }
 						onChange={ ( value ) => setAttributes( { slideGap: value ?? 0 } ) }
 						min={ 0 }
@@ -392,30 +392,30 @@ export default function Edit( {
 				<div { ...blockProps }>
 					<Placeholder
 						icon="columns"
-						label={ __( 'Carousel', 'carousel-kit' ) }
-						instructions={ __( 'How many slides would you like to start with?', 'carousel-kit' ) }
-						className="carousel-kit-setup"
+						label={ __( 'Carousel', 'rt-carousel' ) }
+						instructions={ __( 'How many slides would you like to start with?', 'rt-carousel' ) }
+						className="rt-carousel-setup"
 					>
-						<div className="carousel-kit-setup__options">
+						<div className="rt-carousel-setup__options">
 							{ [ 1, 2, 3, 4 ].map( ( count ) => (
 								<Button
 									key={ count }
 									variant="secondary"
-									className="carousel-kit-setup__option"
+									className="rt-carousel-setup__option"
 									onClick={ () => handleSetup( count ) }
 								>
 									{ count === 1
-										? __( '1 Slide', 'carousel-kit' )
-										: `${ count } ${ __( 'Slides', 'carousel-kit' ) }` }
+										? __( '1 Slide', 'rt-carousel' )
+										: `${ count } ${ __( 'Slides', 'rt-carousel' ) }` }
 								</Button>
 							) ) }
 						</div>
 						<Button
 							variant="link"
-							className="carousel-kit-setup__skip"
+							className="rt-carousel-setup__skip"
 							onClick={ handleSkip }
 						>
-							{ __( 'Skip', 'carousel-kit' ) }
+							{ __( 'Skip', 'rt-carousel' ) }
 						</Button>
 					</Placeholder>
 				</div>
@@ -428,7 +428,7 @@ export default function Edit( {
 			<BlockControls>
 				<ToolbarButton
 					icon={ plus }
-					label={ __( 'Add Slide', 'carousel-kit' ) }
+					label={ __( 'Add Slide', 'rt-carousel' ) }
 					onClick={ addSlide }
 				/>
 			</BlockControls>

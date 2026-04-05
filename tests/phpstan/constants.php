@@ -5,7 +5,7 @@
  * This file is loaded by PHPStan to provide type information
  * for WordPress and plugin constants.
  *
- * @package Carousel_Kit
+ * @package Rt_Carousel
  */
 
 // WordPress core constants.
@@ -22,18 +22,18 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 }
 
 // Plugin constants.
-if ( ! defined( 'CAROUSEL_KIT_PATH' ) ) {
-	define( 'CAROUSEL_KIT_PATH', '/var/www/html/wp-content/plugins/carousel-kit' );
+if ( ! defined( 'RT_CAROUSEL_PATH' ) ) {
+	define( 'RT_CAROUSEL_PATH', '/var/www/html/wp-content/plugins/rt-carousel' );
 }
 
-if ( ! defined( 'CAROUSEL_KIT_URL' ) ) {
-	define( 'CAROUSEL_KIT_URL', 'https://example.com/wp-content/plugins/carousel-kit' );
+if ( ! defined( 'RT_CAROUSEL_URL' ) ) {
+	define( 'RT_CAROUSEL_URL', 'https://example.com/wp-content/plugins/rt-carousel' );
 }
 
-if ( ! defined( 'CAROUSEL_KIT_BUILD_PATH' ) ) {
-	define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
+if ( ! defined( 'RT_CAROUSEL_BUILD_PATH' ) ) {
+	define( 'RT_CAROUSEL_BUILD_PATH', RT_CAROUSEL_PATH . '/build' );
 }
 
-if ( ! defined( 'CAROUSEL_KIT_BUILD_URL' ) ) {
-	define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
+if ( ! defined( 'RT_CAROUSEL_BUILD_URL' ) ) {
+	define( 'RT_CAROUSEL_BUILD_URL', RT_CAROUSEL_URL . '/build' );
 }

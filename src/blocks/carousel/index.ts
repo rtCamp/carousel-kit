@@ -19,12 +19,12 @@ registerBlockType( metadata as BlockConfiguration<CarouselAttributes>, {
 const styles = [
 	{
 		name: 'default',
-		label: __( 'Default (100%)', 'carousel-kit' ),
+		label: __( 'Default (100%)', 'rt-carousel' ),
 		isDefault: true,
 	},
-	{ name: 'columns-2', label: __( '2 Columns (50%)', 'carousel-kit' ) },
-	{ name: 'columns-3', label: __( '3 Columns (33%)', 'carousel-kit' ) },
-	{ name: 'columns-4', label: __( '4 Columns (25%)', 'carousel-kit' ) },
+	{ name: 'columns-2', label: __( '2 Columns (50%)', 'rt-carousel' ) },
+	{ name: 'columns-3', label: __( '3 Columns (33%)', 'rt-carousel' ) },
+	{ name: 'columns-4', label: __( '4 Columns (25%)', 'rt-carousel' ) },
 ];
 
 styles.forEach( ( style ) => registerBlockStyle( metadata.name, style ) );

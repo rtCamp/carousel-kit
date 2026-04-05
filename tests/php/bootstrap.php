@@ -1,22 +1,22 @@
 <?php
 /**
- * PHPUnit bootstrap file for Carousel Kit plugin.
+ * PHPUnit bootstrap file for rtCarousel plugin.
  *
- * @package Carousel_Kit\Tests
+ * @package Rt_Carousel\Tests
  */
 
 declare(strict_types=1);
 
-namespace Carousel_Kit\Tests;
+namespace Rt_Carousel\Tests;
 
 // Load Composer autoloader.
 require_once dirname( __DIR__, 2 ) . '/vendor/autoload.php';
 
 // Define plugin constants for testing.
-define( 'CAROUSEL_KIT_PATH', dirname( __DIR__, 2 ) );
-define( 'CAROUSEL_KIT_URL', 'https://example.com/wp-content/plugins/carousel-kit' );
-define( 'CAROUSEL_KIT_BUILD_PATH', CAROUSEL_KIT_PATH . '/build' );
-define( 'CAROUSEL_KIT_BUILD_URL', CAROUSEL_KIT_URL . '/build' );
+define( 'RT_CAROUSEL_PATH', dirname( __DIR__, 2 ) );
+define( 'RT_CAROUSEL_URL', 'https://example.com/wp-content/plugins/rt-carousel' );
+define( 'RT_CAROUSEL_BUILD_PATH', RT_CAROUSEL_PATH . '/build' );
+define( 'RT_CAROUSEL_BUILD_URL', RT_CAROUSEL_URL . '/build' );
 
 // Define WordPress constants needed for testing.
 if ( ! defined( 'ABSPATH' ) ) {

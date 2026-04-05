@@ -2,6 +2,6 @@
 /**
  * Silence is golden.
  *
- * @package carousel-kit
+ * @package rt-carousel
  */
 

@@ -2,22 +2,22 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "carousel-kit/carousel-slide",
+	"name": "rt-carousel/carousel-slide",
 	"title": "Carousel Slide",
-	"category": "carousel-kit",
+	"category": "rt-carousel",
 	"icon": "slides",
 	"parent": [
-		"carousel-kit/carousel-viewport"
+		"rt-carousel/carousel-viewport"
 	],
 	"description": "A single slide within the carousel.",
-	"textdomain": "carousel-kit",
+	"textdomain": "rt-carousel",
 	"attributes": {
 		"verticalAlignment": {
 			"type": "string"
 		}
 	},
 	"usesContext": [
-		"carousel-kit/carousel/allowedSlideBlocks"
+		"rt-carousel/carousel/allowedSlideBlocks"
 	],
 	"editorScript": "file:./index.js"
 }

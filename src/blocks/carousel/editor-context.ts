@@ -25,10 +25,10 @@ const defaultValue: EditorCarouselContextType = {
 	carouselOptions: {},
 };
 
-let context = window.__CAROUSEL_KIT_CONTEXT__;
+let context = window.__RT_CAROUSEL_CONTEXT__;
 if ( ! context ) {
 	context = createContext<EditorCarouselContextType>( defaultValue );
-	window.__CAROUSEL_KIT_CONTEXT__ = context;
+	window.__RT_CAROUSEL_CONTEXT__ = context;
 }
 
 export const EditorCarouselContext = context;

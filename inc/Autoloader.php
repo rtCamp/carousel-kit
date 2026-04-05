@@ -4,12 +4,12 @@
  *
  * Wraps the Composer autoloader to provide graceful failure if it is missing.
  *
- * @package Carousel_Kit
+ * @package Rt_Carousel
  */
 
 declare(strict_types=1);
 
-namespace Carousel_Kit;
+namespace Rt_Carousel;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ final class Autoloader {
 	 * Attempts to autoload the Composer dependencies.
 	 */
 	public static function autoload(): bool {
-		if ( defined( 'CAROUSEL_KIT_AUTOLOAD' ) && false === constant( 'CAROUSEL_KIT_AUTOLOAD' ) ) {
+		if ( defined( 'RT_CAROUSEL_AUTOLOAD' ) && false === constant( 'RT_CAROUSEL_AUTOLOAD' ) ) {
 			return true;
 		}
 
@@ -39,7 +39,7 @@ final class Autoloader {
 			return self::$is_loaded;
 		}
 
-		$autoloader      = constant( 'CAROUSEL_KIT_PATH' ) . '/vendor/autoload.php';
+		$autoloader      = constant( 'RT_CAROUSEL_PATH' ) . '/vendor/autoload.php';
 		self::$is_loaded = self::require_autoloader( $autoloader );
 
 		return self::$is_loaded;
@@ -72,7 +72,7 @@ final class Autoloader {
 			add_action(
 				$hook,
 				static function (): void {
-					$error_message = __( 'Carousel Kit: The Composer autoloader was not found. If you installed the plugin from the GitHub source code, make sure to run `composer install`.', 'carousel-kit' );
+					$error_message = __( 'rtCarousel: The Composer autoloader was not found. If you installed the plugin from the GitHub source code, make sure to run `composer install`.', 'rt-carousel' );
 
 					if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 						error_log( esc_html( $error_message ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Development notice for missing dependencies.

@@ -49,23 +49,23 @@ export default function Save( {
 		canScrollPrev: false,
 		canScrollNext: false,
 		/* translators: %d: slide number */
-		ariaLabelPattern: __( 'Go to slide %d', 'carousel-kit' ),
+		ariaLabelPattern: __( 'Go to slide %d', 'rt-carousel' ),
 	};
 
 	const blockProps = useBlockProps.save( {
-		className: 'carousel-kit',
+		className: 'rt-carousel',
 		role: 'region',
 		'aria-roledescription': 'carousel',
 		'aria-label': ariaLabel,
 		dir: direction,
 		'data-axis': axis,
 		'data-loop': loop ? 'true' : undefined,
-		'data-wp-interactive': 'carousel-kit/carousel',
+		'data-wp-interactive': 'rt-carousel/carousel',
 		'data-wp-context': JSON.stringify( context ),
 		'data-wp-init': 'callbacks.initCarousel', // Use init for mounting
 		style: {
-			'--carousel-kit-gap': `${ slideGap }px`,
-			'--carousel-kit-height': axis === 'y' ? height : undefined,
+			'--rt-carousel-gap': `${ slideGap }px`,
+			'--rt-carousel-height': axis === 'y' ? height : undefined,
 		} as React.CSSProperties,
 	} );
 

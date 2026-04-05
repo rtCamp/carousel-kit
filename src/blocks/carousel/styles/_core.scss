@@ -1,41 +1,41 @@
-:where(.carousel-kit) {
+:where(.rt-carousel) {
 	position: relative;
 	width: 100%;
-	--carousel-kit-slide-width: 100%;
+	--rt-carousel-slide-width: 100%;
 }
 
 /* Full alignment needs to break out of the container */
-:where(.carousel-kit.alignfull) {
+:where(.rt-carousel.alignfull) {
 	width: 100vw;
 }
 
-:where(.carousel-kit) .embla {
+:where(.rt-carousel) .embla {
 	overflow: hidden;
 }
 
 /* Ensure the default container and Query Loop list are flex rows */
-:where(.carousel-kit) .embla__container,
-:where(.carousel-kit) .embla .wp-block-post-template {
+:where(.rt-carousel) .embla__container,
+:where(.rt-carousel) .embla .wp-block-post-template {
 	display: flex;
 	flex-wrap: nowrap;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	gap: var(--carousel-kit-gap, 0);
+	gap: var(--rt-carousel-gap, 0);
 }
 
 /* Ensure intermediate wrappers (like wp-block-query) don't shrink */
-:where(.carousel-kit) .embla .wp-block-query {
+:where(.rt-carousel) .embla .wp-block-query {
 	width: 100%;
 	min-width: 100%;
 }
 
 /* Force slides (including posts) to respect a configurable width variable */
-:where(.carousel-kit) .embla__slide,
-:where(.carousel-kit) .embla .wp-block-post-template li {
-	flex: 0 0 var(--carousel-kit-slide-width, 100%);
-	max-width: var(--carousel-kit-slide-width, 100%);
+:where(.rt-carousel) .embla__slide,
+:where(.rt-carousel) .embla .wp-block-post-template li {
+	flex: 0 0 var(--rt-carousel-slide-width, 100%);
+	max-width: var(--rt-carousel-slide-width, 100%);
 	min-width: 0;
 	box-sizing: border-box;
 
@@ -71,34 +71,34 @@
  * When looping is enabled, Embla v8 doesn't support CSS 'gap'.
  * We switch to margin for consistent spacing in loop mode.
  */
-:where(.carousel-kit[data-loop="true"]) .embla__container,
-:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template {
+:where(.rt-carousel[data-loop="true"]) .embla__container,
+:where(.rt-carousel[data-loop="true"]) .embla .wp-block-post-template {
 	gap: 0;
 }
 
-:where(.carousel-kit[data-loop="true"]) .embla__slide,
-:where(.carousel-kit[data-loop="true"]) .embla .wp-block-post-template li {
-	margin-inline-end: var(--carousel-kit-gap, 0);
+:where(.rt-carousel[data-loop="true"]) .embla__slide,
+:where(.rt-carousel[data-loop="true"]) .embla .wp-block-post-template li {
+	margin-inline-end: var(--rt-carousel-gap, 0);
 }
 
 /* Vertical Axis adjustments */
-:where(.carousel-kit[data-axis="y"]) .embla {
-	height: var(--carousel-kit-height);
+:where(.rt-carousel[data-axis="y"]) .embla {
+	height: var(--rt-carousel-height);
 }
 
-:where(.carousel-kit[data-axis="y"]) .embla__container {
+:where(.rt-carousel[data-axis="y"]) .embla__container {
 	flex-direction: column;
 	height: 100%;
 	min-height: 100%;
 }
 
-:where(.carousel-kit[data-axis="y"]) .embla__slide,
-:where(.carousel-kit[data-axis="y"]) .embla .wp-block-post-template li {
+:where(.rt-carousel[data-axis="y"]) .embla__slide,
+:where(.rt-carousel[data-axis="y"]) .embla .wp-block-post-template li {
 	margin-inline-end: 0;
 }
 
 /* Vertical + Loop specific */
-:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla__slide,
-:where(.carousel-kit[data-axis="y"][data-loop="true"]) .embla .wp-block-post-template li {
-	margin-block-end: var(--carousel-kit-gap, 0);
+:where(.rt-carousel[data-axis="y"][data-loop="true"]) .embla__slide,
+:where(.rt-carousel[data-axis="y"][data-loop="true"]) .embla .wp-block-post-template li {
+	margin-block-end: var(--rt-carousel-gap, 0);
 }
