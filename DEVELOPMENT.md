@@ -52,9 +52,9 @@ wp-env stop
 
 #### Accessing the Environment
 
-The WordPress site should now be accessible at http://localhost:8888
+The WordPress site should now be accessible at <http://localhost:8888>
 
-You can access the Dashboard at: http://localhost:8888/wp-admin/ using Username: admin, Password: password. You'll notice the plugin installed and activated, this is your local build.
+You can access the Dashboard at: <http://localhost:8888/wp-admin/> using Username: admin, Password: password. You'll notice that the plugin is installed and activated. This is your local build. Any changes you make to the plugin code will be reflected here.
 
 You can read more about wp-env and its configuration in the [official documentation](https://github.com/WordPress/gutenberg/blob/trunk/packages/env/README.md).
 
