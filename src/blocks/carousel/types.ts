@@ -35,7 +35,6 @@ export interface BlockEditorSelectors {
 	getBlocks: ( clientId: string ) => Array<{ clientId: string }>;
 	getSelectedBlockClientId: () => string | null;
 	getBlockParents: ( clientId: string ) => string[];
-	getBlockParentsByBlockName: ( clientId: string, blockName: string | string[], ascending?: boolean ) => string[];
 }
 
 export type CarouselContext = {
