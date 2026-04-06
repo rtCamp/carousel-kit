@@ -23,7 +23,7 @@ If you don’t already have a local environment, you can quickly set one up usin
 Install the wp-env package globally:
 
 ```bash
-npm -g i @wordpress/env
+npm install -g @wordpress/env
 ```
 
 Ensure Docker is running, then start wp-env from within the plugin directory:
