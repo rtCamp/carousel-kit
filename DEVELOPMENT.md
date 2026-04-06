@@ -48,7 +48,7 @@ npm start
 | :--- | :--- |
 | `npm run changelog` | Generates/Updates `CHANGELOG.md` based on commits. |
 | `npm run version` | Internal hook used by `npm version` to update changelog and stage it. |
-| `npm version [major|minor|patch]` | Bumps version in `package.json`, updates `CHANGELOG.md`, and creates a git tag. |
+| `npm version [major\|minor\|patch]` | Bumps version in `package.json`, updates `CHANGELOG.md`, and creates a git tag. |
 
 ## Local GitHub Actions (act)
 
