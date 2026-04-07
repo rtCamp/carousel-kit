@@ -20,7 +20,7 @@ import {
 } from '@wordpress/components';
 import { plus } from '@wordpress/icons';
 import { useSelect, useDispatch } from '@wordpress/data';
-import { useState, useMemo, useCallback } from '@wordpress/element';
+import { useState, useMemo, useCallback, useEffect, useRef } from '@wordpress/element';
 import { createBlock, type BlockConfiguration } from '@wordpress/blocks';
 import type { CarouselAttributes } from './types';
 import { EditorCarouselContext } from './editor-context';
@@ -88,6 +88,21 @@ export default function Edit( {
 	}, [ insertBlock, viewportClientId ] );
 
 	const showSetup = ! hasInnerBlocks;
+	const prevShowSetup = useRef( showSetup );
+
+	// After setup completes (showSetup transitions from true to false),
+	// focus the carousel block so focus stays in the canvas.
+	// Supports both iframed and non-iframed editors.
+	useEffect( () => {
+		if ( prevShowSetup.current && ! showSetup ) {
+			const iframe = document.querySelector< HTMLIFrameElement >( 'iframe[name="editor-canvas"]' );
+			const blockNode =
+				iframe?.contentDocument?.getElementById( `block-${ clientId }` ) ??
+				document.getElementById( `block-${ clientId }` );
+			blockNode?.focus();
+		}
+		prevShowSetup.current = showSetup;
+	}, [ showSetup, clientId ] );
 
 	// Fetch registered block types for the allowed-blocks token field
 	const blockTypes = useSelect( ( select ) => {

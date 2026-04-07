@@ -6,6 +6,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { Button, Icon } from '@wordpress/components';
+import { useRef, useEffect } from '@wordpress/element';
 import type { SlideTemplate } from '../templates';
 
 interface TemplatePickerProps {
@@ -19,9 +20,16 @@ export default function TemplatePicker( {
 	onSelect,
 	onBack,
 }: TemplatePickerProps ) {
+	const gridRef = useRef< HTMLDivElement >( null );
+
+	useEffect( () => {
+		const firstButton = gridRef.current?.querySelector< HTMLButtonElement >( 'button' );
+		firstButton?.focus();
+	}, [] );
+
 	return (
 		<div className="carousel-kit-template-picker">
-			<div className="carousel-kit-template-picker__grid">
+			<div ref={ gridRef } className="carousel-kit-template-picker__grid">
 				{ templates.map( ( template ) => (
 					<button
 						key={ template.name }
