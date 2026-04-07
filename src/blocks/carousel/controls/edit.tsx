@@ -4,6 +4,7 @@ import { useContext, useRef } from '@wordpress/element';
 import { EditorCarouselContext } from '../editor-context';
 import { NextIcon, PreviousIcon } from './components/icons';
 import type { EmblaCarouselType } from 'embla-carousel';
+import { useMergeRefs } from '@wordpress/compose';
 
 const EMBLA_KEY = Symbol.for( 'carousel-system.carousel' );
 
@@ -18,6 +19,8 @@ export default function Edit() {
 	const blockProps = useBlockProps( {
 		className: 'carousel-kit-controls',
 	} );
+
+	const mergedRef = useMergeRefs( [ blockProps.ref, ref ] );
 
 	const getEmblaFromDOM = () => {
 		if ( ! ref.current ) {
@@ -47,7 +50,7 @@ export default function Edit() {
 	};
 
 	return (
-		<div { ...blockProps } ref={ ref }>
+		<div { ...blockProps } ref={ mergedRef }>
 			<button
 				className="carousel-kit-controls__btn carousel-kit-controls__btn--prev"
 				onClick={ ( e ) => {
