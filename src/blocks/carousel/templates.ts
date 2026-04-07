@@ -138,7 +138,25 @@ export function getSlideTemplates(): SlideTemplate[] {
 	);
 
 	if ( Array.isArray( templates ) ) {
-		return templates as SlideTemplate[];
+		const valid = ( templates as unknown[] ).filter( ( t ): t is SlideTemplate => {
+			if (
+				t !== null &&
+				t !== undefined &&
+				typeof t === 'object' &&
+				typeof ( t as SlideTemplate ).name === 'string' &&
+				typeof ( t as SlideTemplate ).label === 'string' &&
+				typeof ( t as SlideTemplate ).innerBlocks === 'function'
+			) {
+				return true;
+			}
+			// eslint-disable-next-line no-console
+			console.warn(
+				'rtcamp.carouselKit.slideTemplates: dropping invalid template entry.',
+				t,
+			);
+			return false;
+		} );
+		return valid;
 	}
 
 	// eslint-disable-next-line no-console
