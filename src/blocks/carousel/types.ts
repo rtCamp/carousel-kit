@@ -18,11 +18,13 @@ export type CarouselAttributes = {
 	ariaLabel: string;
 	slideGap: number;
 	slidesToScroll: string;
+	lazyLoadImages: boolean;
 };
 
 export type CarouselViewportAttributes = Record<string, never>;
 export type CarouselSlideAttributes = {
 	verticalAlignment?: BlockVerticalAlignmentToolbar.Value;
+	disableLazyLoadImages?: boolean;
 };
 export type CarouselControlsAttributes = Record<string, never>;
 export type CarouselDotsAttributes = Record<string, never>;
