@@ -88,6 +88,67 @@ export default function Edit( {
 
 	useCarouselObservers( viewportEl, emblaApiRef, initEmblaRef );
 
+	/**
+	 * Gutenberg's term-template block does not add a columns-{N} class to its
+	 * wrapper in the editor (unlike post-template). Mirror the class here so
+	 * the carousel CSS can detect the column count identically.
+	 */
+	const termTemplateColumnCount = useSelect(
+		( select ) => {
+			const store = select( 'core/block-editor' ) as BlockEditorSelectors;
+			const find = (
+				blocks: ReturnType<BlockEditorSelectors['getBlocks']>,
+			): number | null => {
+				for ( const block of blocks ) {
+					if ( block.name === 'core/term-template' ) {
+						// eslint-disable-next-line dot-notation
+						const layout = block.attributes?.[ 'layout' ] as { columnCount?: number } | undefined;
+						return layout?.columnCount ?? null;
+					}
+					const found = find( block.innerBlocks ?? [] );
+					if ( found ) {
+						return found;
+					}
+				}
+				return null;
+			};
+			return find( store.getBlocks( clientId ) );
+		},
+		[ clientId ],
+	);
+
+	useEffect( () => {
+		if ( ! emblaRef.current || ! termTemplateColumnCount ) {
+			return;
+		}
+
+		const viewport = emblaRef.current;
+		const expectedClass = `columns-${ termTemplateColumnCount }`;
+
+		const applyClass = () => {
+			const el = viewport.querySelector( '.wp-block-term-template' );
+			if ( ! el || el.classList.contains( expectedClass ) ) {
+				return;
+			}
+			el.classList.forEach( ( cls ) => {
+				if ( cls.startsWith( 'columns-' ) ) {
+					el.classList.remove( cls );
+				}
+			} );
+			el.classList.add( expectedClass );
+		};
+
+		applyClass();
+
+		// Gutenberg replaces the DOM element when toggling between edit and
+		// preview (select / deselect). A MutationObserver ensures the class
+		// is re-applied on the new element.
+		const observer = new MutationObserver( applyClass );
+		observer.observe( viewport, { childList: true, subtree: true } );
+
+		return () => observer.disconnect();
+	}, [ termTemplateColumnCount ] );
+
 	const addSlide = useCallback( () => {
 		const block = createBlock( 'carousel-kit/carousel-slide' );
 		insertBlock( block, undefined, clientId );
@@ -115,7 +176,7 @@ export default function Edit( {
 		},
 		{
 			orientation: carouselOptions?.axis === 'y' ? 'vertical' : 'horizontal',
-			allowedBlocks: [ 'carousel-kit/carousel-slide', 'core/query' ],
+			allowedBlocks: [ 'carousel-kit/carousel-slide', 'core/query', 'core/terms-query' ],
 			renderAppender: ! hasSlides ? EmptyAppender : undefined,
 		},
 	);
@@ -170,7 +231,7 @@ export default function Edit( {
 			}
 
 			const queryLoopContainer = viewport.querySelector(
-				'.wp-block-post-template',
+				'.wp-block-post-template, .wp-block-term-template',
 			) as HTMLElement;
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
