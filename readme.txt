@@ -75,7 +75,7 @@ Yes. The carousel follows W3C accessibility guidelines with proper ARIA roles, l
 
 Yes. Each carousel instance maintains its own independent state.
 
-= I was using "Carousel Kit". How do I upgrade? =
+= I am using "Carousel Kit". How do I upgrade to rtCarousel? =
 
 rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarousel — it will automatically migrate all existing carousel blocks in your content and deactivate the old plugin. No manual steps are needed. You can safely delete the old Carousel Kit plugin afterward.
 
