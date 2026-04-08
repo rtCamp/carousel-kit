@@ -25,7 +25,7 @@
     "lint:css:fix": "wp-scripts lint-style --fix",
     "lint:php": "composer run-script lint",
     "lint:php:fix": "composer run-script format",
-    "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "version": "npm run changelog && git add CHANGELOG.md",
     "i18n:pot": "wp i18n make-pot . languages/rt-carousel.pot --domain=rt-carousel --exclude=node_modules,vendor,tests --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/rtCamp/rt-carousel/issues\"}'",
     "test:actions": "act",
@@ -72,6 +72,7 @@
     "react-dom": "^18.3.1",
     "webpack-dev-server": ">=5.2.1",
     "minimatch": ">=10.2.1",
-    "serialize-javascript": ">=7.0.3"
+    "serialize-javascript": ">=7.0.3",
+    "path-to-regexp": ">=0.1.13"
   }
 }
