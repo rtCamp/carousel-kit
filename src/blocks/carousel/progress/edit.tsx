@@ -5,7 +5,7 @@ import { EditorCarouselContext } from '../editor-context';
 
 export default function Edit() {
 	const blockProps = useBlockProps( {
-		className: 'carousel-kit-progress',
+		className: 'rt-carousel-progress',
 	} );
 
 	const { scrollProgress, selectedIndex, slideCount, carouselOptions } =
@@ -22,9 +22,9 @@ export default function Edit() {
 	return (
 		<div { ...blockProps }>
 			<div
-				className="carousel-kit-progress__bar"
+				className="rt-carousel-progress__bar"
 				role="progressbar"
-				aria-label={ __( 'Carousel progress', 'carousel-kit' ) }
+				aria-label={ __( 'Carousel progress', 'rt-carousel' ) }
 				aria-valuenow={ Math.round( progress * 100 ) }
 				aria-valuemin={ 0 }
 				aria-valuemax={ 100 }

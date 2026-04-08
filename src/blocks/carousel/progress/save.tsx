@@ -5,14 +5,14 @@ export default function Save() {
 	return (
 		<div
 			{ ...useBlockProps.save( {
-				className: 'carousel-kit-progress',
+				className: 'rt-carousel-progress',
 			} ) }
-			data-wp-interactive="carousel-kit/carousel"
+			data-wp-interactive="rt-carousel/carousel"
 		>
 			<div
-				className="carousel-kit-progress__bar"
+				className="rt-carousel-progress__bar"
 				role="progressbar"
-				aria-label={ __( 'Carousel progress', 'carousel-kit' ) }
+				aria-label={ __( 'Carousel progress', 'rt-carousel' ) }
 				aria-valuemin={ 0 }
 				aria-valuemax={ 100 }
 				data-wp-bind--aria-valuenow="callbacks.getProgressBarNow"

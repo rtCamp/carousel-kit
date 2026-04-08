@@ -2,15 +2,15 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "carousel-kit/carousel-progress",
+	"name": "rt-carousel/carousel-progress",
 	"title": "Carousel Progress",
-	"category": "carousel-kit",
+	"category": "rt-carousel",
 	"icon": "minus",
 	"ancestor": [
-		"carousel-kit/carousel"
+		"rt-carousel/carousel"
 	],
 	"description": "Progress bar for the carousel.",
-	"textdomain": "carousel-kit",
+	"textdomain": "rt-carousel",
 	"attributes": {},
 	"supports": {
 		"interactivity": true
