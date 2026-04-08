@@ -4,7 +4,7 @@ Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,17 @@ Yes. Each carousel instance maintains its own independent state.
 1. Carousel block in the editor with multiple slides
 
 == Changelog ==
+
+= 1.1.0 =
+* New: Carousel progress bar block
+* New: Vertical alignment support for carousel slides
+* New: wp-env configuration for local development
+* Fix: Navigation buttons and drag not working in vertical Query Loop carousels
+* Fix: Block toolbar remaining visible when selected slide scrolls out of view
+* Fix: Carousel initialization state not properly tracked
+* Fix: Remove development files from distribution package
+* Refactor: Rename plugin from "Carousel Kit" to "rtCarousel"
+
 
 = 1.0.4 =
 * New: Update minimum requirements to PHP 8.2 and WordPress 6.6
