@@ -65,7 +65,7 @@ export default function Edit( {
 	const [ selectedIndex, setSelectedIndex ] = useState( 0 );
 	const [ slideCount, setSlideCount ] = useState( 0 );
 
-	const slideTemplates = useMemo( () => getSlideTemplates(), [] );
+	const slideTemplates = useMemo( getSlideTemplates, [ getSlideTemplates ] );
 
 	const { replaceInnerBlocks, insertBlock } = useDispatch( 'core/block-editor' );
 
@@ -95,8 +95,8 @@ export default function Edit( {
 	const showSetup = ! hasInnerBlocks;
 	const prevShowSetup = useRef( showSetup );
 
-	// After setup completes (showSetup transitions from true to false),
-	// focus the carousel block so focus stays in the canvas.
+	// Reset the setup flow when the placeholder reopens after all inner blocks are removed.
+	// When setup completes, focus the carousel block so focus stays in the canvas.
 	// Supports both iframed and non-iframed editors.
 	useEffect( () => {
 		if ( ! prevShowSetup.current && showSetup ) {
