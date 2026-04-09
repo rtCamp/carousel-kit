@@ -92,7 +92,7 @@ describe( 'Slide Templates', () => {
 
 			expect( Array.isArray( templates ) ).toBe( true );
 			expect( templates.length ).toBeGreaterThanOrEqual( 5 );
-			expect( templates.map( ( template ) => template.name ) ).toContain( 'blank' );
+			expect( templates.map( ( template ) => template.name ) ).toContain( 'text' );
 			expect( consoleWarnSpy ).toHaveBeenCalledWith(
 				'rtcamp.carouselKit.slideTemplates filter returned a non-array value. Falling back to default slide templates.',
 				'invalid',
@@ -134,8 +134,8 @@ describe( 'Slide Templates', () => {
 		const byName = ( name: string ) =>
 			templates.find( ( t ) => t.name === name )!;
 
-		it( 'blank template produces a paragraph block', () => {
-			const blocks = byName( 'blank' ).innerBlocks();
+		it( 'text template produces a paragraph block', () => {
+			const blocks = byName( 'text' ).innerBlocks();
 			expect( blocks ).toHaveLength( 1 );
 			expect( blocks[ 0 ]!.name ).toBe( 'core/paragraph' );
 		} );

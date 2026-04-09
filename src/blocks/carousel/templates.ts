@@ -37,8 +37,8 @@ export interface SlideTemplate {
 
 // ── Default templates ────────────────────────────────────────────────────────
 
-const blankSlide: SlideTemplate = {
-	name: 'blank',
+const textSlide: SlideTemplate = {
+	name: 'text',
 	label: __( 'Text Slides', 'rt-carousel' ),
 	description: __( 'Slides starting with a paragraph you can replace or extend.', 'rt-carousel' ),
 	icon: columns,
@@ -97,7 +97,7 @@ const queryLoopSlide: SlideTemplate = {
 };
 
 const DEFAULT_TEMPLATES: SlideTemplate[] = [
-	blankSlide,
+	textSlide,
 	imageSlide,
 	heroSlide,
 	imageCaptionSlide,
