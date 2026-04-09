@@ -104,6 +104,12 @@ const DEFAULT_TEMPLATES: SlideTemplate[] = [
 	queryLoopSlide,
 ];
 
+function getDefaultTemplates(): SlideTemplate[] {
+	return DEFAULT_TEMPLATES.map( ( template ) => ( {
+		...template,
+	} ) );
+}
+
 /**
  * Retrieve all available slide templates.
  *
@@ -132,9 +138,10 @@ const DEFAULT_TEMPLATES: SlideTemplate[] = [
  * ```
  */
 export function getSlideTemplates(): SlideTemplate[] {
+	const defaultTemplates = getDefaultTemplates();
 	const templates = applyFilters(
 		'rtcamp.carouselKit.slideTemplates',
-		DEFAULT_TEMPLATES,
+		defaultTemplates,
 	);
 
 	if ( Array.isArray( templates ) ) {
@@ -145,6 +152,9 @@ export function getSlideTemplates(): SlideTemplate[] {
 				typeof t === 'object' &&
 				typeof ( t as SlideTemplate ).name === 'string' &&
 				typeof ( t as SlideTemplate ).label === 'string' &&
+				typeof ( t as SlideTemplate ).description === 'string' &&
+				( t as SlideTemplate ).icon !== undefined &&
+				( t as SlideTemplate ).icon !== null &&
 				typeof ( t as SlideTemplate ).innerBlocks === 'function'
 			) {
 				return true;
@@ -165,5 +175,5 @@ export function getSlideTemplates(): SlideTemplate[] {
 		templates,
 	);
 
-	return DEFAULT_TEMPLATES;
+	return defaultTemplates;
 }

@@ -62,6 +62,8 @@ export default function Edit( {
 	const [ setupStep, setSetupStep ] = useState<SetupStep>( 'slide-count' );
 	const [ pendingSlideCount, setPendingSlideCount ] = useState<number>( 0 );
 
+	const slideTemplates = useMemo( () => getSlideTemplates(), [] );
+
 	const { replaceInnerBlocks, insertBlock } = useDispatch( 'core/block-editor' );
 
 	const hasInnerBlocks = useSelect(
@@ -94,6 +96,11 @@ export default function Edit( {
 	// focus the carousel block so focus stays in the canvas.
 	// Supports both iframed and non-iframed editors.
 	useEffect( () => {
+		if ( ! prevShowSetup.current && showSetup ) {
+			setSetupStep( 'slide-count' );
+			setPendingSlideCount( 0 );
+		}
+
 		if ( prevShowSetup.current && ! showSetup ) {
 			const iframe = document.querySelector< HTMLIFrameElement >( 'iframe[name="editor-canvas"]' );
 			const blockNode =
@@ -467,7 +474,7 @@ export default function Edit( {
 						) }
 						{ setupStep === 'template' && (
 							<TemplatePicker
-								templates={ getSlideTemplates() }
+								templates={ slideTemplates }
 								onSelect={ handleTemplateSelected }
 								onBack={ () => setSetupStep( 'slide-count' ) }
 							/>
