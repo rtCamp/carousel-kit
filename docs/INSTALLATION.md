@@ -29,5 +29,5 @@
 2. **Run the installation command (stable release):**
 
    ```bash
-   composer require rtcamp/rt-carousel:^1.0
+   composer require rtcamp/rt-carousel:^2.0
    ```
