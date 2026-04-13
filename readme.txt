@@ -4,7 +4,7 @@ Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 1.1.0
+Stable tag: 2.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,7 +85,7 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 
 == Changelog ==
 
-= 1.1.0 =
+= 2.0.0 =
 * New: Carousel progress bar block
 * New: Vertical alignment support for carousel slides
 * New: wp-env configuration for local development
@@ -128,5 +128,5 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 
 == Upgrade Notice ==
 
-= 1.1.0 =
+= 2.0.0 =
 Plugin renamed from "Carousel Kit" to "rtCarousel". Existing carousel blocks are automatically migrated on activation. The old Carousel Kit plugin is deactivated automatically and can be safely deleted.

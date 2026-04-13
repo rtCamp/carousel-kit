@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0](https://github.com/rtCamp/rt-carousel/compare/v1.0.4...v1.1.0) (2026-04-08)
+## [2.0.0](https://github.com/rtCamp/rt-carousel/compare/v1.0.4...v2.0.0) (2026-04-13)
 
 
 ### Bug Fixes
