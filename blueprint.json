@@ -10,7 +10,7 @@
             "step": "installPlugin",
             "pluginData": {
                 "resource": "url",
-                "url": "https://github.com/rtCamp/carousel-kit/releases/latest/download/carousel-kit.zip"
+                "url": "https://github.com/rtCamp/rt-carousel/releases/latest/download/rt-carousel.zip"
             }
         },
         {
@@ -21,12 +21,12 @@
             "step": "importWxr",
             "file": {
                 "resource": "url",
-                "url": "https://raw.githubusercontent.com/rtCamp/carousel-kit/main/examples/data/carousel-kit.xml"
+                "url": "https://raw.githubusercontent.com/rtCamp/rt-carousel/main/examples/data/rt-carousel.xml"
             }
         },
         {
             "step": "runPHP",
-            "code": "<?php require_once 'wordpress/wp-load.php'; switch_theme('twentytwentyfive'); update_option('blogname', 'Carousel Kit by rtCamp'); $homepage = get_page_by_path('homepage'); if ($homepage) { update_option('show_on_front', 'page'); update_option('page_on_front', $homepage->ID); } global $wpdb; $wpdb->query(\"UPDATE $wpdb->posts SET post_content = REPLACE(post_content, 'http://carousel-demo.local', '\" . site_url() . \"')\"); $nav_id = $wpdb->get_var(\"SELECT ID FROM $wpdb->posts WHERE post_type = 'wp_navigation' AND (post_name = 'navigation' OR post_title = 'Navigation') LIMIT 1\"); if ($nav_id && $nav_id != 4) { $old_ref = 'ref' . chr(34) . ':4'; $new_ref = 'ref' . chr(34) . ':' . $nav_id; $wpdb->query($wpdb->prepare(\"UPDATE $wpdb->posts SET post_content = REPLACE(post_content, %s, %s)\", $old_ref, $new_ref)); } if (function_exists('wp_cache_flush')) wp_cache_flush(); ?>"
+            "code": "<?php require_once 'wordpress/wp-load.php'; switch_theme('twentytwentyfive'); update_option('blogname', 'rtCarousel by rtCamp'); $homepage = get_page_by_path('homepage'); if ($homepage) { update_option('show_on_front', 'page'); update_option('page_on_front', $homepage->ID); } global $wpdb; $wpdb->query(\"UPDATE $wpdb->posts SET post_content = REPLACE(post_content, 'http://carousel-demo.local', '\" . site_url() . \"')\"); $nav_id = $wpdb->get_var(\"SELECT ID FROM $wpdb->posts WHERE post_type = 'wp_navigation' AND (post_name = 'navigation' OR post_title = 'Navigation') LIMIT 1\"); if ($nav_id && $nav_id != 4) { $old_ref = 'ref' . chr(34) . ':4'; $new_ref = 'ref' . chr(34) . ':' . $nav_id; $wpdb->query($wpdb->prepare(\"UPDATE $wpdb->posts SET post_content = REPLACE(post_content, %s, %s)\", $old_ref, $new_ref)); } if (function_exists('wp_cache_flush')) wp_cache_flush(); ?>"
         }
     ]
 }

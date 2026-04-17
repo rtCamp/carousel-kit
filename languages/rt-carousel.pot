@@ -2,270 +2,274 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Carousel Kit 1.0.3\n"
-"Report-Msgid-Bugs-To: https://github.com/rtCamp/carousel-kit/issues\n"
+"Project-Id-Version: rtCarousel 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/rtCamp/rt-carousel/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T21:59:45+00:00\n"
+"POT-Creation-Date: 2026-04-15T21:07:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: carousel-kit\n"
+"X-Domain: rt-carousel\n"
 
 #. Plugin Name of the plugin
-#: carousel-kit.php
-#: inc/Plugin.php:57
-#: inc/Plugin.php:96
-msgid "Carousel Kit"
+#: rt-carousel.php
+#: inc/Plugin.php:97
+#: inc/Plugin.php:137
+msgid "rtCarousel"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: carousel-kit.php
-msgid "https://github.com/rtCamp/carousel-kit"
+#: rt-carousel.php
+msgid "https://github.com/rtCamp/rt-carousel"
 msgstr ""
 
 #. Description of the plugin
-#: carousel-kit.php
+#: rt-carousel.php
 msgid "Carousel block using Embla and WordPress Interactivity API."
 msgstr ""
 
 #. Author of the plugin
-#: carousel-kit.php
+#: rt-carousel.php
 msgid "rtCamp"
 msgstr ""
 
 #. Author URI of the plugin
-#: carousel-kit.php
+#: rt-carousel.php
 msgid "https://rtcamp.com"
 msgstr ""
 
-#: inc/Autoloader.php:70
-msgid "Carousel Kit: The Composer autoloader was not found. If you installed the plugin from the GitHub source code, make sure to run `composer install`."
+#: inc/Autoloader.php:75
+msgid "rtCarousel: The Composer autoloader was not found. If you installed the plugin from the GitHub source code, make sure to run `composer install`."
 msgstr ""
 
-#: inc/Plugin.php:97
+#: inc/Plugin.php:78
+msgid "The old \"Carousel Kit\" plugin has been deactivated. rtCarousel is its replacement."
+msgstr ""
+
+#: inc/Plugin.php:138
 msgid "Pre-configured carousel patterns for various use cases."
 msgstr ""
 
-#: build/blocks/carousel/controls/index.js:133
-#: build/blocks/carousel/controls/index.js:208
+#: build/blocks/carousel/controls/index.js:1
 msgid "Previous Slide"
 msgstr ""
 
-#: build/blocks/carousel/controls/index.js:143
-#: build/blocks/carousel/controls/index.js:215
+#: build/blocks/carousel/controls/index.js:1
 msgid "Next Slide"
 msgstr ""
 
 #. translators: %d: slide number
-#: build/blocks/carousel/dots/index.js:123
-#: build/blocks/carousel/index.js:546
+#: build/blocks/carousel/dots/index.js:2
+#: build/blocks/carousel/index.js:3
 #, js-format
 msgid "Go to slide %d"
 msgstr ""
 
-#: build/blocks/carousel/index.js:175
+#: build/blocks/carousel/index.js:1
 msgid "Carousel Settings"
 msgstr ""
 
-#: build/blocks/carousel/index.js:177
+#: build/blocks/carousel/index.js:1
 msgid "Loop"
 msgstr ""
 
-#: build/blocks/carousel/index.js:182
+#: build/blocks/carousel/index.js:1
 msgid "Enables infinite scrolling of slides."
 msgstr ""
 
-#: build/blocks/carousel/index.js:184
+#: build/blocks/carousel/index.js:1
 msgid "Free Drag"
 msgstr ""
 
-#: build/blocks/carousel/index.js:189
+#: build/blocks/carousel/index.js:1
 msgid "Enables momentum scrolling."
 msgstr ""
 
-#: build/blocks/carousel/index.js:191
+#: build/blocks/carousel/index.js:1
 msgid "Alignment"
 msgstr ""
 
-#: build/blocks/carousel/index.js:194
+#: build/blocks/carousel/index.js:1
 msgid "Start"
 msgstr ""
 
-#: build/blocks/carousel/index.js:197
+#: build/blocks/carousel/index.js:1
 msgid "Center"
 msgstr ""
 
-#: build/blocks/carousel/index.js:200
+#: build/blocks/carousel/index.js:1
 msgid "End"
 msgstr ""
 
-#: build/blocks/carousel/index.js:207
+#: build/blocks/carousel/index.js:1
 msgid "Contain Scroll"
 msgstr ""
 
-#: build/blocks/carousel/index.js:210
+#: build/blocks/carousel/index.js:1
 msgid "Trim Snaps"
 msgstr ""
 
-#: build/blocks/carousel/index.js:213
+#: build/blocks/carousel/index.js:1
 msgid "Keep Snaps"
 msgstr ""
 
-#: build/blocks/carousel/index.js:216
+#: build/blocks/carousel/index.js:1
 msgid "None"
 msgstr ""
 
-#: build/blocks/carousel/index.js:222
+#: build/blocks/carousel/index.js:1
 msgid "Prevents excess scrolling at the beginning or end."
 msgstr ""
 
-#: build/blocks/carousel/index.js:224
+#: build/blocks/carousel/index.js:1
 msgid "Scroll Auto"
 msgstr ""
 
-#: build/blocks/carousel/index.js:229
+#: build/blocks/carousel/index.js:1
 msgid "Scrolls the number of slides currently visible in the viewport."
 msgstr ""
 
-#: build/blocks/carousel/index.js:231
+#: build/blocks/carousel/index.js:1
 msgid "Slides to Scroll"
 msgstr ""
 
-#: build/blocks/carousel/index.js:239
+#: build/blocks/carousel/index.js:1
 msgid "Direction"
 msgstr ""
 
-#: build/blocks/carousel/index.js:242
+#: build/blocks/carousel/index.js:1
 msgid "Left to Right (LTR)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:245
+#: build/blocks/carousel/index.js:1
 msgid "Right to Left (RTL)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:251
+#: build/blocks/carousel/index.js:1
 msgid "Choose content direction. RTL is typically used for Arabic, Hebrew, and other right-to-left languages."
 msgstr ""
 
-#: build/blocks/carousel/index.js:253
+#: build/blocks/carousel/index.js:1
 msgid "Orientation"
 msgstr ""
 
-#: build/blocks/carousel/index.js:256
+#: build/blocks/carousel/index.js:1
 msgid "Horizontal"
 msgstr ""
 
-#: build/blocks/carousel/index.js:259
+#: build/blocks/carousel/index.js:1
 msgid "Vertical"
 msgstr ""
 
-#: build/blocks/carousel/index.js:266
+#: build/blocks/carousel/index.js:1
 msgid "Height"
 msgstr ""
 
-#: build/blocks/carousel/index.js:271
+#: build/blocks/carousel/index.js:1
 msgid "Set a fixed height for vertical carousel (e.g., 400px)."
 msgstr ""
 
-#: build/blocks/carousel/index.js:274
+#: build/blocks/carousel/index.js:1
 msgid "Autoplay Options"
 msgstr ""
 
-#: build/blocks/carousel/index.js:277
+#: build/blocks/carousel/index.js:1
 msgid "Enable Autoplay"
 msgstr ""
 
-#: build/blocks/carousel/index.js:284
+#: build/blocks/carousel/index.js:1
 msgid "Delay (ms)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:293
+#: build/blocks/carousel/index.js:1
 msgid "Stop on Interaction"
 msgstr ""
 
-#: build/blocks/carousel/index.js:298
+#: build/blocks/carousel/index.js:1
 msgid "Stop autoplay when user interacts with carousel."
 msgstr ""
 
-#: build/blocks/carousel/index.js:300
+#: build/blocks/carousel/index.js:1
 msgid "Stop on Mouse Enter"
 msgstr ""
 
-#: build/blocks/carousel/index.js:305
+#: build/blocks/carousel/index.js:1
 msgid "Stop autoplay when mouse hovers over carousel."
 msgstr ""
 
-#: build/blocks/carousel/index.js:311
+#: build/blocks/carousel/index.js:1
 msgid "ARIA Label"
 msgstr ""
 
-#: build/blocks/carousel/index.js:316
+#: build/blocks/carousel/index.js:1
 msgid "Provide a descriptive label for screen readers (e.g., 'Featured Products')."
 msgstr ""
 
-#: build/blocks/carousel/index.js:319
+#: build/blocks/carousel/index.js:1
 msgid "Use this to allow only certain blocks in the slide. If empty, all blocks will be allowed."
 msgstr ""
 
-#: build/blocks/carousel/index.js:322
+#: build/blocks/carousel/index.js:1
 msgid "Allowed Slide Blocks"
 msgstr ""
 
-#: build/blocks/carousel/index.js:335
+#: build/blocks/carousel/index.js:1
 msgid "Layout"
 msgstr ""
 
-#: build/blocks/carousel/index.js:337
+#: build/blocks/carousel/index.js:1
 msgid "Slide Gap (px)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:357
+#: build/blocks/carousel/index.js:1
 msgid "Carousel"
 msgstr ""
 
-#: build/blocks/carousel/index.js:358
+#: build/blocks/carousel/index.js:1
 msgid "How many slides would you like to start with?"
 msgstr ""
 
-#: build/blocks/carousel/index.js:366
+#: build/blocks/carousel/index.js:1
 msgid "1 Slide"
 msgstr ""
 
-#: build/blocks/carousel/index.js:366
+#: build/blocks/carousel/index.js:1
 msgid "Slides"
 msgstr ""
 
-#: build/blocks/carousel/index.js:372
+#: build/blocks/carousel/index.js:1
 msgid "Skip"
 msgstr ""
 
-#: build/blocks/carousel/index.js:383
-#: build/blocks/carousel/viewport/index.js:1828
-#: build/blocks/carousel/viewport/index.js:1929
-#: build/blocks/carousel/viewport/index.js:1939
+#: build/blocks/carousel/index.js:1
+#: build/blocks/carousel/viewport/index.js:1
 msgid "Add Slide"
 msgstr ""
 
-#: build/blocks/carousel/index.js:467
+#: build/blocks/carousel/index.js:3
 msgid "Default (100%)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:471
+#: build/blocks/carousel/index.js:3
 msgid "2 Columns (50%)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:474
+#: build/blocks/carousel/index.js:3
 msgid "3 Columns (33%)"
 msgstr ""
 
-#: build/blocks/carousel/index.js:477
+#: build/blocks/carousel/index.js:3
 msgid "4 Columns (25%)"
 msgstr ""
 
-#: build/blocks/carousel/viewport/index.js:1934
+#: build/blocks/carousel/progress/index.js:1
+msgid "Carousel progress"
+msgstr ""
+
+#: build/blocks/carousel/viewport/index.js:1
 msgid "Viewport Actions"
 msgstr ""
 
@@ -303,6 +307,18 @@ msgstr ""
 #: src/blocks/carousel/dots/block.json
 msgctxt "block description"
 msgid "Navigation dots for the carousel."
+msgstr ""
+
+#: build/blocks/carousel/progress/block.json
+#: src/blocks/carousel/progress/block.json
+msgctxt "block title"
+msgid "Carousel Progress"
+msgstr ""
+
+#: build/blocks/carousel/progress/block.json
+#: src/blocks/carousel/progress/block.json
+msgctxt "block description"
+msgid "Progress bar for the carousel."
 msgstr ""
 
 #: build/blocks/carousel/slide/block.json

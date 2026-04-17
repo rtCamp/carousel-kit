@@ -1,3 +1,28 @@
+# Changelog
+
+## [2.0.0](https://github.com/rtCamp/rt-carousel/compare/v1.0.4...v2.0.0) (2026-04-13)
+
+
+### Bug Fixes
+
+* add initialized state to CarouselContext to track carousel initialization ([#92](https://github.com/rtCamp/rt-carousel/issues/92)) ([71de050](https://github.com/rtCamp/rt-carousel/commit/71de050aae8ff55f82b61a02440f8ccd42b63d76))
+* exclude composer.json and composer.lock from distribution package ([#99](https://github.com/rtCamp/rt-carousel/issues/99)) ([a1308c6](https://github.com/rtCamp/rt-carousel/commit/a1308c6581faa68e7b68a4c2e29c78110a1670f9))
+* restore vertical scroll for Query Loop carousel ([#104](https://github.com/rtCamp/rt-carousel/issues/104)) ([1d16ee6](https://github.com/rtCamp/rt-carousel/commit/1d16ee6f6ac068524998f33c20fdab39638ead3f))
+* **controls:** block toolbar persists when selected block moves out of view in carousel ([#106](https://github.com/rtCamp/rt-carousel/issues/106)) ([dec79c8](https://github.com/rtCamp/rt-carousel/commit/dec79c8))
+
+
+### Features
+
+* add support for the carousel progress bar ([#88](https://github.com/rtCamp/rt-carousel/issues/88)) ([edc8699](https://github.com/rtCamp/rt-carousel/commit/edc8699))
+* support vertical alignment on carousel slide ([#87](https://github.com/rtCamp/rt-carousel/issues/87)) ([f73890e](https://github.com/rtCamp/rt-carousel/commit/f73890e))
+* add wp-env configuration for WP development setup ([#109](https://github.com/rtCamp/rt-carousel/issues/109)) ([dcccaf7](https://github.com/rtCamp/rt-carousel/commit/dcccaf79747cf84811a7907e68df01d2aaeb7030))
+
+
+### Refactors
+
+* rename plugin from "Carousel Kit" to "rtCarousel" with automatic block content migration ([#101](https://github.com/rtCamp/rt-carousel/pull/101)) ([9788ed7](https://github.com/rtCamp/rt-carousel/commit/9788ed7))
+
+
 ## [1.0.4](https://github.com/rtCamp/carousel-kit/compare/v1.0.3...v1.0.4) (2026-03-09)
 
 ### Bug Fixes
@@ -60,14 +85,14 @@
 * slide appender and setup ([a42331d](https://github.com/rtCamp/carousel-kit/commit/a42331d10b225379408ddf8c0649e83484496a1e))
 
 
-# [1.0.1](https://github.com/rtCamp/carousel-kit/compare/v1.0.0...v1.0.1) (2026-02-16)
+## [1.0.1](https://github.com/rtCamp/carousel-kit/compare/v1.0.0...v1.0.1) (2026-02-16)
 
 ### Bug Fixes
 
 * **carousel:** resolve spacing issues in loop mode where gaps were missing between last and first slide
 * **carousel:** allow infinite loop in editor viewport to match frontend behavior
 
-# 1.0.0 (2026-02-03)
+## 1.0.0 (2026-02-03)
 
 
 ### Bug Fixes

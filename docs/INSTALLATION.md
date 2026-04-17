@@ -5,7 +5,7 @@
 - PHP 8.2 or higher
 
 ## Manual Installation
-1. Download the `carousel-kit.zip` file from the [Releases](https://github.com/rtCamp/carousel-kit/releases) page.
+1. Download the `rt-carousel.zip` file from the [Releases](https://github.com/rtCamp/rt-carousel/releases) page.
 2. Log in to your WordPress admin dashboard.
 3. Go to **Plugins > Add New Plugin**.
 4. Click **Upload Plugin**.
@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/rtCamp/carousel-kit"
+            "url": "https://github.com/rtCamp/rt-carousel"
         }
     ]
    ```
@@ -29,5 +29,5 @@
 2. **Run the installation command (stable release):**
 
    ```bash
-   composer require rtcamp/carousel-kit:^1.0
+   composer require rtcamp/rt-carousel:^2.0
    ```

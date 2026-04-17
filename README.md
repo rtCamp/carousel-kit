@@ -1,7 +1,7 @@
-# Carousel Kit
+# rtCarousel
 
-![Build Status](https://github.com/rtCamp/carousel-kit/actions/workflows/release.yml/badge.svg?branch=main)
-![Latest Release](https://img.shields.io/github/v/release/rtCamp/carousel-kit)
+![Build Status](https://github.com/rtCamp/rt-carousel/actions/workflows/release.yml/badge.svg?branch=main)
+![Latest Release](https://img.shields.io/github/v/release/rtCamp/rt-carousel)
 
 **A modular, high-performance carousel block for WordPress, powered by the Interactivity API and Embla Carousel.**
 
@@ -37,7 +37,7 @@ Easily create dynamic, accessible, and customizable carousels for any content ty
 
 ## Browser Support
 
-Carousel Kit supports all modern browsers:
+rtCarousel supports all modern browsers:
 
 | Browser | Minimum Version |
 | ------- | --------------- |
@@ -62,7 +62,7 @@ The plugin provides a suite of blocks that work together:
 
 ### Does it work with Full Site Editing (FSE)?
 
-Yes! Carousel Kit is fully compatible with Full Site Editing. You can use the carousel block in templates, template parts, and anywhere blocks are supported.
+Yes! rtCarousel is fully compatible with Full Site Editing. You can use the carousel block in templates, template parts, and anywhere blocks are supported.
 
 ### Can I nest other blocks inside slides?
 
@@ -82,7 +82,7 @@ Yes. Each carousel instance maintains its own independent state.
 
 ### What data is removed on uninstall?
 
-On uninstall, Carousel Kit removes its cached pattern transient (`carousel_kit_patterns_cache`). It does not remove your posts or block content.
+On uninstall, rtCarousel removes its cached pattern transient (`rt_carousel_patterns_cache`). It does not remove your posts or block content.
 
 ## Changelog
 
@@ -90,11 +90,11 @@ See [CHANGELOG.md](CHANGELOG.md) for full release history.
 
 ## Live Demo
 
-[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/carousel-kit/main/blueprint.json)
+[**🚀 Try the Interactive Demo in WordPress Playground**](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/rtCamp/rt-carousel/main/blueprint.json)
 
 ## Feature Request
 
-Have a feature request? [Open an issue](https://github.com/rtCamp/carousel-kit/issues) on GitHub.
+Have a feature request? [Open an issue](https://github.com/rtCamp/rt-carousel/issues) on GitHub.
 
 ## Contributors
 

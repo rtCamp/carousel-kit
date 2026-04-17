@@ -10,7 +10,7 @@ type ElementWithRef = {
 	ref?: HTMLElement | null;
 };
 
-const EMBLA_KEY = Symbol.for( 'carousel-kit.carousel' );
+const EMBLA_KEY = Symbol.for( 'rt-carousel.carousel' );
 
 type EmblaViewportElement = HTMLElement & {
 	[EMBLA_KEY]?: EmblaCarouselType;
@@ -35,18 +35,28 @@ const getEmblaFromElement = (
 	if ( ! element ) {
 		return null;
 	}
-	const wrapper = element.closest( '.carousel-kit' );
+	const wrapper = element.closest( '.rt-carousel' );
 	const viewport = wrapper?.querySelector(
 		'.embla',
 	) as EmblaViewportElement | null;
 	if ( ! viewport ) {
 		return null;
 	}
-	// EMBLA_KEY is optional, so check if it exists
 	return emblaInstances.get( viewport ) || viewport[ EMBLA_KEY ] || null;
 };
 
-store( 'carousel-kit/carousel', {
+const getProgress = (): number => {
+	const { scrollProgress, slideCount, selectedIndex, options } = getContext<CarouselContext>();
+	if ( ! slideCount || slideCount <= 1 ) {
+		return 0;
+	}
+	if ( options?.loop ) {
+		return selectedIndex / ( slideCount - 1 );
+	}
+	return Math.max( 0, Math.min( 1, scrollProgress || 0 ) );
+};
+
+store( 'rt-carousel/carousel', {
 	state: {
 		get canScrollPrev() {
 			const context = getContext<CarouselContext>();
@@ -82,7 +92,7 @@ store( 'carousel-kit/carousel', {
 			const context = getContext<CarouselContext>();
 			const { snap } = context as CarouselContext & {
 				snap?: { index?: number };
-			}; // snap is the iterated item
+			};
 
 			if ( snap && typeof snap.index === 'number' ) {
 				const element = getElementRef( getElement() );
@@ -95,6 +105,13 @@ store( 'carousel-kit/carousel', {
 	},
 	callbacks: {
 		isSlideActive: () => {
+			// Track initialization state to prevent errors when Embla isn't ready
+			// See: https://github.com/rtCamp/rt-carousel/issues/78
+			const context = getContext<CarouselContext>();
+			if ( ! context.initialized ) {
+				return false;
+			}
+
 			// Check for either standard slide or Query Loop post
 			const slide = getElementRef( getElement() )?.closest?.(
 				'.embla__slide, .wp-block-post',
@@ -104,7 +121,6 @@ store( 'carousel-kit/carousel', {
 				return false;
 			}
 
-			// Filter siblings to find index among valid slides
 			const slides = Array.from( slide.parentElement.children ).filter(
 				( child: Element ) =>
 					child.classList?.contains( 'embla__slide' ) ||
@@ -115,8 +131,7 @@ store( 'carousel-kit/carousel', {
 			if ( index === -1 ) {
 				return false;
 			}
-			const { selectedIndex } = getContext<CarouselContext>();
-			return selectedIndex === index;
+			return context.selectedIndex === index;
 		},
 		isDotActive: () => {
 			const context = getContext<CarouselContext>();
@@ -132,6 +147,16 @@ store( 'carousel-kit/carousel', {
 			};
 			const index = ( snap?.index || 0 ) + 1;
 			return context.ariaLabelPattern.replace( '%d', index.toString() );
+		},
+		getProgressBarNow: () => {
+			return Math.round( getProgress() * 100 );
+		},
+		getProgressBarStyle: () => {
+			const { slideCount } = getContext<CarouselContext>();
+			if ( ! slideCount || slideCount <= 1 ) {
+				return 'display:none';
+			}
+			return `transform:translate3d(${ getProgress() * 100 }%, 0px, 0px)`;
 		},
 		initCarousel: () => {
 			try {
@@ -152,7 +177,6 @@ store( 'carousel-kit/carousel', {
 					return;
 				}
 
-				// Check for Query Loop container
 				const queryLoopContainer = viewport.querySelector(
 					'.wp-block-post-template',
 				);
@@ -160,7 +184,6 @@ store( 'carousel-kit/carousel', {
 				const startEmbla = () => {
 					const rawOptions: EmblaOptionsType = context.options || {};
 
-					// Sanitize options to prevent Embla crashes
 					const align = [ 'start', 'center', 'end' ].includes(
 						rawOptions.align as string,
 					)
@@ -214,18 +237,23 @@ store( 'carousel-kit/carousel', {
 					viewport[ EMBLA_KEY ] = embla;
 
 					const updateState = () => {
+						context.initialized = true;
 						context.canScrollPrev = embla.canScrollPrev();
 						context.canScrollNext = embla.canScrollNext();
 						context.selectedIndex = embla.selectedScrollSnap();
 						context.scrollSnaps = embla
 							.scrollSnapList()
 							.map( ( _, index ) => ( { index } ) );
+						context.scrollProgress = embla.scrollProgress();
+						context.slideCount = embla.slideNodes().length;
 					};
 
 					embla.on( 'select', updateState );
 					embla.on( 'reInit', updateState );
+					embla.on( 'scroll', () => {
+						context.scrollProgress = embla.scrollProgress();
+					} );
 
-					// Autoplay API Integration
 					embla.on( 'autoplay:timerset', () => {
 						context.isPlaying = true;
 						context.timerIterationId = ( context.timerIterationId || 0 ) + 1;

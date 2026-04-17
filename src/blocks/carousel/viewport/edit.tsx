@@ -89,15 +89,15 @@ export default function Edit( {
 	useCarouselObservers( viewportEl, emblaApiRef, initEmblaRef );
 
 	const addSlide = useCallback( () => {
-		const block = createBlock( 'carousel-kit/carousel-slide' );
+		const block = createBlock( 'rt-carousel/carousel-slide' );
 		insertBlock( block, undefined, clientId );
 	}, [ insertBlock, clientId ] );
 
 	const EmptyAppender = useCallback(
 		() => (
-			<div className="carousel-kit-viewport-empty">
+			<div className="rt-carousel-viewport-empty">
 				<Button variant="primary" icon={ plus } onClick={ addSlide }>
-					{ __( 'Add Slide', 'carousel-kit' ) }
+					{ __( 'Add Slide', 'rt-carousel' ) }
 				</Button>
 			</div>
 		),
@@ -115,7 +115,7 @@ export default function Edit( {
 		},
 		{
 			orientation: carouselOptions?.axis === 'y' ? 'vertical' : 'horizontal',
-			allowedBlocks: [ 'carousel-kit/carousel-slide', 'core/query' ],
+			allowedBlocks: [ 'rt-carousel/carousel-slide', 'core/query' ],
 			renderAppender: ! hasSlides ? EmptyAppender : undefined,
 		},
 	);
@@ -257,14 +257,14 @@ export default function Edit( {
 			<BlockControls>
 				<ToolbarButton
 					icon={ plus }
-					label={ __( 'Add Slide', 'carousel-kit' ) }
+					label={ __( 'Add Slide', 'rt-carousel' ) }
 					onClick={ addSlide }
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Viewport Actions', 'carousel-kit' ) }>
+				<PanelBody title={ __( 'Viewport Actions', 'rt-carousel' ) }>
 					<Button variant="secondary" onClick={ addSlide } icon={ plus }>
-						{ __( 'Add Slide', 'carousel-kit' ) }
+						{ __( 'Add Slide', 'rt-carousel' ) }
 					</Button>
 				</PanelBody>
 			</InspectorControls>

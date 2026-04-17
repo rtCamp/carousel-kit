@@ -1,24 +1,24 @@
 /**
  * Styles for carousel dots/slide indicator
  */
-.carousel-kit-dots {
+.rt-carousel-dots {
 	display: flex;
-	gap: var(--carousel-kit-dots-gap, 0.5rem);
+	gap: var(--rt-carousel-dots-gap, 0.5rem);
 	align-items: center;
 }
 
-.carousel-kit-dot {
-	width: var(--carousel-kit-dot-size, 0.5rem);
-	height: var(--carousel-kit-dot-size, 0.5rem);
-	border-radius: var(--carousel-kit-dot-radius, 50%);
-	background-color: var(--carousel-kit-dot-color, rgb(221, 221, 221));
-	border: var(--carousel-kit-dot-border, none);
+.rt-carousel-dot {
+	width: var(--rt-carousel-dot-size, 0.5rem);
+	height: var(--rt-carousel-dot-size, 0.5rem);
+	border-radius: var(--rt-carousel-dot-radius, 50%);
+	background-color: var(--rt-carousel-dot-color, rgb(221, 221, 221));
+	border: var(--rt-carousel-dot-border, none);
 	cursor: pointer;
 	padding: 0;
 	transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-kit-dot.is-active {
-	background-color: var(--carousel-kit-dot-active-color, rgba(28, 28, 28, 1));
-	transform: scale(var(--carousel-kit-dot-active-scale, 1.5));
+.rt-carousel-dot.is-active {
+	background-color: var(--rt-carousel-dot-active-color, rgba(28, 28, 28, 1));
+	transform: scale(var(--rt-carousel-dot-active-scale, 1.5));
 }

@@ -1,5 +1,5 @@
 # Configuration
-PLUGIN_SLUG := carousel-kit
+PLUGIN_SLUG := rt-carousel
 BUILD_DIR := build-dist
 ZIP_NAME := $(PLUGIN_SLUG).zip
 
@@ -61,8 +61,6 @@ dist:
 		--exclude='package-lock.json' \
 		--exclude='blueprint.json' \
 		--exclude='tsconfig.json' \
-		--exclude='composer.json' \
-		--exclude='composer.lock' \
 		--exclude='Makefile' \
 		--exclude='CHANGELOG.md' \
 		--exclude='DEVELOPMENT.md' \

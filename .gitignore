@@ -36,4 +36,4 @@ phpstan.neon
 # Build
 build/
 tsconfig.tsbuildinfo
-carousel-kit.zip
+rt-carousel.zip

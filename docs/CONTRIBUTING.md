@@ -1,4 +1,4 @@
-# Contributing to Carousel Kit
+# Contributing to rtCarousel
 
 Thank you for your interest in contributing! We welcome all contributions, from bug reports to feature requests and code changes.
 
@@ -38,4 +38,4 @@ To create a production-ready ZIP file:
 make zip
 ```
 
-This will create `carousel-kit.zip` in the project root, optimized for distribution (no dev dependencies).
+This will create `rt-carousel.zip` in the project root, optimized for distribution (no dev dependencies).

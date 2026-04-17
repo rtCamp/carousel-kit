@@ -251,6 +251,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 }, { index: 1 } ],
 				canScrollPrev: false,
 				canScrollNext: true,
+				scrollProgress: 0,
+				slideCount: 2,
 				ariaLabelPattern: 'Go to slide %d',
 			};
 
@@ -275,6 +277,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 }, { index: 1 }, { index: 2 } ],
 				canScrollPrev: true,
 				canScrollNext: true,
+				scrollProgress: 0.5,
+				slideCount: 3,
 				ariaLabelPattern: 'Slide %d of 3',
 			};
 
@@ -300,6 +304,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 }, { index: 1 }, { index: 2 } ],
 				canScrollPrev: false,
 				canScrollNext: true,
+				scrollProgress: 0,
+				slideCount: 3,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -318,6 +324,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 }, { index: 1 }, { index: 2 } ],
 				canScrollPrev: true,
 				canScrollNext: true,
+				scrollProgress: 0.5,
+				slideCount: 3,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -336,6 +344,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 }, { index: 1 }, { index: 2 } ],
 				canScrollPrev: true,
 				canScrollNext: false,
+				scrollProgress: 1,
+				slideCount: 3,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -354,6 +364,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 } ],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 1,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -374,6 +386,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [ { index: 0 } ],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 1,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -394,6 +408,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -414,6 +430,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 				ref: element,
 			};
@@ -432,6 +450,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 				ref: null,
 			};
@@ -449,6 +469,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -470,6 +492,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -489,6 +513,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -515,6 +541,8 @@ describe( 'CarouselContext Type', () => {
 					scrollSnaps: [],
 					canScrollPrev: false,
 					canScrollNext: false,
+					scrollProgress: 0,
+					slideCount: 0,
 					ariaLabelPattern: pattern,
 				};
 
@@ -534,6 +562,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps: [],
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 0,
 				ariaLabelPattern: 'Slide %d',
 			};
 
@@ -558,6 +588,8 @@ describe( 'CarouselContext Type', () => {
 				scrollSnaps,
 				canScrollPrev: false,
 				canScrollNext: false,
+				scrollProgress: 0,
+				slideCount: 5,
 				ariaLabelPattern: 'Slide %d',
 			};
 

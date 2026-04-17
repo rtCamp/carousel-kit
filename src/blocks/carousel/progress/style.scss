@@ -1,0 +1,18 @@
+.rt-carousel-progress {
+	width: 100%;
+	height: 4px;
+	background-color: var(--rt-carousel-progress-bg-color, rgb(221, 221, 221));
+	overflow: hidden;
+	position: relative;
+	margin-top: 10px;
+
+	&__bar {
+		position: absolute;
+		top: 0;
+		left: -100%;
+		height: 100%;
+		width: 100%;
+		background-color: var(--rt-carousel-progress-color, rgba(28, 28, 28, 1));
+		transition: transform 0.4s ease-out;
+	}
+}

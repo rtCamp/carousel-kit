@@ -2,16 +2,16 @@
 /**
  * Unit tests for the Singleton trait.
  *
- * @package Carousel_Kit\Tests\Unit\Traits
+ * @package Rt_Carousel\Tests\Unit\Traits
  */
 
 declare(strict_types=1);
 
-namespace Carousel_Kit\Tests\Unit\Traits;
+namespace Rt_Carousel\Tests\Unit\Traits;
 
 use Brain\Monkey\Actions;
-use Carousel_Kit\Tests\Unit\UnitTestCase;
-use Carousel_Kit\Traits\Singleton;
+use Rt_Carousel\Tests\Unit\UnitTestCase;
+use Rt_Carousel\Traits\Singleton;
 
 /**
  * Test class A for singleton tests.
@@ -56,7 +56,7 @@ class SingletonTest extends UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_instance_returns_instance(): void {
-		Actions\expectDone( 'carousel_kit_singleton_init_' . SingletonTestClassA::class )->once();
+		Actions\expectDone( 'rt_carousel_singleton_init_' . SingletonTestClassA::class )->once();
 
 		$instance = SingletonTestClassA::get_instance();
 
@@ -69,7 +69,7 @@ class SingletonTest extends UnitTestCase {
 	 * @return void
 	 */
 	public function test_get_instance_returns_same_instance(): void {
-		Actions\expectDone( 'carousel_kit_singleton_init_' . SingletonTestClassB::class )->once();
+		Actions\expectDone( 'rt_carousel_singleton_init_' . SingletonTestClassB::class )->once();
 
 		$instance1 = SingletonTestClassB::get_instance();
 		$instance2 = SingletonTestClassB::get_instance();
@@ -83,7 +83,7 @@ class SingletonTest extends UnitTestCase {
 	 * @return void
 	 */
 	public function test_constructor_is_called(): void {
-		Actions\expectDone( 'carousel_kit_singleton_init_' . SingletonTestClassC::class )->once();
+		Actions\expectDone( 'rt_carousel_singleton_init_' . SingletonTestClassC::class )->once();
 
 		$instance = SingletonTestClassC::get_instance();
 

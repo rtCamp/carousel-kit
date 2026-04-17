@@ -4,11 +4,11 @@ import { EditorCarouselContext } from '../editor-context';
 import { useContext, useEffect, useRef, useState } from '@wordpress/element';
 import type { EmblaCarouselType } from 'embla-carousel';
 
-const EMBLA_KEY = Symbol.for( 'carousel-kit.carousel' );
+const EMBLA_KEY = Symbol.for( 'rt-carousel.carousel' );
 
 export default function Edit() {
 	const blockProps = useBlockProps( {
-		className: 'carousel-kit-dots',
+		className: 'rt-carousel-dots',
 	} );
 
 	const { emblaApi: contextApi } = useContext( EditorCarouselContext );
@@ -20,7 +20,7 @@ export default function Edit() {
 		if ( ! ref.current ) {
 			return null;
 		}
-		const wrapper = ref.current.closest( '.carousel-kit' );
+		const wrapper = ref.current.closest( '.rt-carousel' );
 		if ( ! wrapper ) {
 			return null;
 		}
@@ -89,7 +89,7 @@ export default function Edit() {
 			{ dotsToRender.map( ( _, index ) => (
 				<button
 					key={ index }
-					className={ `carousel-kit-dot ${ index === selectedIndex ? 'is-active' : '' }` }
+					className={ `rt-carousel-dot ${ index === selectedIndex ? 'is-active' : '' }` }
 					onClick={ () => {
 						const api = contextApi || getEmblaFromDOM();
 						if ( api ) {
@@ -98,7 +98,7 @@ export default function Edit() {
 					} }
 					type="button"
 					/* translators: %d: slide number */
-					aria-label={ sprintf( __( 'Go to slide %d', 'carousel-kit' ), index + 1 ) }
+					aria-label={ sprintf( __( 'Go to slide %d', 'rt-carousel' ), index + 1 ) }
 				/>
 			) ) }
 		</div>

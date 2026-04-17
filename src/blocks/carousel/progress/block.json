@@ -2,14 +2,14 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"version": "1.0.0",
-	"name": "rt-carousel/carousel-dots",
-	"title": "Carousel Dots",
+	"name": "rt-carousel/carousel-progress",
+	"title": "Carousel Progress",
 	"category": "rt-carousel",
-	"icon": "ellipsis",
+	"icon": "minus",
 	"ancestor": [
 		"rt-carousel/carousel"
 	],
-	"description": "Navigation dots for the carousel.",
+	"description": "Progress bar for the carousel.",
 	"textdomain": "rt-carousel",
 	"attributes": {},
 	"supports": {
