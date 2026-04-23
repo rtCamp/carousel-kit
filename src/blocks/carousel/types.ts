@@ -57,6 +57,9 @@ export type CarouselContext = {
 	canScrollNext: boolean;
 	scrollProgress: number;
 	ariaLabelPattern: string;
+	announcement?: string;
+	announcementPattern?: string;
+	shouldAnnounce?: boolean;
 	ref?: HTMLElement | null;
 	slideCount: number;
 	initialized?: boolean;
