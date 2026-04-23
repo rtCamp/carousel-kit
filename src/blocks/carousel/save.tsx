@@ -52,6 +52,13 @@ export default function Save( {
 		slideCount: 0,
 		/* translators: %d: slide number */
 		ariaLabelPattern: __( 'Go to slide %d', 'rt-carousel' ),
+		announcement: '',
+		shouldAnnounce: false,
+		/* translators: {{currentSlide}}: current slide number, {{totalSlides}}: total slide count. */
+		announcementPattern: __(
+			'Slide {{currentSlide}} of {{totalSlides}}',
+			'rt-carousel',
+		),
 	};
 
 	const blockProps = useBlockProps.save( {
@@ -71,7 +78,26 @@ export default function Save( {
 		} as React.CSSProperties,
 	} );
 
-	const innerBlocksProps = useInnerBlocksProps.save( blockProps );
+	const innerBlocksProps = useInnerBlocksProps.save( blockProps ) as ReturnType<
+		typeof useInnerBlocksProps.save
+	> & {
+		children: React.ReactNode;
+	};
+	const { children, ...wrapperProps } = innerBlocksProps;
+	const announcementLiveRegion = (
+		<span
+			className="screen-reader-text"
+			role="status"
+			aria-live="polite"
+			aria-atomic="true"
+			data-wp-text="context.announcement"
+		/>
+	);
 
-	return <div { ...innerBlocksProps } />;
+	return (
+		<div { ...wrapperProps }>
+			{ children }
+			{ announcementLiveRegion }
+		</div>
+	);
 }
