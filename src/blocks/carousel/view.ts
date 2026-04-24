@@ -241,9 +241,11 @@ store( 'rt-carousel/carousel', {
 						context.canScrollPrev = embla.canScrollPrev();
 						context.canScrollNext = embla.canScrollNext();
 						context.selectedIndex = embla.selectedScrollSnap();
-						context.scrollSnaps = embla
-							.scrollSnapList()
-							.map( ( _, index ) => ( { index } ) );
+						if ( context.scrollSnaps.length !== embla.scrollSnapList().length ) {
+							context.scrollSnaps = embla
+								.scrollSnapList()
+								.map( ( _, index ) => ( { index } ) );
+						}
 						context.scrollProgress = embla.scrollProgress();
 						context.slideCount = embla.slideNodes().length;
 					};
