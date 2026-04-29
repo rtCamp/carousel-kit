@@ -336,7 +336,9 @@ describe( 'Carousel View Module', () => {
 
 				setEmblaOnViewport( viewport, mockEmbla );
 
-				const mockContext = createMockContext();
+				const mockContext = createMockContext( {
+					selectedIndex: 1,
+				} );
 				( mockContext as CarouselContext & { snap?: { index: number } } ).snap = {
 					index: 0,
 				};
@@ -697,6 +699,7 @@ describe( 'Carousel View Module', () => {
 
 			it( 'should update announcement after a manual slide change', () => {
 				const mockContext = createMockContext( {
+					announcementPattern: 'Slide {{currentSlide}} of {{totalSlides}}',
 					selectedIndex: -1,
 				} );
 				const { wrapper, viewport } = createMockCarouselDOM();
@@ -748,6 +751,7 @@ describe( 'Carousel View Module', () => {
 					listeners.select?.();
 
 					expect( mockContext.announcement ).toBe( 'Slide 2 of 5' );
+					expect( mockContext.shouldAnnounce ).toBe( false );
 				} finally {
 					( window as Window & { IntersectionObserver?: typeof IntersectionObserver } ).IntersectionObserver =
 						originalIntersectionObserver;
