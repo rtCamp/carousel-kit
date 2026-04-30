@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$pattern_images_url = trailingslashit( RT_CAROUSEL_URL . '/examples/data/images' );
-$logo_one           = $pattern_images_url . 'logo-placeholder-1.svg';
-$logo_two           = $pattern_images_url . 'logo-placeholder-2.svg';
-$logo_three         = $pattern_images_url . 'logo-placeholder-3.svg';
-$logo_four          = $pattern_images_url . 'logo-placeholder-4.svg';
-$logo_five          = $pattern_images_url . 'logo-placeholder-5.svg';
+$rt_carousel_images_url = trailingslashit( RT_CAROUSEL_URL . '/examples/data/images' );
+$rt_carousel_logo_one   = $rt_carousel_images_url . 'logo-placeholder-1.svg';
+$rt_carousel_logo_two   = $rt_carousel_images_url . 'logo-placeholder-2.svg';
+$rt_carousel_logo_three = $rt_carousel_images_url . 'logo-placeholder-3.svg';
+$rt_carousel_logo_four  = $rt_carousel_images_url . 'logo-placeholder-4.svg';
+$rt_carousel_logo_five  = $rt_carousel_images_url . 'logo-placeholder-5.svg';
 ?>
 
 <!-- wp:rt-carousel/carousel {"loop":true,"autoplayDelay":3000,"autoplayStopOnInteraction":false,"ariaLabel":"Partner Logos","metadata":{"categories":["rt-carousel"],"patternName":"rt-carousel/logo-showcase","name":"rtCarousel: Logo Showcase"},"className":"wp-block-carousel-carousel is-style-columns-3"} -->
@@ -28,35 +28,35 @@ $logo_five          = $pattern_images_url . 'logo-placeholder-5.svg';
 	<div class="wp-block-rt-carousel-carousel-viewport embla wp-block-carousel-carousel-viewport">
 		<div class="embla__container"><!-- wp:rt-carousel/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-rt-carousel-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="rt-carousel/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_one ); ?>" alt="Partner Logo 1" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $rt_carousel_logo_one ); ?>" alt="Partner Logo 1" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:rt-carousel/carousel-slide -->
 
 			<!-- wp:rt-carousel/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-rt-carousel-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="rt-carousel/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_two ); ?>" alt="Partner Logo 2" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $rt_carousel_logo_two ); ?>" alt="Partner Logo 2" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:rt-carousel/carousel-slide -->
 
 			<!-- wp:rt-carousel/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-rt-carousel-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="rt-carousel/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_three ); ?>" alt="Partner Logo 3" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $rt_carousel_logo_three ); ?>" alt="Partner Logo 3" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:rt-carousel/carousel-slide -->
 
 			<!-- wp:rt-carousel/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-rt-carousel-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="rt-carousel/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_four ); ?>" alt="Partner Logo 4" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $rt_carousel_logo_four ); ?>" alt="Partner Logo 4" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:rt-carousel/carousel-slide -->
 
 			<!-- wp:rt-carousel/carousel-slide {"className":"wp-block-carousel-carousel-slide"} -->
 			<div class="wp-block-rt-carousel-carousel-slide embla__slide wp-block-carousel-carousel-slide" role="group" aria-roledescription="slide" data-wp-interactive="rt-carousel/carousel" data-wp-class--is-active="callbacks.isSlideActive" data-wp-bind--aria-current="callbacks.isSlideActive"><!-- wp:image {"width":"200px","sizeSlug":"full","linkDestination":"none","align":"center","className":"is-style-rounded"} -->
-				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $logo_five ); ?>" alt="Partner Logo 5" style="width:200px" /></figure>
+				<figure class="wp-block-image aligncenter size-full is-resized is-style-rounded"><img src="<?php echo esc_url( $rt_carousel_logo_five ); ?>" alt="Partner Logo 5" style="width:200px" /></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:rt-carousel/carousel-slide -->
