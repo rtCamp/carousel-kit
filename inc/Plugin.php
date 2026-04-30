@@ -71,12 +71,25 @@ class Plugin {
 
 		if ( $network_wide ) {
 			$deactivate_url = wp_nonce_url(
-				network_admin_url( 'plugins.php?action=deactivate&plugin=' . rawurlencode( $old_plugin ) . '&networkwide=1' ),
+				add_query_arg(
+					[
+						'action'      => 'deactivate',
+						'plugin'      => $old_plugin,
+						'networkwide' => '1',
+					],
+					network_admin_url( 'plugins.php' )
+				),
 				'deactivate-plugin_' . $old_plugin
 			);
 		} else {
 			$deactivate_url = wp_nonce_url(
-				admin_url( 'plugins.php?action=deactivate&plugin=' . rawurlencode( $old_plugin ) ),
+				add_query_arg(
+					[
+						'action' => 'deactivate',
+						'plugin' => $old_plugin,
+					],
+					admin_url( 'plugins.php' )
+				),
 				'deactivate-plugin_' . $old_plugin
 			);
 		}

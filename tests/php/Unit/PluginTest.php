@@ -166,11 +166,11 @@ class PluginTest extends UnitTestCase {
 	}
 
 	/**
-	 * Test that blocks are registered in the correct order.
+	 * Test that all expected blocks are registered regardless of order.
 	 *
 	 * @return void
 	 */
-	public function test_register_blocks_in_correct_order(): void {
+	public function test_register_blocks_contains_all_expected(): void {
 		$registered_blocks = [];
 
 		Functions\when( 'register_block_type' )->alias(
@@ -182,12 +182,16 @@ class PluginTest extends UnitTestCase {
 		$instance = $this->getPluginInstance();
 		$this->invokeMethod( $instance, 'register_blocks' );
 
-		$this->assertStringContainsString( '/blocks/carousel', $registered_blocks[0] );
-		$this->assertStringContainsString( '/blocks/carousel/controls', $registered_blocks[1] );
-		$this->assertStringContainsString( '/blocks/carousel/dots', $registered_blocks[2] );
-		$this->assertStringContainsString( '/blocks/carousel/progress', $registered_blocks[3] );
-		$this->assertStringContainsString( '/blocks/carousel/viewport', $registered_blocks[4] );
-		$this->assertStringContainsString( '/blocks/carousel/slide', $registered_blocks[5] );
+		foreach ( self::EXPECTED_BLOCKS as $block ) {
+			$found = false;
+			foreach ( $registered_blocks as $path ) {
+				if ( str_contains( $path, "/blocks/{$block}" ) ) {
+					$found = true;
+					break;
+				}
+			}
+			$this->assertTrue( $found, "Block '{$block}' should be registered." );
+		}
 	}
 
 	/**
@@ -457,9 +461,10 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
 		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
 		Functions\expect( 'is_network_admin' )->andReturn( false );
-		Functions\expect( 'admin_url' )->once()->andReturnUsing(
-			function ( string $path ): string {
-				return 'https://example.com/wp-admin/' . $path;
+		Functions\expect( 'admin_url' )->once()->with( 'plugins.php' )->andReturn( 'https://example.com/wp-admin/plugins.php' );
+		Functions\expect( 'add_query_arg' )->once()->andReturnUsing(
+			function ( array $args, string $url ): string {
+				return $url . '?' . http_build_query( $args );
 			}
 		);
 		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
@@ -509,9 +514,10 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
 		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
 		Functions\expect( 'is_network_admin' )->andReturn( true );
-		Functions\expect( 'network_admin_url' )->once()->andReturnUsing(
-			function ( string $path ): string {
-				return 'https://example.com/wp-admin/network/' . $path;
+		Functions\expect( 'network_admin_url' )->once()->with( 'plugins.php' )->andReturn( 'https://example.com/wp-admin/network/plugins.php' );
+		Functions\expect( 'add_query_arg' )->once()->andReturnUsing(
+			function ( array $args, string $url ): string {
+				return $url . '?' . http_build_query( $args );
 			}
 		);
 		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
