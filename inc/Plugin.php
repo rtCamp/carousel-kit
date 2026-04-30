@@ -64,6 +64,11 @@ class Plugin {
 			return;
 		}
 
+		// Only show the notice in the matching admin context.
+		if ( $network_wide !== is_network_admin() ) {
+			return;
+		}
+
 		if ( $network_wide ) {
 			$deactivate_url = wp_nonce_url(
 				network_admin_url( 'plugins.php?action=deactivate&plugin=' . urlencode( $old_plugin ) . '&networkwide=1' ),

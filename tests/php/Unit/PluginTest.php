@@ -456,6 +456,7 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'is_multisite' )->andReturn( false );
 		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
 		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( false );
 		Functions\expect( 'admin_url' )->once()->andReturnUsing(
 			function ( string $path ): string {
 				return 'https://example.com/wp-admin/' . $path;
@@ -507,6 +508,7 @@ class PluginTest extends UnitTestCase {
 		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
 		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
 		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( true );
 		Functions\expect( 'network_admin_url' )->once()->andReturnUsing(
 			function ( string $path ): string {
 				return 'https://example.com/wp-admin/network/' . $path;
@@ -525,5 +527,47 @@ class PluginTest extends UnitTestCase {
 		$this->assertStringContainsString( 'notice-warning', $output );
 		$this->assertStringContainsString( 'networkwide=1', $output );
 		$this->assertStringContainsString( 'network/', $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing for network-activated plugin on site admin.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_network_plugin_on_site_admin(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing for site-activated plugin on network admin.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_site_plugin_on_network_admin(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( true );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
 	}
 }
