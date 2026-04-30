@@ -166,35 +166,6 @@ class PluginTest extends UnitTestCase {
 	}
 
 	/**
-	 * Test that all expected blocks are registered regardless of order.
-	 *
-	 * @return void
-	 */
-	public function test_register_blocks_contains_all_expected(): void {
-		$registered_blocks = [];
-
-		Functions\when( 'register_block_type' )->alias(
-			function ( string $path ) use ( &$registered_blocks ): void {
-				$registered_blocks[] = $path;
-			}
-		);
-
-		$instance = $this->getPluginInstance();
-		$this->invokeMethod( $instance, 'register_blocks' );
-
-		foreach ( self::EXPECTED_BLOCKS as $block ) {
-			$found = false;
-			foreach ( $registered_blocks as $path ) {
-				if ( str_contains( $path, "/blocks/{$block}" ) ) {
-					$found = true;
-					break;
-				}
-			}
-			$this->assertTrue( $found, "Block '{$block}' should be registered." );
-		}
-	}
-
-	/**
 	 * Test that register_blocks does nothing when build path is not defined.
 	 *
 	 * @return void

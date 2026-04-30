@@ -129,4 +129,4 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 == Upgrade Notice ==
 
 = 2.0.0 =
-Plugin renamed from "Carousel Kit" to "rtCarousel". Existing carousel blocks are automatically migrated on activation. The old Carousel Kit plugin is deactivated automatically and can be safely deleted.
+Plugin renamed from "Carousel Kit" to "rtCarousel". Existing carousel blocks are automatically migrated on activation. You will see an admin notice prompting you to deactivate the old Carousel Kit plugin, which can then be safely deleted.
