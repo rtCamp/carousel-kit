@@ -35,6 +35,7 @@ class PluginTest extends UnitTestCase {
 		'carousel',
 		'carousel/controls',
 		'carousel/dots',
+		'carousel/progress',
 		'carousel/viewport',
 		'carousel/slide',
 	];
@@ -149,7 +150,7 @@ class PluginTest extends UnitTestCase {
 		$instance = $this->getPluginInstance();
 		$this->invokeMethod( $instance, 'register_blocks' );
 
-		$this->assertCount( 5, $registered_blocks );
+		$this->assertCount( 6, $registered_blocks );
 
 		// Verify each expected block is registered
 		foreach ( self::EXPECTED_BLOCKS as $block ) {
@@ -184,8 +185,9 @@ class PluginTest extends UnitTestCase {
 		$this->assertStringContainsString( '/blocks/carousel', $registered_blocks[0] );
 		$this->assertStringContainsString( '/blocks/carousel/controls', $registered_blocks[1] );
 		$this->assertStringContainsString( '/blocks/carousel/dots', $registered_blocks[2] );
-		$this->assertStringContainsString( '/blocks/carousel/viewport', $registered_blocks[3] );
-		$this->assertStringContainsString( '/blocks/carousel/slide', $registered_blocks[4] );
+		$this->assertStringContainsString( '/blocks/carousel/progress', $registered_blocks[3] );
+		$this->assertStringContainsString( '/blocks/carousel/viewport', $registered_blocks[4] );
+		$this->assertStringContainsString( '/blocks/carousel/slide', $registered_blocks[5] );
 	}
 
 	/**
@@ -196,7 +198,7 @@ class PluginTest extends UnitTestCase {
 	public function test_register_blocks_handles_missing_build_path(): void {
 		// The actual behavior check: register_block_type should be called
 		// for each block when the constant is defined (as it is in our tests).
-		Functions\expect( 'register_block_type' )->times( 5 );
+		Functions\expect( 'register_block_type' )->times( 6 );
 
 		$instance = $this->getPluginInstance();
 		$this->invokeMethod( $instance, 'register_blocks' );
@@ -406,5 +408,122 @@ class PluginTest extends UnitTestCase {
 
 		// Assert completed successfully
 		$this->assertTrue( true );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing when old plugin is inactive.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_when_inactive(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing when user lacks capability (single-site).
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_without_capability(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice renders notice with deactivation link (single-site).
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_renders_on_single_site(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
+		Functions\expect( 'admin_url' )->once()->andReturnUsing(
+			function ( string $path ): string {
+				return 'https://example.com/wp-admin/' . $path;
+			}
+		);
+		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
+		Functions\when( 'esc_html__' )->returnArg();
+		Functions\when( 'esc_url' )->returnArg();
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'notice-warning', $output );
+		$this->assertStringContainsString( 'Carousel Kit', $output );
+		$this->assertStringContainsString( 'action=deactivate', $output );
+		$this->assertStringNotContainsString( 'networkwide=1', $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing on multisite without manage_network_plugins.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_without_network_capability(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice renders with network deactivation URL on multisite.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_renders_network_url_on_multisite(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
+		Functions\expect( 'network_admin_url' )->once()->andReturnUsing(
+			function ( string $path ): string {
+				return 'https://example.com/wp-admin/network/' . $path;
+			}
+		);
+		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
+		Functions\when( 'esc_html__' )->returnArg();
+		Functions\when( 'esc_url' )->returnArg();
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'notice-warning', $output );
+		$this->assertStringContainsString( 'networkwide=1', $output );
+		$this->assertStringContainsString( 'network/', $output );
 	}
 }
