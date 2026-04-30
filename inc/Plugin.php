@@ -39,45 +39,33 @@ class Plugin {
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 		add_action( 'init', [ $this, 'register_pattern_category' ] );
 		add_action( 'init', [ $this, 'register_block_patterns' ] );
-		add_action( 'admin_init', [ $this, 'deactivate_legacy_plugin' ] );
+		add_action( 'admin_notices', [ $this, 'legacy_plugin_notice' ] );
 	}
 
 	/**
-	 * Deactivate the legacy "Carousel Kit" plugin if still active.
-	 *
-	 * Handles both single-site and network-wide activations.
+	 * Show an admin notice if the legacy "Carousel Kit" plugin is still active.
 	 */
-	public function deactivate_legacy_plugin(): void {
+	public function legacy_plugin_notice(): void {
 		$old_plugin = 'carousel-kit/carousel-kit.php';
 
 		if ( ! is_plugin_active( $old_plugin ) ) {
 			return;
 		}
 
-		$network_wide = is_multisite() && is_plugin_active_for_network( $old_plugin );
-		if ( $network_wide && ! current_user_can( 'manage_network_plugins' ) ) {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
 
-		if ( ! $network_wide && ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
+		$deactivate_url = wp_nonce_url(
+			admin_url( 'plugins.php?action=deactivate&plugin=' . urlencode( $old_plugin ) ),
+			'deactivate-plugin_' . $old_plugin
+		);
 
-		// Silent flag prevents deactivation hooks from firing redirect.
-		deactivate_plugins( $old_plugin, true, $network_wide );
-
-		if ( is_plugin_active( $old_plugin ) ) {
-			return;
-		}
-
-		add_action(
-			'admin_notices',
-			static function (): void {
-				printf(
-					'<div class="notice notice-info is-dismissible"><p>%s</p></div>',
-					esc_html__( 'The old "Carousel Kit" plugin has been deactivated. rtCarousel is its replacement.', 'rt-carousel' )
-				);
-			}
+		printf(
+			'<div class="notice notice-warning is-dismissible"><p>%s <a href="%s">%s</a></p></div>',
+			esc_html__( 'The "Carousel Kit" plugin is still active. rtCarousel is its replacement — please deactivate Carousel Kit.', 'rt-carousel' ),
+			esc_url( $deactivate_url ),
+			esc_html__( 'Deactivate Carousel Kit', 'rt-carousel' )
 		);
 	}
 
