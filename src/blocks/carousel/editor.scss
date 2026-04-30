@@ -2,6 +2,9 @@
  * Editor-only styles for Carousel
  */
 
+@use "styles/core";
+@use "styles/variants";
+
 // ── Setup chooser ────────────────────────────────────────────────────────────
 .rt-carousel-setup {
 

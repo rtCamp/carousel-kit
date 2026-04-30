@@ -15,6 +15,7 @@ import { useMergeRefs } from '@wordpress/compose';
 import { EditorCarouselContext } from '../editor-context';
 import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 import { useCarouselObservers } from '../hooks/useCarouselObservers';
+import { DYNAMIC_LIST_CONTAINER_SELECTOR } from '../dynamic-list-selectors';
 
 const EMBLA_KEY = Symbol.for( 'carousel-system.carousel' );
 
@@ -115,7 +116,7 @@ export default function Edit( {
 		},
 		{
 			orientation: carouselOptions?.axis === 'y' ? 'vertical' : 'horizontal',
-			allowedBlocks: [ 'rt-carousel/carousel-slide', 'core/query' ],
+			allowedBlocks: [ 'rt-carousel/carousel-slide', 'core/query', 'core/terms-query' ],
 			renderAppender: ! hasSlides ? EmptyAppender : undefined,
 		},
 	);
@@ -169,8 +170,8 @@ export default function Edit( {
 				embla.destroy();
 			}
 
-			const queryLoopContainer = viewport.querySelector(
-				'.wp-block-post-template',
+			const dynamicListContainer = viewport.querySelector(
+				DYNAMIC_LIST_CONTAINER_SELECTOR,
 			) as HTMLElement;
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -184,7 +185,7 @@ export default function Edit( {
 				align: options?.align || 'start',
 				direction: options?.direction || 'ltr',
 				slidesToScroll: options?.slidesToScroll || 1,
-				container: queryLoopContainer || undefined,
+				container: dynamicListContainer || undefined,
 				watchDrag: false, // Clicks in slide gaps must not trigger Embla scroll in the editor.
 				watchSlides: false, // Gutenberg injects block UI nodes into .embla__container; Embla's built-in MutationObserver would call reInit() on those, corrupting slide order and transforms.
 				watchResize: false, // Replaced by a manual debounced ResizeObserver in useCarouselObservers.

@@ -197,8 +197,8 @@ export default function Edit( {
 			],
 		);
 
-	const handleSetup = ( slideCount: number ) => {
-		const slides = Array.from( { length: slideCount }, () =>
+	const handleSetup = ( initialSlideCount: number ) => {
+		const slides = Array.from( { length: initialSlideCount }, () =>
 			createBlock( 'rt-carousel/carousel-slide', {}, [
 				createBlock( 'core/paragraph', {} ),
 			] ),

@@ -1,20 +1,25 @@
 import { useEffect } from '@wordpress/element';
 import type { EmblaCarouselType } from 'embla-carousel';
+import {
+	CAROUSEL_CONTAINER_SELECTOR,
+	CAROUSEL_SLIDE_SELECTOR,
+	DYNAMIC_LIST_CONTAINER_SELECTOR,
+} from '../dynamic-list-selectors';
 
 const RESIZE_DEBOUNCE_MS = 200;
 const MUTATION_DEBOUNCE_MS = 150;
 
 /**
- * Unified observer hook that handles both resize detection and Query Loop
+ * Unified observer hook that handles both resize detection and dynamic list
  * DOM mutations through a single coordinated MutationObserver.
  *
  * **Resize detection** (viewport + first slide width changes):
  * Uses `reInit()` because resize only affects measurements — the DOM structure
  * (container + slides) remains unchanged, so Embla's cached references stay valid.
  *
- * **Query Loop detection** (slide count changes):
- * Uses full destroy/recreate via `initEmblaRef` because Query Loop changes can
- * replace the `.wp-block-post-template` element or swap out its children entirely.
+ * **Dynamic list detection** (slide count changes):
+ * Uses full destroy/recreate via `initEmblaRef` because Query Loop and Terms
+ * Query changes can replace the template element or swap out its children.
  * Embla caches references to container and slide elements, so when those DOM
  * nodes are replaced, a fresh instance is required.
  *
@@ -78,8 +83,9 @@ export function useCarouselObservers(
 		resizeObserver.observe( viewportEl );
 
 		const updateSlideObservation = () => {
-			const container = viewportEl.querySelector( '.embla__container, .wp-block-post-template' );
-			const firstSlide = container?.querySelector( '.embla__slide, .wp-block-post' ) ?? null;
+			const container = viewportEl.querySelector( CAROUSEL_CONTAINER_SELECTOR );
+			const firstSlide =
+				container?.querySelector( CAROUSEL_SLIDE_SELECTOR ) ?? null;
 
 			if ( firstSlide === observedSlide ) {
 				return;
@@ -97,9 +103,13 @@ export function useCarouselObservers(
 			}
 		};
 
-		const checkQueryLoopChanges = (): boolean => {
-			const postTemplate = viewportEl.querySelector( '.wp-block-post-template' );
-			const currentCount = postTemplate ? postTemplate.children.length : 0;
+		const checkDynamicListChanges = (): boolean => {
+			const dynamicListTemplate = viewportEl.querySelector(
+				DYNAMIC_LIST_CONTAINER_SELECTOR,
+			);
+			const currentCount = dynamicListTemplate
+				? dynamicListTemplate.children.length
+				: 0;
 
 			const changed = currentCount !== lastSlideCount;
 			lastSlideCount = currentCount;
@@ -115,7 +125,7 @@ export function useCarouselObservers(
 		};
 
 		const processMutations = () => {
-			const needsFullInit = checkQueryLoopChanges();
+			const needsFullInit = checkDynamicListChanges();
 
 			if ( needsFullInit ) {
 				clearTimeout( resizeTimer );
@@ -142,7 +152,9 @@ export function useCarouselObservers(
 		mutationObserver.observe( viewportEl, { childList: true, subtree: true } );
 
 		// Seed the initial slide count so the first mutation doesn't trigger a spurious init.
-		const initialTemplate = viewportEl.querySelector( '.wp-block-post-template' );
+		const initialTemplate = viewportEl.querySelector(
+			DYNAMIC_LIST_CONTAINER_SELECTOR,
+		);
 		lastSlideCount = initialTemplate ? initialTemplate.children.length : 0;
 
 		updateSlideObservation();
