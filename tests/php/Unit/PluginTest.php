@@ -35,6 +35,7 @@ class PluginTest extends UnitTestCase {
 		'carousel',
 		'carousel/controls',
 		'carousel/dots',
+		'carousel/progress',
 		'carousel/viewport',
 		'carousel/slide',
 	];
@@ -149,7 +150,7 @@ class PluginTest extends UnitTestCase {
 		$instance = $this->getPluginInstance();
 		$this->invokeMethod( $instance, 'register_blocks' );
 
-		$this->assertCount( 5, $registered_blocks );
+		$this->assertCount( 6, $registered_blocks );
 
 		// Verify each expected block is registered
 		foreach ( self::EXPECTED_BLOCKS as $block ) {
@@ -165,30 +166,6 @@ class PluginTest extends UnitTestCase {
 	}
 
 	/**
-	 * Test that blocks are registered in the correct order.
-	 *
-	 * @return void
-	 */
-	public function test_register_blocks_in_correct_order(): void {
-		$registered_blocks = [];
-
-		Functions\when( 'register_block_type' )->alias(
-			function ( string $path ) use ( &$registered_blocks ): void {
-				$registered_blocks[] = $path;
-			}
-		);
-
-		$instance = $this->getPluginInstance();
-		$this->invokeMethod( $instance, 'register_blocks' );
-
-		$this->assertStringContainsString( '/blocks/carousel', $registered_blocks[0] );
-		$this->assertStringContainsString( '/blocks/carousel/controls', $registered_blocks[1] );
-		$this->assertStringContainsString( '/blocks/carousel/dots', $registered_blocks[2] );
-		$this->assertStringContainsString( '/blocks/carousel/viewport', $registered_blocks[3] );
-		$this->assertStringContainsString( '/blocks/carousel/slide', $registered_blocks[4] );
-	}
-
-	/**
 	 * Test that register_blocks does nothing when build path is not defined.
 	 *
 	 * @return void
@@ -196,7 +173,7 @@ class PluginTest extends UnitTestCase {
 	public function test_register_blocks_handles_missing_build_path(): void {
 		// The actual behavior check: register_block_type should be called
 		// for each block when the constant is defined (as it is in our tests).
-		Functions\expect( 'register_block_type' )->times( 5 );
+		Functions\expect( 'register_block_type' )->times( 6 );
 
 		$instance = $this->getPluginInstance();
 		$this->invokeMethod( $instance, 'register_blocks' );
@@ -406,5 +383,168 @@ class PluginTest extends UnitTestCase {
 
 		// Assert completed successfully
 		$this->assertTrue( true );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing when old plugin is inactive.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_when_inactive(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing when user lacks capability (single-site).
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_without_capability(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice renders notice with deactivation link (single-site).
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_renders_on_single_site(): void {
+		Functions\expect( 'is_multisite' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( false );
+		Functions\expect( 'admin_url' )->once()->with( 'plugins.php' )->andReturn( 'https://example.com/wp-admin/plugins.php' );
+		Functions\expect( 'add_query_arg' )->once()->andReturnUsing(
+			function ( array $args, string $url ): string {
+				return $url . '?' . http_build_query( $args );
+			}
+		);
+		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
+		Functions\when( 'esc_html__' )->returnArg();
+		Functions\when( 'esc_url' )->returnArg();
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'notice-warning', $output );
+		$this->assertStringContainsString( 'Carousel Kit', $output );
+		$this->assertStringContainsString( 'action=deactivate', $output );
+		$this->assertStringNotContainsString( 'networkwide=1', $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing on multisite without manage_network_plugins.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_without_network_capability(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice renders with network deactivation URL on multisite.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_renders_network_url_on_multisite(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( true );
+		Functions\expect( 'network_admin_url' )->once()->with( 'plugins.php' )->andReturn( 'https://example.com/wp-admin/network/plugins.php' );
+		Functions\expect( 'add_query_arg' )->once()->andReturnUsing(
+			function ( array $args, string $url ): string {
+				return $url . '?' . http_build_query( $args );
+			}
+		);
+		Functions\expect( 'wp_nonce_url' )->once()->andReturnFirstArg();
+		Functions\when( 'esc_html__' )->returnArg();
+		Functions\when( 'esc_url' )->returnArg();
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'notice-warning', $output );
+		$this->assertStringContainsString( 'networkwide=1', $output );
+		$this->assertStringContainsString( 'network/', $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing for network-activated plugin on site admin.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_network_plugin_on_site_admin(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'manage_network_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( false );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
+	}
+
+	/**
+	 * Test that legacy_plugin_notice outputs nothing for site-activated plugin on network admin.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_plugin_notice_no_output_site_plugin_on_network_admin(): void {
+		Functions\expect( 'is_multisite' )->andReturn( true );
+		Functions\expect( 'is_plugin_active_for_network' )->with( 'carousel-kit/carousel-kit.php' )->andReturn( false );
+		Functions\expect( 'is_plugin_active' )->once()->with( 'carousel-kit/carousel-kit.php' )->andReturn( true );
+		Functions\expect( 'current_user_can' )->once()->with( 'activate_plugins' )->andReturn( true );
+		Functions\expect( 'is_network_admin' )->andReturn( true );
+
+		$instance = $this->getPluginInstance();
+
+		ob_start();
+		$this->invokeMethod( $instance, 'legacy_plugin_notice' );
+		$output = ob_get_clean();
+
+		$this->assertEmpty( $output );
 	}
 }

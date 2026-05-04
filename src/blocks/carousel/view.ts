@@ -283,13 +283,16 @@ store( 'rt-carousel/carousel', {
 
 					const updateState = () => {
 						const previousSelectedIndex = context.selectedIndex;
+						const scrollSnapList = embla.scrollSnapList();
 						context.initialized = true;
 						context.canScrollPrev = embla.canScrollPrev();
 						context.canScrollNext = embla.canScrollNext();
 						context.selectedIndex = embla.selectedScrollSnap();
-						context.scrollSnaps = embla
-							.scrollSnapList()
-							.map( ( _, index ) => ( { index } ) );
+						if ( context.scrollSnaps.length !== scrollSnapList.length ) {
+							context.scrollSnaps = scrollSnapList.map( ( _, index ) => ( {
+								index,
+							} ) );
+						}
 						context.scrollProgress = embla.scrollProgress();
 						context.slideCount = embla.slideNodes().length;
 						updateSlideAnnouncement( context, previousSelectedIndex );

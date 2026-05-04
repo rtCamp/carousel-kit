@@ -39,22 +39,23 @@ class Plugin {
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 		add_action( 'init', [ $this, 'register_pattern_category' ] );
 		add_action( 'init', [ $this, 'register_block_patterns' ] );
-		add_action( 'admin_init', [ $this, 'deactivate_legacy_plugin' ] );
+		add_action( 'admin_notices', [ $this, 'legacy_plugin_notice' ] );
+		add_action( 'network_admin_notices', [ $this, 'legacy_plugin_notice' ] );
 	}
 
 	/**
-	 * Deactivate the legacy "Carousel Kit" plugin if still active.
+	 * Show an admin notice if the legacy "Carousel Kit" plugin is still active.
 	 *
 	 * Handles both single-site and network-wide activations.
 	 */
-	public function deactivate_legacy_plugin(): void {
-		$old_plugin = 'carousel-kit/carousel-kit.php';
+	public function legacy_plugin_notice(): void {
+		$old_plugin   = 'carousel-kit/carousel-kit.php';
+		$network_wide = is_multisite() && is_plugin_active_for_network( $old_plugin );
 
 		if ( ! is_plugin_active( $old_plugin ) ) {
 			return;
 		}
 
-		$network_wide = is_multisite() && is_plugin_active_for_network( $old_plugin );
 		if ( $network_wide && ! current_user_can( 'manage_network_plugins' ) ) {
 			return;
 		}
@@ -63,21 +64,41 @@ class Plugin {
 			return;
 		}
 
-		// Silent flag prevents deactivation hooks from firing redirect.
-		deactivate_plugins( $old_plugin, true, $network_wide );
-
-		if ( is_plugin_active( $old_plugin ) ) {
+		// Only show the notice in the matching admin context.
+		if ( is_network_admin() !== $network_wide ) {
 			return;
 		}
 
-		add_action(
-			'admin_notices',
-			static function (): void {
-				printf(
-					'<div class="notice notice-info is-dismissible"><p>%s</p></div>',
-					esc_html__( 'The old "Carousel Kit" plugin has been deactivated. rtCarousel is its replacement.', 'rt-carousel' )
-				);
-			}
+		if ( $network_wide ) {
+			$deactivate_url = wp_nonce_url(
+				add_query_arg(
+					[
+						'action'      => 'deactivate',
+						'plugin'      => $old_plugin,
+						'networkwide' => '1',
+					],
+					network_admin_url( 'plugins.php' )
+				),
+				'deactivate-plugin_' . $old_plugin
+			);
+		} else {
+			$deactivate_url = wp_nonce_url(
+				add_query_arg(
+					[
+						'action' => 'deactivate',
+						'plugin' => $old_plugin,
+					],
+					admin_url( 'plugins.php' )
+				),
+				'deactivate-plugin_' . $old_plugin
+			);
+		}
+
+		printf(
+			'<div class="notice notice-warning is-dismissible"><p>%s <a href="%s">%s</a></p></div>',
+			esc_html__( 'The "Carousel Kit" plugin is still active. rtCarousel is its replacement — please deactivate Carousel Kit.', 'rt-carousel' ),
+			esc_url( $deactivate_url ),
+			esc_html__( 'Deactivate Carousel Kit', 'rt-carousel' )
 		);
 	}
 

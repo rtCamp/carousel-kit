@@ -77,7 +77,7 @@ Yes. Each carousel instance maintains its own independent state.
 
 = I am using "Carousel Kit". How do I upgrade to rtCarousel? =
 
-rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarousel — it will automatically migrate all existing carousel blocks in your content and deactivate the old plugin. No manual steps are needed. You can safely delete the old Carousel Kit plugin afterward.
+rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarousel — it will automatically migrate all existing carousel blocks in your content. You will see an admin notice prompting you to deactivate the old Carousel Kit plugin. After deactivating it, you can safely delete it.
 
 == Screenshots ==
 
@@ -129,4 +129,4 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 == Upgrade Notice ==
 
 = 2.0.0 =
-Plugin renamed from "Carousel Kit" to "rtCarousel". Existing carousel blocks are automatically migrated on activation. The old Carousel Kit plugin is deactivated automatically and can be safely deleted.
+Plugin renamed from "Carousel Kit" to "rtCarousel". Existing carousel blocks are automatically migrated on activation. You will see an admin notice prompting you to deactivate the old Carousel Kit plugin, which can then be safely deleted.
