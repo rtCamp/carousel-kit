@@ -5,6 +5,7 @@ import {
 } from '@wordpress/blocks';
 import Edit from './edit';
 import Save from './save';
+import deprecated from './deprecated';
 import './style.scss';
 import './editor.scss';
 import metadata from './block.json';
@@ -14,6 +15,7 @@ import { __ } from '@wordpress/i18n';
 registerBlockType( metadata as BlockConfiguration<CarouselAttributes>, {
 	edit: Edit,
 	save: Save,
+	deprecated,
 } );
 
 const styles = [

@@ -30,6 +30,18 @@ Thank you for your interest in contributing! We welcome all contributions, from 
 - **JavaScript/TypeScript**: We use the standard WordPress ESLint config. Run `npm run lint:js` to check.
 - **CSS/SCSS**: We use Stylelint. Run `npm run lint:css` to check.
 
+## Block `save()` Changes
+
+If your changes modify a block's `save()` output — including `data-wp-context`, HTML structure, class names, or new elements — you **must** add a deprecation entry in the block's `deprecated.tsx`.
+
+1. Copy the previous `save()` function into the `deprecated` array.
+2. Include the `attributes` and `supports` from the old version.
+3. Use `innerBlocks: true` if the block has inner blocks.
+
+Without this, existing content will show "Block contains unexpected or invalid content" errors in the editor.
+
+See the [Block Deprecation API](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-deprecation/) for details.
+
 ## Building the Plugin
 
 To create a production-ready ZIP file:
