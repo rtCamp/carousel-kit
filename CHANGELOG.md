@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.1](https://github.com/rtCamp/rt-carousel/compare/v2.0.0...v2.0.1) (2026-05-04)
+
+
+### Features
+
+* add a11y announcements for carousel slide changes ([#125](https://github.com/rtCamp/rt-carousel/issues/125)) ([b7a2240](https://github.com/rtCamp/rt-carousel/commit/b7a2240))
+
+
+### Bug Fixes
+
+* carousel dot focus loss with VoiceOver activation ([#127](https://github.com/rtCamp/rt-carousel/issues/127)) ([366031e](https://github.com/rtCamp/rt-carousel/commit/366031e))
+
+
+### Refactors
+
+* replace automatic plugin deactivation with admin notice ([#129](https://github.com/rtCamp/rt-carousel/issues/129)) ([279a464](https://github.com/rtCamp/rt-carousel/commit/279a464))
+
+
 ## [2.0.0](https://github.com/rtCamp/rt-carousel/compare/v1.0.4...v2.0.0) (2026-04-13)
 
 

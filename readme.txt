@@ -4,7 +4,7 @@ Tags: carousel, slider, block, interactivity-api, embla
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,12 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 1. Carousel block in the editor with multiple slides
 
 == Changelog ==
+
+= 2.0.1 =
+New: Add a11y announcements for carousel slide changes
+Fix: Carousel dot focus loss with VoiceOver activation
+Refactor: Automatic plugin deactivation with admin notice
+
 
 = 2.0.0 =
 * New: Carousel progress bar block
