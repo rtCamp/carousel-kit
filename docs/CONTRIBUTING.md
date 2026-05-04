@@ -35,8 +35,8 @@ Thank you for your interest in contributing! We welcome all contributions, from 
 If your changes modify a block's `save()` output — including `data-wp-context`, HTML structure, class names, or new elements — you **must** add a deprecation entry in the block's `deprecated.tsx`.
 
 1. Copy the previous `save()` function into the `deprecated` array.
-2. Include the `attributes` and `supports` from the old version.
-3. Use `innerBlocks: true` if the block has inner blocks.
+2. Include the `attributes` and `supports` from the old version (copy the full `supports` from `block.json` — don't simplify it, or alignment/color classes will fail validation).
+3. For blocks with inner blocks, use `useInnerBlocksProps.save()` in the deprecated `save()` function, just like the current save does.
 
 Without this, existing content will show "Block contains unexpected or invalid content" errors in the editor.
 

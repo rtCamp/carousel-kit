@@ -106,7 +106,13 @@ const deprecated = [
 			slidesToScroll: { type: 'string' as const, default: '1' },
 		},
 		supports: {
-			className: true,
+			interactivity: true,
+			align: [ 'wide', 'full' ],
+			html: false,
+			color: {
+				text: false,
+				background: true,
+			},
 		},
 		save: SaveV200,
 	},
