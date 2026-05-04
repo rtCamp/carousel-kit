@@ -436,6 +436,26 @@ describe( 'Carousel View Module', () => {
 
 				expect( result ).toBe( true );
 			} );
+
+			it( 'should work with Terms Query terms (.wp-block-term)', () => {
+				const container = document.createElement( 'div' );
+
+				const term1 = document.createElement( 'li' );
+				term1.className = 'wp-block-term';
+				const term2 = document.createElement( 'li' );
+				term2.className = 'wp-block-term';
+
+				container.appendChild( term1 );
+				container.appendChild( term2 );
+
+				const mockContext = createMockContext( { selectedIndex: 1, initialized: true } );
+				( getContext as jest.Mock ).mockReturnValue( mockContext );
+				( getElement as jest.Mock ).mockReturnValue( { ref: term2 } );
+
+				const result = storeConfig.callbacks.isSlideActive();
+
+				expect( result ).toBe( true );
+			} );
 		} );
 
 		describe( 'isDotActive', () => {
