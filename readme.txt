@@ -86,9 +86,9 @@ rtCarousel is the successor to Carousel Kit. Simply install and activate rtCarou
 == Changelog ==
 
 = 2.0.1 =
-New: Add a11y announcements for carousel slide changes
-Fix: Carousel dot focus loss with VoiceOver activation
-Refactor: Automatic plugin deactivation with admin notice
+* New: Add a11y announcements for carousel slide changes
+* Fix: Carousel dot focus loss with VoiceOver activation
+* Refactor: Replace automatic plugin deactivation with an admin notice
 
 
 = 2.0.0 =
