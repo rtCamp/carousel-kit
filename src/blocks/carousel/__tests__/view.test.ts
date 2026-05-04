@@ -336,7 +336,9 @@ describe( 'Carousel View Module', () => {
 
 				setEmblaOnViewport( viewport, mockEmbla );
 
-				const mockContext = createMockContext();
+				const mockContext = createMockContext( {
+					selectedIndex: 1,
+				} );
 				( mockContext as CarouselContext & { snap?: { index: number } } ).snap = {
 					index: 0,
 				};
@@ -693,6 +695,67 @@ describe( 'Carousel View Module', () => {
 				expect( result ).toBeNull();
 
 				consoleErrorSpy.mockRestore();
+			} );
+
+			it( 'should update announcement after a manual slide change', () => {
+				const mockContext = createMockContext( {
+					announcementPattern: 'Slide {{currentSlide}} of {{totalSlides}}',
+					selectedIndex: -1,
+				} );
+				const { wrapper, viewport } = createMockCarouselDOM();
+				const listeners: {
+					select?: () => void;
+				} = {};
+				const selectedScrollSnap = jest
+					.fn()
+					.mockReturnValueOnce( 0 )
+					.mockReturnValueOnce( 1 );
+				const mockEmbla = createMockEmblaInstance( {
+					selectedScrollSnap,
+					scrollSnapList: jest.fn( () => [ 0, 1, 2, 3, 4 ] ),
+					slideNodes: jest.fn( () =>
+						Array.from( { length: 5 }, () => document.createElement( 'div' ) ),
+					),
+					scrollProgress: jest.fn( () => 0.25 ),
+				} );
+				const originalIntersectionObserver = window.IntersectionObserver;
+
+				mockEmbla.on = jest.fn( ( eventName: string, callback: () => void ) => {
+					if ( eventName === 'select' ) {
+						listeners.select = callback;
+					}
+					return mockEmbla;
+				} );
+
+				viewport.getBoundingClientRect = jest.fn( () => ( {
+					width: 100,
+					height: 0,
+					top: 0,
+					right: 0,
+					bottom: 0,
+					left: 0,
+					x: 0,
+					y: 0,
+					toJSON: () => ( {} ),
+				} ) );
+
+				( getContext as jest.Mock ).mockReturnValue( mockContext );
+				( getElement as jest.Mock ).mockReturnValue( { ref: wrapper } );
+				( EmblaCarousel as unknown as jest.Mock ).mockReturnValue( mockEmbla );
+				delete ( window as Window & { IntersectionObserver?: typeof IntersectionObserver } ).IntersectionObserver;
+
+				try {
+					storeConfig.callbacks.initCarousel();
+
+					mockContext.shouldAnnounce = true;
+					listeners.select?.();
+
+					expect( mockContext.announcement ).toBe( 'Slide 2 of 5' );
+					expect( mockContext.shouldAnnounce ).toBe( false );
+				} finally {
+					( window as Window & { IntersectionObserver?: typeof IntersectionObserver } ).IntersectionObserver =
+						originalIntersectionObserver;
+				}
 			} );
 		} );
 	} );

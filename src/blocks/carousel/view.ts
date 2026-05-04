@@ -56,6 +56,42 @@ const getProgress = (): number => {
 	return Math.max( 0, Math.min( 1, scrollProgress || 0 ) );
 };
 
+const getSlideAnnouncement = (
+	context: CarouselContext,
+	selectedIndex: number,
+	slideCount: number,
+): string => {
+	if ( ! slideCount || slideCount <= 1 || ! context.announcementPattern ) {
+		return '';
+	}
+	return context.announcementPattern
+		.replace( '{{currentSlide}}', ( selectedIndex + 1 ).toString() )
+		.replace( '{{totalSlides}}', slideCount.toString() );
+};
+
+const updateSlideAnnouncement = (
+	context: CarouselContext,
+	previousSelectedIndex: number,
+): void => {
+	if ( ! context.shouldAnnounce ) {
+		return;
+	}
+
+	if ( context.selectedIndex !== previousSelectedIndex ) {
+		context.announcement = getSlideAnnouncement(
+			context,
+			context.selectedIndex,
+			context.slideCount,
+		);
+	}
+
+	context.shouldAnnounce = false;
+};
+
+const markForAnnouncement = (): void => {
+	getContext<CarouselContext>().shouldAnnounce = true;
+};
+
 store( 'rt-carousel/carousel', {
 	state: {
 		get canScrollPrev() {
@@ -72,6 +108,9 @@ store( 'rt-carousel/carousel', {
 			const element = getElementRef( getElement() );
 			const embla = getEmblaFromElement( element );
 			if ( embla ) {
+				if ( embla.canScrollPrev() ) {
+					markForAnnouncement();
+				}
 				embla.scrollPrev();
 			} else {
 				// eslint-disable-next-line no-console
@@ -82,6 +121,9 @@ store( 'rt-carousel/carousel', {
 			const element = getElementRef( getElement() );
 			const embla = getEmblaFromElement( element );
 			if ( embla ) {
+				if ( embla.canScrollNext() ) {
+					markForAnnouncement();
+				}
 				embla.scrollNext();
 			} else {
 				// eslint-disable-next-line no-console
@@ -98,6 +140,9 @@ store( 'rt-carousel/carousel', {
 				const element = getElementRef( getElement() );
 				const embla = getEmblaFromElement( element );
 				if ( embla ) {
+					if ( snap.index !== context.selectedIndex ) {
+						markForAnnouncement();
+					}
 					embla.scrollTo( snap.index );
 				}
 			}
@@ -237,6 +282,7 @@ store( 'rt-carousel/carousel', {
 					viewport[ EMBLA_KEY ] = embla;
 
 					const updateState = () => {
+						const previousSelectedIndex = context.selectedIndex;
 						const scrollSnapList = embla.scrollSnapList();
 						context.initialized = true;
 						context.canScrollPrev = embla.canScrollPrev();
@@ -249,6 +295,7 @@ store( 'rt-carousel/carousel', {
 						}
 						context.scrollProgress = embla.scrollProgress();
 						context.slideCount = embla.slideNodes().length;
+						updateSlideAnnouncement( context, previousSelectedIndex );
 					};
 
 					embla.on( 'select', updateState );
